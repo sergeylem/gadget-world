@@ -1,0 +1,8 @@
+{
+  "short_name": "Gadget's World",
+  "name": "Gadget's World - Get with the times",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
