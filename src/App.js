@@ -4,8 +4,10 @@ import ScrollToTop from "./helpers/scroll-top";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { ToastProvider } from "react-toast-notifications";
 import { multilanguage, loadLanguages } from "redux-multilanguage";
+import { fetchProducts } from "./redux/actions/productActions";
 import { connect } from "react-redux";
 import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic";
+
 
 // home pages
 const HomeFurnitureTwo = lazy(() => import("./pages/home/HomeFurnitureTwo"));
@@ -31,6 +33,7 @@ const NotFound = lazy(() => import("./pages/other/NotFound"));
 
 const App = props => {
   useEffect(() => {
+    
     props.dispatch(
       loadLanguages({
         languages: {
@@ -40,6 +43,11 @@ const App = props => {
         }
       })
     );
+
+    props.dispatch(
+      fetchProducts()
+    );
+
   });
 
   return (

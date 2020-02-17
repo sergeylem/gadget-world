@@ -19,8 +19,11 @@ const ProductGridFour = ({
   sliderClassName,
   spaceBottomClass
 }) => {
+
+  console.log(products);
   return (
     <Fragment>
+
       {products.map(product => {
         return (
           <ProductGridSingleFour
