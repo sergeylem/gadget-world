@@ -1,9 +1,8 @@
 import PropTypes from "prop-types";
-import React, { Fragment, /* My comment! useState*/ } from "react";
+import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import { getDiscountPrice } from "../../helpers/product";
-//My comment! import ProductModal from "./ProductModal";
 
 const ProductGridSingleFour = ({
   product,
@@ -17,7 +16,6 @@ const ProductGridSingleFour = ({
   sliderClassName,
   spaceBottomClass
 }) => {
-//My comment!  const [modalShow, setModalShow] = useState(false);
   const { addToast } = useToasts();
 
   const discountedPrice = getDiscountPrice(product.price, product.discount);
@@ -25,6 +23,8 @@ const ProductGridSingleFour = ({
   const finalDiscountedPrice = +(
     discountedPrice * currency.currencyRate
   ).toFixed(2);
+
+  console.log(product);
 
   return (
     <Fragment>
