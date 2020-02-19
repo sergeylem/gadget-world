@@ -39,7 +39,10 @@ const ProductGridSingleFour = ({
           }`}
         >
           <div className="product-img">
-            <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
+            <Link 
+            to={process.env.REACT_APP_API_URL + '/product/image/' + product._id} >
+            {/* to={`${process.env.REACT_APP_API_URL}/product/image/${product._id}`}> */}
+
               <img
                 className="default-img"
                 //src={process.env.PUBLIC_URL + product.image[0]}
