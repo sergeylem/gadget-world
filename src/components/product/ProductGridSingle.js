@@ -27,6 +27,7 @@ const ProductGridSingle = ({
     discountedPrice * currency.currencyRate
   ).toFixed(2);
 
+  console.log("state:" + product);
   return (
     <Fragment>
       <div
@@ -38,16 +39,20 @@ const ProductGridSingle = ({
           className={`product-wrap ${spaceBottomClass ? spaceBottomClass : ""}`}
         >
           <div className="product-img">
-            <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
+          {/* <Link to={process.env.PUBLIC_URL + "/product/" + product.id}> */}
+            <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
               <img
                 className="default-img"
                 src={process.env.PUBLIC_URL + product.image[0]}
+                // src={process.env.REACT_APP_API_URL + '/product/image/' + product._id}
                 alt=""
               />
-              {product.image.length > 1 ? (
+              {/* {console.log('product image length: ' + product.image.length)} */}
+              {product.image.length > 1 ? ( //there was image instead category 
                 <img
                   className="hover-img"
                   src={process.env.PUBLIC_URL + product.image[1]}
+                  // src={process.env.REACT_APP_API_URL + '/product/image2/' + product._id}
                   alt=""
                 />
               ) : (

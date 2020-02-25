@@ -94,6 +94,7 @@ const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
                         <LightgalleryItem
                           group="any"
                           src={process.env.PUBLIC_URL + single}
+                          // src={process.env.REACT_APP_API_URL + '/product/image/' + single._id}
                         >
                           <button>
                             <i className="pe-7s-expand1"></i>
@@ -102,6 +103,7 @@ const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
                         <div className="single-image">
                           <img
                             src={process.env.PUBLIC_URL + single}
+                            // src={process.env.REACT_APP_API_URL + '/product/image/' + single._id}
                             className="img-fluid"
                             alt=""
                           />
@@ -129,6 +131,7 @@ const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
                       <div className="single-image">
                         <img
                           src={process.env.PUBLIC_URL + single}
+                          // src={process.env.REACT_APP_API_URL + '/product/image/' + single._id}
                           className="img-fluid"
                           alt=""
                         />

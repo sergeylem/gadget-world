@@ -63,7 +63,8 @@ const mapStateToProps = (state, ownProps) => {
   const itemId = ownProps.match.params.id;
   return {
     product: state.productData.products.filter(
-      single => single.id === itemId
+      //single => single.id === itemId
+      single => single._id === itemId
     )[0]
   };
 };

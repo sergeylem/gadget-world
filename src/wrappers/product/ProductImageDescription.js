@@ -42,7 +42,8 @@ const ProductImageDescription = ({
         <div className="row">
           <div className="col-lg-6 col-md-6">
             {/* product image gallery */}
-            {galleryType === "leftThumb" ? (
+            {
+            galleryType === "leftThumb" ? (
               <ProductImageGallerySideThumb
                 product={product}
                 thumbPosition="left"
@@ -53,7 +54,9 @@ const ProductImageDescription = ({
               <ProductImageFixed product={product} />
             ) : (
               <ProductImageGallery product={product} />
-            )}
+              // <div>TEST!!!!!</div>
+            )
+            }
           </div>
           <div className="col-lg-6 col-md-6">
             {/* product description info */}

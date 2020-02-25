@@ -35,8 +35,6 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                       <img
                         alt=""
                         src={process.env.PUBLIC_URL + single.image[0]}
-                        // src={process.env.REACT_APP_API_URL + '/product/image/5e42629d22d04a147929905e'}
-                        //src={process.env.REACT_APP_API_URL + "/product/" +single.image}
                         className="img-fluid"
                       />
                       
