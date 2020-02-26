@@ -38,13 +38,11 @@ const ProductGridListSingle = ({
           className={`product-wrap ${spaceBottomClass ? spaceBottomClass : ""}`}
         >
           <div className="product-img">
-            <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
+            <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
               <img
                 className="default-img"
-                // src={process.env.PUBLIC_URL + product.image[0]}
+                src={process.env.PUBLIC_URL + product.image[0]}
 //                src={process.env.REACT_APP_API_URL + '/product/image/' + product._id}
-                src={process.env.PUBLIC_URL + "/assets/img/product/fashion/3.jpg"}
-
                 alt=""
               />
               { product.image.length > 1 ? (
@@ -96,7 +94,7 @@ const ProductGridListSingle = ({
                     Buy now{" "}
                   </a>
                 ) : product.variation && product.variation.length >= 1 ? (
-                  <Link to={`${process.env.PUBLIC_URL}/product/${product.id}`}>
+                  <Link to={`${process.env.PUBLIC_URL}/product/${product._id}`}>
                     Select Option
                   </Link>
                 ) : product.stock && product.stock > 0 ? (
@@ -133,7 +131,7 @@ const ProductGridListSingle = ({
           </div>
           <div className="product-content text-center">
             <h3>
-              <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
+              <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
                 {product.name}
               </Link>
             </h3>
@@ -163,7 +161,7 @@ const ProductGridListSingle = ({
             <div className="col-xl-4 col-md-5 col-sm-6">
               <div className="product-list-image-wrap">
                 <div className="product-img">
-                  <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
+                  <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
                     <img
                       className="default-img img-fluid"
                       src={process.env.PUBLIC_URL + product.image[0]}
@@ -197,7 +195,7 @@ const ProductGridListSingle = ({
             <div className="col-xl-8 col-md-7 col-sm-6">
               <div className="shop-list-content">
                 <h3>
-                  <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
+                  <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
                     {product.name}
                   </Link>
                 </h3>
@@ -243,7 +241,7 @@ const ProductGridListSingle = ({
                       </a>
                     ) : product.variation && product.variation.length >= 1 ? (
                       <Link
-                        to={`${process.env.PUBLIC_URL}/product/${product.id}`}
+                        to={`${process.env.PUBLIC_URL}/product/${product._id}`}
                       >
                         Select Option
                       </Link>

@@ -85,9 +85,9 @@ const App = props => {
 
                 {/* Shop product pages */}
                 <Route
-                  path={process.env.PUBLIC_URL + "/product/:id"}
+                  path={process.env.PUBLIC_URL + "/product/:_id"}
                   render={routeProps => (
-                    <Product {...routeProps} key={routeProps.match.params.id} />
+                    <Product {...routeProps} key={routeProps.match.params._id} />
                   )}
                 />
                 {/* Other pages */}

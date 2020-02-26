@@ -11,7 +11,7 @@ import ProductImageDescription from "../../wrappers/product/ProductImageDescript
 
 const Product = ({ location, product }) => {
   const { pathname } = location;
-
+  
   return (
     <Fragment>
       <MetaTags>
@@ -60,10 +60,9 @@ Product.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const itemId = ownProps.match.params.id;
+  const itemId = ownProps.match.params._id;  // _id in the App.js path={process.env.PUBLIC_URL + "/product/:_id"}
   return {
     product: state.productData.products.filter(
-      //single => single.id === itemId
       single => single._id === itemId
     )[0]
   };

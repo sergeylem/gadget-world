@@ -90,7 +90,7 @@ const ProductGridSingleFour = ({
                   </a>
                 ) : product.variation && product.variation.length >= 1 ? (
                   <Link
-                    to={`${process.env.PUBLIC_URL}/product/${product.id}`}
+                    to={`${process.env.PUBLIC_URL}/product/${product}`}
                     title="Select options"
                   >
                     <i class="fa fa-cog"></i>
@@ -142,7 +142,7 @@ const ProductGridSingleFour = ({
           </div>
           <div className="product-content-5 text-center">
             <h3>
-              <Link to={process.env.PUBLIC_URL + "/product/" + product.id}>
+              <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
                 {product.name}
               </Link>
             </h3>

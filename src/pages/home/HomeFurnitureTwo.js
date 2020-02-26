@@ -5,9 +5,6 @@ import HeroSliderEleven from "../../wrappers/hero-slider/HeroSliderEleven";
 import CategoryTwoSlider from "../../wrappers/category/CategoryTwoSlider";
 import TabProductSix from "../../wrappers/product/TabProductSix";
 
-// import React, { useState, useEffect } from "react";
-// import { getProducts } from "./apiCore";
-
 const HomeFurnitureTwo = () => {
 
   return (

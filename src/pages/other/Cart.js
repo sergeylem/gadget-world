@@ -92,7 +92,7 @@ const Cart = ({
                                     to={
                                       process.env.PUBLIC_URL +
                                       "/product/" +
-                                      cartItem.id
+                                      cartItem._id
                                     }
                                   >
                                     <img
@@ -113,7 +113,7 @@ const Cart = ({
                                     to={
                                       process.env.PUBLIC_URL +
                                       "/product/" +
-                                      cartItem.id
+                                      cartItem._id
                                     }
                                   >
                                     {cartItem.name}
