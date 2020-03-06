@@ -60,7 +60,7 @@ Product.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const itemId = ownProps.match.params._id;  // _id in the App.js path={process.env.PUBLIC_URL + "/product/:_id"}
+  const itemId = ownProps.match.params._id;  // _id as in the App.js path={process.env.PUBLIC_URL + "/product/:_id"}
   return {
     product: state.productData.products.filter(
       single => single._id === itemId

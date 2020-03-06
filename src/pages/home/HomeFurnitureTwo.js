@@ -14,7 +14,7 @@ const HomeFurnitureTwo = () => {
       {/* category */}
       <CategoryTwoSlider spaceTopClass="pt-100" spaceBottomClass="pb-95" />
       {/* tab product */}
-      <TabProductSix spaceBottomClass="pb-70" category="furniture" />
+      <TabProductSix spaceBottomClass="pb-70" category="Smartphone" />
       {/* newsletter */}
       <NewsletterTwo spaceBottomClass="pb-100" />
     </LayoutFour>
