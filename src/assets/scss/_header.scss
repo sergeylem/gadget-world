@@ -814,7 +814,8 @@
     border-bottom: 1px solid #d5d4d4;
     .header-top-wap {
         display: flex;
-        justify-content: space-between;
+//        justify-content: space-between;
+        justify-content: flex-end;
         align-items: center;
         @media #{$xs-layout}{
             display: block;

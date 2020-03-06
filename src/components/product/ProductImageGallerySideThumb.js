@@ -2,6 +2,8 @@ import PropTypes from "prop-types";
 import React, { Fragment, useEffect, useState } from "react";
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import Swiper from "react-id-swiper";
+import { ROOT_URL } from "../../config";
+
 
 const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
   const [gallerySwiper, getGallerySwiper] = useState(null);
@@ -93,7 +95,7 @@ const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
                       <div key={key}>
                         <LightgalleryItem
                           group="any"
-                          src={process.env.PUBLIC_URL + single}
+                          src={ROOT_URL + single}
                           // src={process.env.REACT_APP_API_URL + '/product/image/' + single._id}
                         >
                           <button>
@@ -102,7 +104,7 @@ const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
                         </LightgalleryItem>
                         <div className="single-image">
                           <img
-                            src={process.env.PUBLIC_URL + single}
+                            src={ROOT_URL + single}
                             // src={process.env.REACT_APP_API_URL + '/product/image/' + single._id}
                             className="img-fluid"
                             alt=""
@@ -130,7 +132,7 @@ const ProductImageGalleryLeftThumb = ({ product, thumbPosition }) => {
                     <div key={key}>
                       <div className="single-image">
                         <img
-                          src={process.env.PUBLIC_URL + single}
+                          src={ROOT_URL + single}
                           // src={process.env.REACT_APP_API_URL + '/product/image/' + single._id}
                           className="img-fluid"
                           alt=""

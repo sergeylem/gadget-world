@@ -7,6 +7,7 @@ import { multilanguage, loadLanguages } from "redux-multilanguage";
 import { fetchProducts } from "./redux/actions/productActions";
 import { connect } from "react-redux";
 import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic";
+import { ROOT_URL } from "./config";
 
 
 // home pages
@@ -68,65 +69,65 @@ const App = props => {
               <Switch>
                 <Route
                   exact
-                  path={process.env.PUBLIC_URL + "/"}
+                  path={ROOT_URL + "/"}
                   component={HomeFurnitureTwo}
                 />
 
                 <Route
-                  path={process.env.PUBLIC_URL + "/home-furniture-two"}
+                  path={ROOT_URL + "/home-furniture-two"}
                   component={HomeFurnitureTwo}
                 />
 
                 {/* Shop pages */}
                 <Route
-                  path={process.env.PUBLIC_URL + "/shop-grid-standard"}
+                  path={ROOT_URL + "/shop-grid-standard"}
                   component={ShopGridStandard}
                 />
 
                 {/* Shop product pages */}
                 <Route
-                  path={process.env.PUBLIC_URL + "/product/:_id"}
+                  path={ROOT_URL + "/product/:_id"}
                   render={routeProps => (
                     <Product {...routeProps} key={routeProps.match.params._id} />
                   )}
                 />
                 {/* Other pages */}
                 <Route
-                  path={process.env.PUBLIC_URL + "/about"}
+                  path={ROOT_URL + "/about"}
                   component={About}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/contact"}
+                  path={ROOT_URL + "/contact"}
                   component={Contact}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/my-account"}
+                  path={ROOT_URL + "/my-account"}
                   component={MyAccount}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/login-register"}
+                  path={ROOT_URL + "/login-register"}
                   component={LoginRegister}
                 />
 
                 <Route
-                  path={process.env.PUBLIC_URL + "/cart"}
+                  path={ROOT_URL + "/cart"}
                   component={Cart}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/wishlist"}
+                  path={ROOT_URL + "/wishlist"}
                   component={Wishlist}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/compare"}
+                  path={ROOT_URL + "/compare"}
                   component={Compare}
                 />
                 <Route
-                  path={process.env.PUBLIC_URL + "/checkout"}
+                  path={ROOT_URL + "/checkout"}
                   component={Checkout}
                 />
 
                 <Route
-                  path={process.env.PUBLIC_URL + "/not-found"}
+                  path={ROOT_URL + "/not-found"}
                   component={NotFound}
                 />
 

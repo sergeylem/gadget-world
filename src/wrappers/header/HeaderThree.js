@@ -7,7 +7,7 @@ import Logo from "../../components/header/Logo";
 import IconGroup from "../../components/header/IconGroup";
 import NavMenuTwo from "../../components/header/NavMenuTwo";
 import MobileMenu from "../../components/header/MobileMenu";
-import LanguageCurrencyChanger from "../../components/header/sub-components/LanguageCurrencyChanger";
+//import LanguageCurrencyChanger from "../../components/header/sub-components/LanguageCurrencyChanger";
 
 const HeaderThree = ({
   currency,
@@ -37,12 +37,12 @@ const HeaderThree = ({
         <div className="container-fluid">
           <div className="header-top-wap">
             {/* language currency changer */}
-            <LanguageCurrencyChanger
+            {/* <LanguageCurrencyChanger
               currency={currency}
               setCurrency={setCurrency}
               currentLanguageCode={currentLanguageCode}
               dispatch={dispatch}
-            />
+            /> */}
             {/* Icon group */}
             <IconGroup />
           </div>

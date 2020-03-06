@@ -5,6 +5,7 @@ import { useToasts } from "react-toast-notifications";
 import { getDiscountPrice } from "../../helpers/product";
 import Rating from "./sub-components/ProductRating";
 import ProductModal from "./ProductModal";
+import { ROOT_URL } from "../../config";
 
 const ProductGridSingle = ({
   product,
@@ -38,20 +39,17 @@ const ProductGridSingle = ({
           className={`product-wrap ${spaceBottomClass ? spaceBottomClass : ""}`}
         >
           <div className="product-img">
-          {/* <Link to={process.env.PUBLIC_URL + "/product/" + product._id}> */}
-            <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
+            <Link to={ROOT_URL + "/product/" + product._id}>
               <img
                 className="default-img"
-                src={process.env.PUBLIC_URL + product.image[0]}
+                src={ROOT_URL + product.image[0]}
                 // src={process.env.REACT_APP_API_URL + '/product/image/' + product._id}
                 alt=""
               />
-              {/* {console.log('product image length: ' + product.image.length)} */}
-              {product.image.length > 1 ? ( //there was image instead category 
+              {product.image.length > 1 ? ( 
                 <img
                   className="hover-img"
-                  src={process.env.PUBLIC_URL + product.image[1]}
-                  // src={process.env.REACT_APP_API_URL + '/product/image2/' + product._id}
+                  src={ROOT_URL + product.image[1]}
                   alt=""
                 />
               ) : (
@@ -97,7 +95,7 @@ const ProductGridSingle = ({
                     Buy now{" "}
                   </a>
                 ) : product.variation && product.variation.length >= 1 ? (
-                  <Link to={`${process.env.PUBLIC_URL}/product/${product._id}`}>
+                  <Link to={`${ROOT_URL}/product/${product._id}`}>
                     Select Option
                   </Link>
                 ) : product.stock && product.stock > 0 ? (
@@ -134,7 +132,7 @@ const ProductGridSingle = ({
           </div>
           <div className="product-content text-center">
             <h3>
-              <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
+              <Link to={ROOT_URL + "/product/" + product._id}>
                 {product.name}
               </Link>
             </h3>
