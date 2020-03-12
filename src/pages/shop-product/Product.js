@@ -42,6 +42,13 @@ const Product = ({ location, product }) => {
         <ProductDescriptionTab
           spaceBottomClass="pb-90"
           productFullDesc={product.fullDescription}
+          productModel={product.specification.model}
+          productPerformance={product.specification.performance}
+          productStorage={product.specification.storage}
+          productCamera={product.specification.camera}
+          productBattery={product.specification.battery}
+          productDisplay={product.specification.display}
+          productRam={product.specification.ram}
         />
 
         {/* related product slider */}
@@ -60,7 +67,7 @@ Product.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const itemId = ownProps.match.params._id;  // _id as in the App.js path={process.env.PUBLIC_URL + "/product/:_id"}
+  const itemId = ownProps.match.params._id;  // _id bacause in the App.js path={process.env.PUBLIC_URL + "/product/:_id"}
   return {
     product: state.productData.products.filter(
       single => single._id === itemId

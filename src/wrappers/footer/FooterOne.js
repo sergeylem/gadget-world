@@ -46,10 +46,10 @@ const FooterOne = ({
             className={`${
               sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
             }`}
-          >
+          > 
             {/* footer copyright */}
             <FooterCopyright
-              footerLogo="/assets/img/logo/logo.png"
+              footerLogo="/assets/img/logo/logo.svg"
               spaceBottomClass="mb-30"
             />
           </div>

@@ -3,7 +3,16 @@ import React from "react";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 
-const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
+const ProductDescriptionTab = ({ spaceBottomClass, 
+  productFullDesc,
+  productModel,
+  productPerformance,
+  productStorage,
+  productCamera,
+  productBattery,
+  productDisplay,
+  productRam
+}) => {
   return (
     <div className={`description-review-area ${spaceBottomClass}`}>
       <div className="container">
@@ -22,21 +31,41 @@ const ProductDescriptionTab = ({ spaceBottomClass, productFullDesc }) => {
             <Tab.Content className="description-review-bottom">
               <Tab.Pane eventKey="additionalInfo">
                 <div className="product-anotherinfo-wrapper">
-                  <ul>
-                    <li>
-                      <span>Weight</span> 400 g
-                    </li>
-                    <li>
-                      <span>Dimensions</span>10 x 10 x 15 cm{" "}
-                    </li>
-                    <li>
-                      <span>Materials</span> 60% cotton, 40% polyester
-                    </li>
-                    <li>
-                      <span>Other Info</span> American heirloom jean shorts pug
-                      seitan letterpress
-                    </li>
-                  </ul>
+                <div className="row">
+
+                  <div className="col-lg-6 col-md-8 col-sm-8"> 
+                    <ul>
+                      <li>
+                        <span>Model</span>{productModel} 
+                      </li>
+                      <li>
+                        <span>CPU</span>{productPerformance}
+                      </li>
+                      <li>
+                        <span>Storage</span>{productStorage} 
+                      </li>
+                      <li>
+                        <span>Camera</span>{productCamera}
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="col-lg-6 col-md-8 col-sm-8">
+                    <ul>
+                      <li>
+                        <span>Battery</span>{productBattery}
+                      </li>
+                      <li>
+                        <span>Display</span>{productDisplay}
+                      </li>
+                      <li>
+                        <span>Ram</span>{productRam}
+                      </li>
+                    </ul>
+                  </div>
+
+                  </div>
+                  
                 </div>
               </Tab.Pane>
               <Tab.Pane eventKey="productDescription">

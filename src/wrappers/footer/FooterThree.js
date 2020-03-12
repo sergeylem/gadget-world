@@ -43,7 +43,7 @@ const FooterThree = ({
             <div className="col-lg-2 col-sm-4">
               {/* footer copyright */}
               <FooterCopyright
-                footerLogo="/assets/img/logo/logo.png"
+                footerLogo="/assets/img/logo/logo.svg"
                 spaceBottomClass="mb-30"
               />
             </div>
@@ -55,24 +55,16 @@ const FooterThree = ({
                 <div className="footer-list">
                   <ul>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/about"}>
-                        About us
-                      </Link>
+                      <Link to={process.env.PUBLIC_URL + "/about"}>About us</Link>
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "#/"}>
-                        Store location
-                      </Link>
+                      <Link to={process.env.PUBLIC_URL + "#/"}>Store location</Link>
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "/contact"}>
-                        Contact
-                      </Link>
+                      <Link to={process.env.PUBLIC_URL + "/contact"}>Contact</Link>
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "#/"}>
-                        Orders tracking
-                      </Link>
+                      <Link to={process.env.PUBLIC_URL + "#/"}>Orders tracking</Link>
                     </li>
                   </ul>
                 </div>
@@ -89,9 +81,7 @@ const FooterThree = ({
                       <Link to={process.env.PUBLIC_URL + "#/"}>Returns</Link>
                     </li>
                     <li>
-                      <Link to={process.env.PUBLIC_URL + "#/"}>
-                        Support Policy
-                      </Link>
+                      <Link to={process.env.PUBLIC_URL + "#/"}>Support Policy</Link>
                     </li>
                     <li>
                       <Link to={process.env.PUBLIC_URL + "#/"}>Size guide</Link>

@@ -13,9 +13,9 @@ const FooterCopyright = ({ footerLogo, spaceBottomClass }) => {
       <p>
         © 2020{" "}
         <a href="//hasthemes.com" rel="noopener noreferrer" target="_blank">
-          Gadget's World
+          Gadget World
         </a>
-        .<br /> All Rights Reserved
+        <br /> All Rights Reserved
       </p>
     </div>
   );

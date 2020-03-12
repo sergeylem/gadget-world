@@ -9,154 +9,13 @@ const MobileNavMenu = ({ strings }) => {
       <ul>
         <li className="menu-item-has-children">
           <Link to={process.env.PUBLIC_URL + "/"}>{strings["home"]}</Link>
-          <ul className="sub-menu">
+          {/* <ul className="sub-menu">
             <li className="menu-item-has-children">
-              <Link to={process.env.PUBLIC_URL + "/"}>
-                {strings["home_group_one"]}
-              </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-fashion"}>
-                    {strings["home_fashion"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-fashion-two"}>
-                    {strings["home_fashion_two"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-fashion-three"}>
-                    {strings["home_fashion_three"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-fashion-four"}>
-                    {strings["home_fashion_four"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-fashion-five"}>
-                    {strings["home_fashion_five"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-fashion-six"}>
-                    {strings["home_fashion_six"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-fashion-seven"}>
-                    {strings["home_fashion_seven"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-kids-fashion"}>
-                    {strings["home_kids_fashion"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-cosmetics"}>
-                    {strings["home_cosmetics"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-furniture"}>
-                    {strings["home_furniture"]}
-                  </Link>
-                </li>
-              </ul>
-            </li>
-            <li className="menu-item-has-children">
-              <Link to={process.env.PUBLIC_URL + "/"}>
-                {strings["home_group_two"]}
-              </Link>
-              <ul className="sub-menu">
-                <li>
                   <Link to={process.env.PUBLIC_URL + "/home-furniture-two"}>
                     {strings["home_furniture_two"]}
                   </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-furniture-three"}>
-                    {strings["home_furniture_three"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-electronics"}>
-                    {strings["home_electronics"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-electronics-two"}>
-                    {strings["home_electronics_two"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-book-store"}>
-                    {strings["home_book_store"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-plants"}>
-                    {strings["home_plants"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-flower-shop"}>
-                    {strings["home_flower_shop"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-organic-food"}>
-                    {strings["home_organic_food"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-organic-food-two"}>
-                    {strings["home_organic_food_two"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-onepage-scroll"}>
-                    {strings["home_onepage_scroll"]}
-                  </Link>
-                </li>
-              </ul>
             </li>
-            <li className="menu-item-has-children">
-              <Link to={process.env.PUBLIC_URL + "/"}>
-                {strings["home_group_three"]}
-              </Link>
-              <ul className="sub-menu">
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-grid-banner"}>
-                    {strings["home_grid_banner"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-auto-parts"}>
-                    {strings["home_auto_parts"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-cake-shop"}>
-                    {strings["home_cake_shop"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-handmade"}>
-                    {strings["home_handmade"]}
-                  </Link>
-                </li>
-                <li>
-                  <Link to={process.env.PUBLIC_URL + "/home-pet-food"}>
-                    {strings["home_pet_food"]}
-                  </Link>
-                </li>
-              </ul>
-            </li>
-          </ul>
+          </ul> */}
         </li>
 
         <li className="menu-item-has-children">
@@ -323,33 +182,6 @@ const MobileNavMenu = ({ strings }) => {
             <li>
               <Link to={process.env.PUBLIC_URL + "/not-found"}>
                 {strings["404_page"]}
-              </Link>
-            </li>
-          </ul>
-        </li>
-        <li className="menu-item-has-children">
-          <Link to={process.env.PUBLIC_URL + "/blog-standard"}>
-            {strings["blog"]}
-          </Link>
-          <ul className="sub-menu">
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/blog-standard"}>
-                {strings["blog_standard"]}
-              </Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/blog-no-sidebar"}>
-                {strings["blog_no_sidebar"]}
-              </Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/blog-right-sidebar"}>
-                {strings["blog_right_sidebar"]}
-              </Link>
-            </li>
-            <li>
-              <Link to={process.env.PUBLIC_URL + "/blog-details-standard"}>
-                {strings["blog_details_standard"]}
               </Link>
             </li>
           </ul>

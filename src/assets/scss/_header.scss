@@ -70,7 +70,8 @@
     }
 }
 .logo {
-	margin-top: 32px;
+    margin-top: 10px;
+    
     @media #{$md-layout}{
         margin-top: 0px;
     }

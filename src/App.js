@@ -38,9 +38,10 @@ const App = props => {
     props.dispatch(
       loadLanguages({
         languages: {
-          en: require("./translations/english.json"),
-          fn: require("./translations/french.json"),
-          de: require("./translations/germany.json")
+          en: require("./translations/english.json") 
+          //,
+          // fn: require("./translations/french.json"),
+          // de: require("./translations/germany.json")
         }
       })
     );
@@ -146,3 +147,4 @@ App.propTypes = {
 };
 
 export default connect()(multilanguage(App));
+

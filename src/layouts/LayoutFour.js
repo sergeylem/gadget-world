@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 import React, { Fragment } from "react";
-import HeaderThree from "../wrappers/header/HeaderThree";
+//import HeaderThree from "../wrappers/header/HeaderThree";
 import FooterThree from "../wrappers/footer/FooterThree";
+import HeaderOne from "../wrappers/header/HeaderOne";
 
 const LayoutFour = ({ children }) => {
   return (
     <Fragment>
-      <HeaderThree />
+      <HeaderOne />
       {children}
       <FooterThree spaceBottomClass="pb-70" />
     </Fragment>

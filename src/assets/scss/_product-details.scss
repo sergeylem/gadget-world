@@ -305,7 +305,7 @@
 
 .product-dec-slider-2 {
   display: inline-block;
-  float: left;
+//  float: left;
   padding: 0;
   width: 20%;
   @media #{$lg-layout} {
@@ -360,7 +360,7 @@
     display: inline-block;
     position: relative;
     width: 80%;
-    float: left;
+//    float: left;
     @media #{$lg-layout} {
       width: 79%;
     }

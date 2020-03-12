@@ -231,3 +231,4 @@ NavMenu.propTypes = {
 };
 
 export default multilanguage(NavMenu);
+//export default NavMenu;
