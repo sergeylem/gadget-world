@@ -1,37 +1,38 @@
 [
   {
-    "id": "1",
-    "image": "/assets/img/product/hm8-pro-1.jpg",
-    "subtitle": "2 Products",
-    "title": "Living Room",
-    "link": "/shop-grid-standard"
-  },
-  {
     "id": "2",
-    "image": "/assets/img/product/hm8-pro-2.jpg",
+    "image": "/assets/img/product/banners/surface7.jpg",
     "subtitle": "3 Products",
-    "title": "Drawing Room",
+    "title": "Notebooks",
     "link": "/shop-grid-standard"
   },
   {
     "id": "3",
-    "image": "/assets/img/product/hm8-pro-3.jpg",
-    "subtitle": "6 Products",
-    "title": "Dining Room",
+    "image": "/assets/img/product/banners/s23-1.jpeg",
+    "subtitle": "15 Products",
+    "title": "Smartphone",
     "link": "/shop-grid-standard"
   },
   {
     "id": "4",
-    "image": "/assets/img/product/hm8-pro-4.jpg",
-    "subtitle": "5 Products",
-    "title": "Drawing Room",
+    "image": "/assets/img/product/banners/w3-1.jpeg",
+    "subtitle": "8 Products",
+    "title": "Watches",
+    "link": "/shop-grid-standard"
+  },
+  {
+    "id": "1",
+    "image": "/assets/img/product/banners/ipad.jpg",
+    "subtitle": "4 Products",
+    "title": "Tablets",
     "link": "/shop-grid-standard"
   },
   {
     "id": "5",
-    "image": "/assets/img/product/hm8-pro-2.jpg",
+    "image": "/assets/img/product/banners/airpods.jpg",
     "subtitle": "3 Products",
-    "title": "Living Room",
+    "title": "Accessories",
     "link": "/shop-grid-standard"
   }
+
 ]

@@ -42,7 +42,7 @@ const ProductDescriptionTab = ({ spaceBottomClass,
                         <span>CPU</span>{productPerformance}
                       </li>
                       <li>
-                        <span>Storage</span>{productStorage} 
+                        <span>Storage</span>{`${productStorage} GB`} 
                       </li>
                       <li>
                         <span>Camera</span>{productCamera}
@@ -53,13 +53,13 @@ const ProductDescriptionTab = ({ spaceBottomClass,
                   <div className="col-lg-6 col-md-8 col-sm-8">
                     <ul>
                       <li>
-                        <span>Battery</span>{productBattery}
+                        <span>Battery</span>{`${productBattery} mAh`} 
                       </li>
                       <li>
-                        <span>Display</span>{productDisplay}
+                        <span>Display</span>{`${productDisplay}"`}
                       </li>
                       <li>
-                        <span>Ram</span>{productRam}
+                        <span>Ram</span>{`${productRam} GB`}
                       </li>
                     </ul>
                   </div>
