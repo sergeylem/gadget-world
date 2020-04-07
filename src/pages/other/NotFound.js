@@ -5,6 +5,7 @@ import MetaTags from "react-meta-tags";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
+import { ROOT_URL } from "../../config";
 
 const NotFound = ({ location }) => {
   const { pathname } = location;
@@ -12,14 +13,14 @@ const NotFound = ({ location }) => {
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | Not Found</title>
+        <title>Gadget World | Not Found</title>
         <meta
           name="description"
           content="404 page of flone react minimalist eCommerce template."
         />
       </MetaTags>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+      <BreadcrumbsItem to={ROOT_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={ROOT_URL + pathname}>
         404 page
       </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
@@ -48,7 +49,7 @@ const NotFound = ({ location }) => {
                       <i className="fa fa-search" />
                     </button>
                   </form>
-                  <Link to={process.env.PUBLIC_URL + "/"} className="error-btn">
+                  <Link to={ROOT_URL + "/"} className="error-btn">
                     Back to home page
                   </Link>
                 </div>

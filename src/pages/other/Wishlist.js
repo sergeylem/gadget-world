@@ -14,6 +14,7 @@ import {
 import { addToCart } from "../../redux/actions/cartActions";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
+import { ROOT_URL } from "../../config";
 
 const Wishlist = ({
   location,
@@ -30,15 +31,15 @@ const Wishlist = ({
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | Wishlist</title>
+        <title>Gadget World | Wishlist</title>
         <meta
           name="description"
           content="Wishlist page of flone react minimalist eCommerce template."
         />
       </MetaTags>
 
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+      <BreadcrumbsItem to={ROOT_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={ROOT_URL + pathname}>
         Wishlist
       </BreadcrumbsItem>
 
@@ -83,7 +84,7 @@ const Wishlist = ({
                                 <td className="product-thumbnail">
                                   <Link
                                     to={
-                                      process.env.PUBLIC_URL +
+                                      ROOT_URL +
                                       "/product/" +
                                       wishlistItem._id
                                     }
@@ -91,7 +92,7 @@ const Wishlist = ({
                                     <img
                                       className="img-fluid"
                                       src={
-                                        process.env.PUBLIC_URL + wishlistItem.image[0]
+                                        ROOT_URL + wishlistItem.image[0]
                                       }
                                       alt=""
                                     />
@@ -101,7 +102,7 @@ const Wishlist = ({
                                 <td className="product-name text-center">
                                   <Link
                                     to={
-                                      process.env.PUBLIC_URL +
+                                      ROOT_URL +
                                       "/product/" +
                                       wishlistItem._id
                                     }
@@ -143,7 +144,7 @@ const Wishlist = ({
                                   ) : wishlistItem.variation &&
                                     wishlistItem.variation.length >= 1 ? (
                                     <Link
-                                      to={`${process.env.PUBLIC_URL}/product/${wishlistItem._id}`}
+                                      to={`${ROOT_URL}/product/${wishlistItem._id}`}
                                     >
                                       Select option
                                     </Link>
@@ -204,7 +205,7 @@ const Wishlist = ({
                     <div className="cart-shiping-update-wrapper">
                       <div className="cart-shiping-update">
                         <Link
-                          to={process.env.PUBLIC_URL + "/shop-grid-standard"}
+                          to={ROOT_URL + "/shop-grid-standard"}
                         >
                           Continue Shopping
                         </Link>
@@ -227,7 +228,7 @@ const Wishlist = ({
                     </div>
                     <div className="item-empty-area__text">
                       No items found in wishlist <br />{" "}
-                      <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
+                      <Link to={ROOT_URL + "/shop-grid-standard"}>
                         Add Items
                       </Link>
                     </div>

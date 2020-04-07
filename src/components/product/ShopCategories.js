@@ -3,6 +3,8 @@ import React from "react";
 import { setActiveSort } from "../../helpers/product";
 
 const ShopCategories = ({ categories, getSortParams }) => {
+  categories = ["Watch"]
+  console.log("categories:" + categories);
   return (
     <div className="sidebar-widget">
       <h4 className="pro-sidebar-title">Categories </h4>
@@ -27,8 +29,9 @@ const ShopCategories = ({ categories, getSortParams }) => {
                   <div className="sidebar-widget-list-left">
                     <button
                       onClick={e => {
-                        getSortParams("category", category);
-                        setActiveSort(e);
+                         getSortParams("category", category);
+                        //  console.log("category:" + category);
+                         setActiveSort(e);
                       }}
                     >
                       {" "}

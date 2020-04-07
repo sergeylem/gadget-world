@@ -7,6 +7,7 @@ import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
+import { ROOT_URL } from "../../config";
 
 const LoginRegister = ({ location }) => {
   const { pathname } = location;
@@ -14,14 +15,14 @@ const LoginRegister = ({ location }) => {
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | Login</title>
+        <title>Gadget World | Login</title>
         <meta
           name="description"
           content="Compare page of flone react minimalist eCommerce template."
         />
       </MetaTags>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+      <BreadcrumbsItem to={ROOT_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={ROOT_URL + pathname}>
         Login Register
       </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
@@ -64,7 +65,7 @@ const LoginRegister = ({ location }) => {
                                 <div className="login-toggle-btn">
                                   <input type="checkbox" />
                                   <label className="ml-10">Remember me</label>
-                                  <Link to={process.env.PUBLIC_URL + "/"}>
+                                  <Link to={ROOT_URL + "/"}>
                                     Forgot Password?
                                   </Link>
                                 </div>

@@ -7,6 +7,7 @@ import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import { getDiscountPrice } from "../../helpers/product";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
+import { ROOT_URL } from "../../config";
 
 const Checkout = ({ location, cartItems, currency }) => {
   const { pathname } = location;
@@ -15,14 +16,14 @@ const Checkout = ({ location, cartItems, currency }) => {
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | Checkout</title>
+        <title>Gadget World | Checkout</title>
         <meta
           name="description"
           content="Checkout page of flone react minimalist eCommerce template."
         />
       </MetaTags>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+      <BreadcrumbsItem to={ROOT_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={ROOT_URL + pathname}>
         Checkout
       </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
@@ -212,7 +213,7 @@ const Checkout = ({ location, cartItems, currency }) => {
                     </div>
                     <div className="item-empty-area__text">
                       No items found in cart to checkout <br />{" "}
-                      <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
+                      <Link to={ROOT_URL + "/shop-grid-standard"}>
                         Shop Now
                       </Link>
                     </div>

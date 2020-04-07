@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
 import ProductGridFour from "./ProductGridFour";
+import { ROOT_URL } from "../../config";
 
 const TabProductSix = ({
   spaceTopClass,
@@ -77,7 +78,7 @@ const TabProductSix = ({
         <div className="view-more text-center mt-20 toggle-btn6 col-12">
           <Link
             className="loadMore6"
-            to={process.env.PUBLIC_URL + "/shop-grid-standard"}
+            to={ROOT_URL + "/shop-grid-standard"}
           >
             VIEW MORE PRODUCTS
           </Link>

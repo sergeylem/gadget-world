@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import { getDiscountPrice } from "../../helpers/product";
+import { ROOT_URL } from "../../config";
 
 const ProductGridSingleFour = ({
   product,
@@ -40,11 +41,11 @@ const ProductGridSingleFour = ({
         >
           <div className="product-img">
             <Link 
-            to={process.env.PUBLIC_URL + '/product/' + product._id} >
+            to={ROOT_URL + '/product/' + product._id} >
             {/* to={`${process.env.REACT_APP_API_URL}/product/image/${product._id}`}> */}
               <img
                 className="default-img"
-                src={process.env.PUBLIC_URL + product.image[0]}
+                src={ROOT_URL + product.image[0]}
                 // src={process.env.REACT_APP_API_URL + '/product/image/' + product._id}
                 alt=""
               />
@@ -90,7 +91,7 @@ const ProductGridSingleFour = ({
                   </a>
                 ) : product.variation && product.variation.length >= 1 ? (
                   <Link
-                    to={`${process.env.PUBLIC_URL}/product/${product}`}
+                    to={`${ROOT_URL}/product/${product}`}
                     title="Select options"
                   >
                     <i class="fa fa-cog"></i>
@@ -142,7 +143,7 @@ const ProductGridSingleFour = ({
           </div>
           <div className="product-content-5 text-center">
             <h3>
-              <Link to={process.env.PUBLIC_URL + "/product/" + product._id}>
+              <Link to={ROOT_URL + "/product/" + product._id}>
                 {product.name}
               </Link>
             </h3>

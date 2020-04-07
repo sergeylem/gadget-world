@@ -5,6 +5,7 @@ import { getProductCartQuantity } from "../../helpers/product";
 import { Modal } from "react-bootstrap";
 import Rating from "./sub-components/ProductRating";
 import { connect } from "react-redux";
+import { ROOT_URL } from "../../config";
 
 function ProductModal(props) {
   const { product } = props;
@@ -107,7 +108,7 @@ function ProductModal(props) {
                         <div key={key}>
                           <div className="single-image">
                             <img
-                              src={process.env.PUBLIC_URL + single}
+                              src={ROOT_URL + single}
                               className="img-fluid"
                               alt=""
                             />
@@ -125,7 +126,7 @@ function ProductModal(props) {
                         <div key={key}>
                           <div className="single-image">
                             <img
-                              src={process.env.PUBLIC_URL + single}
+                              src={ROOT_URL + single}
                               className="img-fluid"
                               alt=""
                             />

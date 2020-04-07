@@ -37,18 +37,18 @@ const CategoryTwoSlider = ({ spaceTopClass, spaceBottomClass }) => {
         <SectionTitleFour titleText="Collections" spaceBottomClass="mb-40" />
         <div className="collection-wrap">
           <div className="collection-active">
-            <Swiper {...settings}>
-              {categoryData &&
-                categoryData.map((single, key) => {
-                  return (
-                    <CategoryTwoSingle
-                      data={single}
-                      key={key}
-                      sliderClass="swiper-slide"
-                    />
-                  );
-                })}
-            </Swiper>
+              <Swiper {...settings}>
+                {categoryData &&
+                  categoryData.map((single, key) => {
+                    return (
+                      <CategoryTwoSingle
+                        data={single}
+                        key={key}
+                        sliderClass="swiper-slide"
+                      />
+                    );
+                  })}
+              </Swiper>
           </div>
         </div>
       </div>

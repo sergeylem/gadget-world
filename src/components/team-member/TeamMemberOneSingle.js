@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { ROOT_URL } from "../../config";
 
 const TeamMemberOneSingle = ({ data, spaceBottomClass }) => {
   return (
@@ -9,7 +10,7 @@ const TeamMemberOneSingle = ({ data, spaceBottomClass }) => {
       >
         <div className="team-img">
           <img
-            src={process.env.PUBLIC_URL + data.image}
+            src={ROOT_URL + data.image}
             alt=""
             className="img-fluid"
           />

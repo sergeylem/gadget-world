@@ -3,6 +3,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import { getDiscountPrice } from "../../../helpers/product";
+import { ROOT_URL } from "../../../config";
 
 const MenuCart = ({ cartData, currency, deleteFromCart }) => {
   let cartTotalPrice = 0;
@@ -31,10 +32,10 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
               return (
                 <li className="single-shopping-cart" key={key}>
                   <div className="shopping-cart-img">
-                    <Link to={process.env.PUBLIC_URL + "/product/" + single._id}>
+                    <Link to={ROOT_URL + "/product/" + single._id}>
                       <img
                         alt=""
-                        src={process.env.PUBLIC_URL + single.image[0]}
+                        src={ROOT_URL + single.image[0]}
                         className="img-fluid"
                       />
                       
@@ -43,7 +44,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                   <div className="shopping-cart-title">
                     <h4>
                       <Link
-                        to={process.env.PUBLIC_URL + "/product/" + single._id}
+                        to={ROOT_URL + "/product/" + single._id}
                       >
                         {" "}
                         {single.name}{" "}
@@ -83,12 +84,12 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
             </h4>
           </div>
           <div className="shopping-cart-btn btn-hover text-center">
-            <Link className="default-btn" to={process.env.PUBLIC_URL + "/cart"}>
+            <Link className="default-btn" to={ROOT_URL + "/cart"}>
               view cart
             </Link>
             <Link
               className="default-btn"
-              to={process.env.PUBLIC_URL + "/checkout"}
+              to={ROOT_URL + "/checkout"}
             >
               checkout
             </Link>

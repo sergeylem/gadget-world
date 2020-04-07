@@ -1,13 +1,14 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { Link } from "react-router-dom";
+import { ROOT_URL } from "../../config";
 
 const FooterCopyright = ({ footerLogo, spaceBottomClass }) => {
   return (
     <div className={`copyright ${spaceBottomClass ? spaceBottomClass : ""}`}>
       <div className="footer-logo">
-        <Link to={process.env.PUBLIC_URL + "/"}>
-          <img alt="" src={process.env.PUBLIC_URL + footerLogo} />
+        <Link to={ROOT_URL + "/"}>
+          <img alt="" src={ROOT_URL + footerLogo} />
         </Link>
       </div>
       <p>

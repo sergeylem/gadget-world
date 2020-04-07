@@ -7,6 +7,7 @@ import { addToCart } from "../../redux/actions/cartActions";
 import { addToWishlist } from "../../redux/actions/wishlistActions";
 import { addToCompare } from "../../redux/actions/compareActions";
 import Rating from "./sub-components/ProductRating";
+import { ROOT_URL } from "../../config";
 
 const ProductDescriptionInfo = ({
   product,
@@ -237,7 +238,7 @@ const ProductDescriptionInfo = ({
             {product.category.map((single, key) => {
               return (
                 <li key={key}>
-                  <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
+                  <Link to={ROOT_URL + "/shop-grid-standard"}>
                     {single}
                   </Link>
                 </li>
@@ -255,7 +256,7 @@ const ProductDescriptionInfo = ({
             {product.tag.map((single, key) => {
               return (
                 <li key={key}>
-                  <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
+                  <Link to={ROOT_URL + "/shop-grid-standard"}>
                     {single}
                   </Link>
                 </li>

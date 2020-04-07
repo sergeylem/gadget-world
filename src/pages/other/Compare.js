@@ -11,6 +11,7 @@ import { getDiscountPrice } from "../../helpers/product";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import Rating from "../../components/product/sub-components/ProductRating";
+import { ROOT_URL } from "../../config";
 
 const Compare = ({
   location,
@@ -26,14 +27,14 @@ const Compare = ({
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | Compare</title>
+        <title>Gadget World | Compare</title>
         <meta
           name="description"
           content="Compare page of flone react minimalist eCommerce template."
         />
       </MetaTags>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+      <BreadcrumbsItem to={ROOT_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={ROOT_URL + pathname}>
         Compare
       </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
@@ -67,7 +68,7 @@ const Compare = ({
                                   </div>
                                   <Link
                                     to={
-                                      process.env.PUBLIC_URL +
+                                      ROOT_URL +
                                       "/product/" +
                                       compareItem._id
                                     }
@@ -76,7 +77,7 @@ const Compare = ({
                                     <img
                                       className="img-fluid"
                                       src={
-                                        process.env.PUBLIC_URL +
+                                        ROOT_URL +
                                         compareItem.image[0]
                                       }
                                       alt=""
@@ -85,7 +86,7 @@ const Compare = ({
                                   <div className="product-title">
                                     <Link
                                       to={
-                                        process.env.PUBLIC_URL +
+                                        ROOT_URL +
                                         "/product/" +
                                         compareItem._id
                                       }
@@ -106,7 +107,7 @@ const Compare = ({
                                     ) : compareItem.variation &&
                                       compareItem.variation.length >= 1 ? (
                                       <Link
-                                        to={`${process.env.PUBLIC_URL}/product/${compareItem._id}`}
+                                        to={`${ROOT_URL}/product/${compareItem._id}`}
                                       >
                                         Select Option
                                       </Link>
@@ -224,7 +225,7 @@ const Compare = ({
                     </div>
                     <div className="item-empty-area__text">
                       No items found in compare <br />{" "}
-                      <Link to={process.env.PUBLIC_URL + "/shop-grid-standard"}>
+                      <Link to={ROOT_URL + "/shop-grid-standard"}>
                         Add Items
                       </Link>
                     </div>

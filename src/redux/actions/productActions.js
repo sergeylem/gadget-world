@@ -6,10 +6,9 @@ export const fetchProducts = () => {
     axios
       .get(process.env.REACT_APP_API_URL + '/products') //Change hardcode URL !!!
       .then(response => {
-        const products = response.data;
         dispatch({
           type: FETCH_PRODUCTS_SUCCESS,
-          payload: products 
+          payload: response.data 
         });
       })
       .catch(err => {

@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import React from "react";
+import { ROOT_URL } from "../../config";
 
 const ProductImageFixed = ({ product }) => {
   return (
@@ -20,7 +21,7 @@ const ProductImageFixed = ({ product }) => {
       <div className="product-fixed-image">
         {product.image ? (
           <img
-            src={process.env.PUBLIC_URL + product.image[0]}
+            src={ROOT_URL + product.image[0]}
             alt=""
             className="img-fluid"
           />

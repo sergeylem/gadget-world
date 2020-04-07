@@ -8,6 +8,7 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import RelatedProductSlider from "../../wrappers/product/RelatedProductSlider";
 import ProductDescriptionTab from "../../wrappers/product/ProductDescriptionTab";
 import ProductImageDescription from "../../wrappers/product/ProductImageDescription";
+import { ROOT_URL } from "../../config";
 
 const Product = ({ location, product }) => {
   const { pathname } = location;
@@ -15,15 +16,15 @@ const Product = ({ location, product }) => {
   return (
     <Fragment>
       <MetaTags>
-        <title>Flone | Product Page</title>
+        <title>Gadget World | Product Page</title>
         <meta
           name="description"
           content="Product page of flone react minimalist eCommerce template."
         />
       </MetaTags>
 
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + "/"}>Home</BreadcrumbsItem>
-      <BreadcrumbsItem to={process.env.PUBLIC_URL + pathname}>
+      <BreadcrumbsItem to={ROOT_URL + "/"}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={ROOT_URL + pathname}>
         Shop Product
       </BreadcrumbsItem>
 
@@ -67,7 +68,7 @@ Product.propTypes = {
 };
 
 const mapStateToProps = (state, ownProps) => {
-  const itemId = ownProps.match.params._id;  // _id bacause in the App.js path={process.env.PUBLIC_URL + "/product/:_id"}
+  const itemId = ownProps.match.params._id;  // _id bacause in the App.js path={ROOT_URL + "/product/:_id"}
   return {
     product: state.productData.products.filter(
       single => single._id === itemId
