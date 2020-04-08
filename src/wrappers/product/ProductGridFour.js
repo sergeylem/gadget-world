@@ -20,7 +20,7 @@ const ProductGridFour = ({
   spaceBottomClass
 }) => {
 
-  console.log(products);
+//  console.log(products);
   return (
     <Fragment>
 

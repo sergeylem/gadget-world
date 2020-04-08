@@ -9,7 +9,6 @@ import { connect } from "react-redux";
 import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic";
 import { ROOT_URL } from "./config";
 
-
 // home pages
 const HomeFurnitureTwo = lazy(() => import("./pages/home/HomeFurnitureTwo"));
 
@@ -22,6 +21,7 @@ const Product = lazy(() => import("./pages/shop-product/Product"));
 // other pages
 const About = lazy(() => import("./pages/other/About"));
 const Contact = lazy(() => import("./pages/other/Contact"));
+const UserDashboard = lazy(() => import("./pages/other/UserDashboard"));
 const MyAccount = lazy(() => import("./pages/other/MyAccount"));
 const LoginRegister = lazy(() => import("./pages/other/LoginRegister"));
 
@@ -83,6 +83,12 @@ const App = props => {
                 <Route
                   path={ROOT_URL + "/shop-grid-standard"}
                   component={ShopGridStandard}
+                />
+
+                {/* UserDashboard pages */}
+                <Route
+                  path={ROOT_URL + "/user-dashboard"}
+                  component={UserDashboard}
                 />
 
                 {/* Shop product pages */}

@@ -8,7 +8,7 @@ const CategoryTwoSingle = ({ data, sliderClass }) => {
   return (
     <div className={`collection-product ${sliderClass ? sliderClass : ""}`}>
       <div className="collection-img">
-        <Link to={ROOT_URL + data.link + "/" + data.title}>
+        <Link to={ROOT_URL + data.link + "/" + data.title}> {/* Added + "/" + data.title */}
           <img src={ROOT_URL + data.image} alt="" />
         </Link>
       </div>

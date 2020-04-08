@@ -3,7 +3,7 @@
     "id": "2",
     "image": "/assets/img/product/banners/surface7.jpg",
     "subtitle": "3 Products",
-    "title": "Notebooks",
+    "title": "Notebook",
     "link": "/shop-grid-standard"
   },
   {
@@ -17,14 +17,14 @@
     "id": "4",
     "image": "/assets/img/product/banners/w3-1.jpeg",
     "subtitle": "8 Products",
-    "title": "Watches",
+    "title": "Watch",
     "link": "/shop-grid-standard"
   },
   {
     "id": "1",
     "image": "/assets/img/product/banners/ipad.jpg",
     "subtitle": "4 Products",
-    "title": "Tablets",
+    "title": "Tablet",
     "link": "/shop-grid-standard"
   },
   {

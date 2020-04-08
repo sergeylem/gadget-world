@@ -15,8 +15,14 @@ import { ROOT_URL } from "../../config";
 
 const ShopGridStandard = ({location, products}) => {
     const [layout, setLayout] = useState('grid three-column');
-    const [sortType, setSortType] = useState('');
-    const [sortValue, setSortValue] = useState('');
+    // const [sortType, setSortType] = useState('');
+    // const [sortValue, setSortValue] = useState('');
+    const {pathname} = location;    
+    const n = pathname.lastIndexOf("/");
+    const categoryPath = pathname.slice(n+1);
+    const [sortType, setSortType] = useState('category');
+    const [sortValue, setSortValue] = useState(categoryPath);
+
     const [filterSortType, setFilterSortType] = useState('');
     const [filterSortValue, setFilterSortValue] = useState('');
     const [offset, setOffset] = useState(0);
@@ -25,8 +31,7 @@ const ShopGridStandard = ({location, products}) => {
     const [sortedProducts, setSortedProducts] = useState([]);
 
     const pageLimit = 15;
-    const {pathname} = location;
-
+    
     const getLayout = (layout) => {
         setLayout(layout)
     }
@@ -72,7 +77,8 @@ const ShopGridStandard = ({location, products}) => {
                             </div>
                             <div className="col-lg-9 order-1 order-lg-2">
                                 {/* shop topbar default */}
-                                <ShopTopbar getLayout={getLayout} getFilterSortParams={getFilterSortParams} productCount={products.length} sortedProductCount={currentData.length} />
+                                <ShopTopbar getLayout={getLayout} getFilterSortParams={getFilterSortParams} 
+                                productCount={products.length} sortedProductCount={currentData.length} />
 
                                 {/* shop page content default */}
                                 <ShopProducts layout={layout} products={currentData} />

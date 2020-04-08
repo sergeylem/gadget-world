@@ -25,7 +25,7 @@ const ProductGridSingleFour = ({
     discountedPrice * currency.currencyRate
   ).toFixed(2);
 
-  console.log(product);
+  //console.log(product);
 
   return (
     <Fragment>
