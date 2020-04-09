@@ -1,9 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Fragment } from "react";
-import MetaTags from "react-meta-tags";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import Card from "react-bootstrap/Card";
-import Accordion from "react-bootstrap/Accordion";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { ROOT_URL } from "../../config";
@@ -13,164 +11,181 @@ const UserDashboard = ({ location }) => {
 
   return (
     <Fragment>
-      <MetaTags>
-        <title>Gadget World | My Account</title>
-        <meta
-          name="description"
-          content="Compare page of flone react minimalist eCommerce template."
-        />
-      </MetaTags>
       <BreadcrumbsItem to={ROOT_URL + "/"}>Home</BreadcrumbsItem>
       <BreadcrumbsItem to={ROOT_URL + pathname}>
-        My Account
+        User Dashboard
       </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
-        <div className="myaccount-area pb-80 pt-100">
+        <div className="myaccount-area pb-80 pt-50">
           <div className="container">
             <div className="row">
               <div className="ml-auto mr-auto col-lg-9">
                 <div className="myaccount-wrapper">
-                  <Accordion defaultActiveKey="0">
-                    <Card className="single-my-account mb-20">
-                      <Card.Header className="panel-heading">
-                        <Accordion.Toggle variant="link" eventKey="0">
-                          <h3 className="panel-title">
-                            <span>1 .</span> Edit your account information{" "}
-                          </h3>
-                        </Accordion.Toggle>
-                      </Card.Header>
-                      <Accordion.Collapse eventKey="0">
-                        <Card.Body>
-                          <div className="myaccount-info-wrapper10">
-                            <div className="account-info-wrapper">
-                              <h4>My Account Information</h4>
-                              <h5>Your Personal Details</h5>
-                            </div>
-                            <div className="row">
-                              <div className="col-lg-6 col-md-6">
-                                <div className="billing-info">
-                                  <label>First Name</label>
-                                  <input type="text" />
-                                </div>
-                              </div>
-                              <div className="col-lg-6 col-md-6">
-                                <div className="billing-info">
-                                  <label>Last Name</label>
-                                  <input type="text" />
-                                </div>
-                              </div>
-                              <div className="col-lg-12 col-md-12">
-                                <div className="billing-info">
-                                  <label>Email Address</label>
-                                  <input type="email" />
-                                </div>
-                              </div>
-                              <div className="col-lg-6 col-md-6">
-                                <div className="billing-info">
-                                  <label>Telephone</label>
-                                  <input type="text" />
-                                </div>
-                              </div>
-                              <div className="col-lg-6 col-md-6">
-                                <div className="billing-info">
-                                  <label>Fax</label>
-                                  <input type="text" />
-                                </div>
-                              </div>
-                            </div>
-                            <div className="billing-back-btn">
-                              <div className="billing-btn">
-                                <button type="submit">Continue</button>
-                              </div>
+                  <Card className="single-my-account mb-20">
+
+                    <Card.Body>
+                      <div className="myaccount-info-wrapper">
+                        <div className="account-info-wrapper">
+                          <h4>Product creation form</h4>
+                          {/* <h5>Your Personal Details</h5> */}
+                        </div>
+                        <div className="row">
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info">
+                              <label>Name</label>
+                              <input type="text" />
                             </div>
                           </div>
-                        </Card.Body>
-                      </Accordion.Collapse>
-                    </Card>
-                    <Card className="single-my-account mb-20">
-                      <Card.Header className="panel-heading">
-                        <Accordion.Toggle variant="link" eventKey="1">
-                          <h3 className="panel-title">
-                            <span>2 .</span> Change your password
-                          </h3>
-                        </Accordion.Toggle>
-                      </Card.Header>
-                      <Accordion.Collapse eventKey="1">
-                        <Card.Body>
-                          <div className="myaccount-info-wrapper">
-                            <div className="account-info-wrapper">
-                              <h4>Change Password</h4>
-                              <h5>Your Password</h5>
-                            </div>
-                            <div className="row">
-                              <div className="col-lg-12 col-md-12">
-                                <div className="billing-info">
-                                  <label>Password</label>
-                                  <input type="password" />
-                                </div>
-                              </div>
-                              <div className="col-lg-12 col-md-12">
-                                <div className="billing-info">
-                                  <label>Password Confirm</label>
-                                  <input type="password" />
-                                </div>
-                              </div>
-                            </div>
-                            <div className="billing-back-btn">
-                              <div className="billing-btn">
-                                <button type="submit">Continue</button>
-                              </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info">
+                              <label>SKU code</label>
+                              <input type="text" />
                             </div>
                           </div>
-                        </Card.Body>
-                      </Accordion.Collapse>
-                    </Card>
-                    <Card className="single-my-account mb-20">
-                      <Card.Header className="panel-heading">
-                        <Accordion.Toggle variant="link" eventKey="2">
-                          <h3 className="panel-title">
-                            <span>3 .</span> Modify your address book entries{" "}
-                          </h3>
-                        </Accordion.Toggle>
-                      </Card.Header>
-                      <Accordion.Collapse eventKey="2">
-                        <Card.Body>
-                          <div className="myaccount-info-wrapper">
-                            <div className="account-info-wrapper">
-                              <h4>Address Book Entries</h4>
-                            </div>
-                            <div className="entries-wrapper">
-                              <div className="row">
-                                <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
-                                  <div className="entries-info text-center">
-                                    <p>Farhana hayder (shuvo) </p>
-                                    <p>hastech </p>
-                                    <p> Road#1 , Block#c </p>
-                                    <p> Rampura. </p>
-                                    <p>Dhaka </p>
-                                    <p>Bangladesh </p>
-                                  </div>
-                                </div>
-                                <div className="col-lg-6 col-md-6 d-flex align-items-center justify-content-center">
-                                  <div className="entries-edit-delete text-center">
-                                    <button className="edit">Edit</button>
-                                    <button>Delete</button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="billing-back-btn">
-                              <div className="billing-btn">
-                                <button type="submit">Continue</button>
-                              </div>
+                          <div className="col-lg-6 col-md-6">
+                            <label>Category</label>
+                            <select className='form-control'>
+                              <option>Please select</option>
+                              <option value="Notebook">Notebook</option>
+                              <option value="Smartphone">Smartphone</option>
+                              <option value="Watch">Watch</option>
+                              <option value="Tablet">Tablet</option>
+                              <option value="Accessories">Accessories</option>
+                            </select>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <label>Tag</label>
+                            <select className='form-control'>
+                              <option>Please select</option>
+                              <option value="Apple">Apple</option>
+                              <option value="Sony">Sony</option>
+                              <option value="Samsung">Samsung</option>
+                              <option value="Huawei">Huawei</option>
+                              <option value="Xiaomi">Xiaomi</option>
+                            </select>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info mt-20">
+                              <label>Price</label>
+                              <input type="number" />
                             </div>
                           </div>
-                        </Card.Body>
-                      </Accordion.Collapse>
-                    </Card>
-                  </Accordion>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info mt-20">
+                              <label>Discount</label>
+                              <input type="number" />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info">
+                              <label>Rating</label>
+                              <input type="number" />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info">
+                              <label>Sale count</label>
+                              <input type="number" />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <label>New</label>
+                            <select className='form-control'>
+                              <option>Please select</option>
+                              <option value="true">True</option>
+                              <option value="false">False</option>
+                            </select>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info">
+                              <label>Stock</label>
+                              <input type="number" />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info">
+                              <label>Image path</label>
+                              <input type="text" />
+                            </div>
+                          </div>
+                          <div className="col-lg-12 col-md-12">
+                            <div className="billing-info">
+                              <label>Short description</label>
+                              <input type="text" />
+                            </div>
+                          </div>
+                          <div className="col-lg-12 col-md-12">
+                            <div className="billing-info">
+                              <label>Full description</label>
+                              <input type="text" />
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="account-info-wrapper mt-30">
+                          <h4>Specification</h4>
+                          {/* <h5>Your Personal Details</h5> */}
+                        </div>
+                        <div className="row">
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info">
+                              <label>Model</label>
+                              <input type="text" />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info">
+                              <label>Performance</label>
+                              <input type="text" />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info">
+                              <label>Display</label>
+                              <input type="text" />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info">
+                              <label>Operation System</label>
+                              <input type="text" />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info mt-20">
+                              <label>Ram</label>
+                              <input type="text" />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info mt-20">
+                              <label>Storage</label>
+                              <input type="text" />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info">
+                              <label>Camera</label>
+                              <input type="text" />
+                            </div>
+                          </div>
+                          <div className="col-lg-6 col-md-6">
+                            <div className="billing-info">
+                              <label>Battery</label>
+                              <input type="text" />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="billing-back-btn">
+                          <div className="billing-btn">
+                            <button type="submit">Add</button>
+                          </div>
+                        </div>
+                      </div>
+                    </Card.Body>
+                  </Card>
                 </div>
               </div>
             </div>
