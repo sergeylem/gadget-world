@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import MenuCart from "./sub-components/MenuCart";
 import { deleteFromCart } from "../../redux/actions/cartActions";
 import { ROOT_URL } from "../../config";
+import Login from "../../components/header/sub-components/Login";
 
 const IconGroup = ({
   currency,
@@ -14,6 +15,7 @@ const IconGroup = ({
   deleteFromCart,
   iconWhiteClass
 }) => {
+
   const handleClick = e => {
     e.currentTarget.nextSibling.classList.toggle("active");
   };
@@ -52,7 +54,7 @@ const IconGroup = ({
         <div className="account-dropdown">
           <ul>
             <li>
-              <Link to={ROOT_URL + "/login-register"}>Login</Link>
+              <Login />
             </li>
             <li>
               <Link to={ROOT_URL + "/login-register"}>

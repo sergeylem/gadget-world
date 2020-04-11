@@ -1,5 +1,8 @@
 import PropTypes from "prop-types";
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
+import { isAuthenticated } from "../../helpers/auth";
+import { createProduct } from "../../helpers/apiAdmin";
+
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import Card from "react-bootstrap/Card";
 import LayoutOne from "../../layouts/LayoutOne";
@@ -8,6 +11,106 @@ import { ROOT_URL } from "../../config";
 
 const UserDashboard = ({ location }) => {
   const { pathname } = location;
+  const [values, setValues] = useState({
+    name: "",
+    sku: "",
+    price: "",
+    discount: "",
+    rating: "",
+    saleCount: "",
+    isNew: "",
+    stock: "",
+//    categories: [],
+    category: "",
+    tag: "",
+    image: "",
+    shortDescription: "",
+    fullDescription: "",
+    loading: false,
+    error: "",
+    createdProduct: "",
+    redirectToProfile: false,
+    formData: ""
+});
+
+const { user, token } = isAuthenticated();
+const {
+    name,
+    sku,
+    price,
+    discount,
+    rating,
+    saleCount,
+    isNew,
+    stock,
+    categories,
+    category,
+    tag,
+    image,
+    shortDescription,
+    fullDescription,
+    loading,
+    error,
+    createdProduct,
+    redirectToProfile,
+    formData
+} = values;
+
+  //   // load categories and set form data
+  //   const init = () => {
+  //     getCategories().then(data => {
+  //         if (data.error) {
+  //             setValues({ ...values, error: data.error });
+  //         } else {
+  //             setValues({
+  //                 ...values,
+  //                 categories: data,
+  //                 formData: new FormData()
+  //             });
+  //         }
+  //     });
+  // };
+
+  // useEffect(() => {
+  //     init();
+  // }, []);
+
+  const handleChange = name => event => {
+    const value = event.target.value;
+    formData.set(name, value);
+    setValues({ ...values, [name]: value });
+  };
+
+  const clickSubmit = event => {
+    event.preventDefault();
+    setValues({ ...values, error: "", loading: true });
+
+    createProduct(user._id, token, formData).then(data => {
+        if (data.error) {
+            setValues({ ...values, error: data.error });
+        } else {
+            setValues({
+                ...values,
+                name: "",
+                sku: "",
+                price: "",
+                discount: "",
+                rating: "",
+                saleCount: "",
+                isNew: "",
+                stock: "",
+            //    categories: [],
+                category: "",
+                tag: "",
+                image: "",
+                shortDescription: "",
+                fullDescription: "",
+                loading: false,
+                createdProduct: data.name
+            });
+        }
+    });
+  };
 
   return (
     <Fragment>
@@ -18,7 +121,9 @@ const UserDashboard = ({ location }) => {
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
-        <div className="myaccount-area pb-80 pt-50">
+        <form className="myaccount-area pb-80 pt-50"
+          onSubmit={clickSubmit}
+        >
           <div className="container">
             <div className="row">
               <div className="ml-auto mr-auto col-lg-9">
@@ -35,18 +140,28 @@ const UserDashboard = ({ location }) => {
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Name</label>
-                              <input type="text" />
+                              <input 
+                                onChange={handleChange("name")}
+                                type="text" 
+                                value={name}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>SKU code</label>
-                              <input type="text" />
+                              <input 
+                                onChange={handleChange("sku")}
+                                type="text" 
+                                value={sku}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <label>Category</label>
-                            <select className='form-control'>
+                            <select className='form-control'
+                              onChange={handleChange("name")}
+                            >
                               <option>Please select</option>
                               <option value="Notebook">Notebook</option>
                               <option value="Smartphone">Smartphone</option>
@@ -57,7 +172,9 @@ const UserDashboard = ({ location }) => {
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <label>Tag</label>
-                            <select className='form-control'>
+                            <select className='form-control'
+                              onChange={handleChange("name")}
+                            >
                               <option>Please select</option>
                               <option value="Apple">Apple</option>
                               <option value="Sony">Sony</option>
@@ -69,57 +186,90 @@ const UserDashboard = ({ location }) => {
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info mt-20">
                               <label>Price</label>
-                              <input type="number" />
+                              <input 
+                                onChange={handleChange("price")}
+                                type="number" 
+                                value={price}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info mt-20">
                               <label>Discount</label>
-                              <input type="number" />
+                              <input 
+                                onChange={handleChange("discount")}
+                                type="number" 
+                                value={discount}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Rating</label>
-                              <input type="number" />
+                              <input 
+                                onChange={handleChange("rating")}
+                                type="number" 
+                                value={rating}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Sale count</label>
-                              <input type="number" />
+                              <input 
+                                onChange={handleChange("saleCount")}
+                                type="number" 
+                                value={saleCount} 
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <label>New</label>
-                            <select className='form-control'>
+                            <select className='form-control'
+                              onChange={handleChange("saleCount")}
+                            >
                               <option>Please select</option>
-                              <option value="true">True</option>
-                              <option value="false">False</option>
+                              <option value="1">Yes</option>
+                              <option value="0">No</option>
                             </select>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Stock</label>
-                              <input type="number" />
+                              <input 
+                                onChange={handleChange("stock")}
+                                type="number" 
+                                value={stock}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Image path</label>
-                              <input type="text" />
+                              <input 
+                                type="text" 
+                                // value={}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-12 col-md-12">
+                            <label>Short description</label>
                             <div className="billing-info">
-                              <label>Short description</label>
-                              <input type="text" />
-                            </div>
+                              <input 
+                                onChange={handleChange("shortDescription")}
+                                type="text" 
+                                value={shortDescription}
+                              />
+                            </div >
                           </div>
                           <div className="col-lg-12 col-md-12">
                             <div className="billing-info">
                               <label>Full description</label>
-                              <input type="text" />
+                              <input 
+                                onChange={handleChange("fullDescription")}
+                                type="text" 
+                                value={fullDescription}
+                              />
                             </div>
                           </div>
                         </div>
@@ -190,7 +340,7 @@ const UserDashboard = ({ location }) => {
               </div>
             </div>
           </div>
-        </div>
+        </form>
       </LayoutOne>
     </Fragment>
   );

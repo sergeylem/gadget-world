@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
-import React, { Fragment } from "react";
-import MetaTags from "react-meta-tags";
+import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import Tab from "react-bootstrap/Tab";
@@ -8,19 +7,76 @@ import Nav from "react-bootstrap/Nav";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { ROOT_URL } from "../../config";
+import { signin, authenticate, isAuthenticated } from "../../helpers/auth";
+import { Redirect } from "react-router-dom";
+
 
 const LoginRegister = ({ location }) => {
   const { pathname } = location;
+  
+  const [values, setValues] = useState({
+    email: "",
+    password: "",
+    error: "",
+    loading: false,
+    redirectToReferrer: false
+  });
+
+  const { email, password, loading, error, redirectToReferrer } = values;
+  const { user } = isAuthenticated();
+
+  const handleChange = name => event => {
+    setValues({ ...values, error: false, [name]: event.target.value });
+  };
+
+  const clickSubmit = event => {
+    event.preventDefault();
+    setValues({ ...values, error: false, loading: true });
+    signin({ email, password }).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error, loading: false });
+      } else {
+        authenticate(data, () => {
+          setValues({
+            ...values,
+            redirectToReferrer: true
+          });
+        });
+      }
+    });
+  };
+
+  const showError = () => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>
+  );
+
+  const showLoading = () =>
+    loading && (
+      <div className="alert alert-info">
+        <h2>Loading...</h2>
+      </div>
+    );
+
+  const redirectUser = () => {
+    if (redirectToReferrer) {
+      if (user && user.role === 1) {
+        return <Redirect to="/user-dashboard" />;
+      } else {
+        return <Redirect to="/user-dashboard" />; // Change it !!! 
+      }
+    }
+    if (isAuthenticated()) {
+      return <Redirect to="/" />;
+    }
+  };
 
   return (
     <Fragment>
-      <MetaTags>
-        <title>Gadget World | Login</title>
-        <meta
-          name="description"
-          content="Compare page of flone react minimalist eCommerce template."
-        />
-      </MetaTags>
       <BreadcrumbsItem to={ROOT_URL + "/"}>Home</BreadcrumbsItem>
       <BreadcrumbsItem to={ROOT_URL + pathname}>
         Login Register
@@ -28,6 +84,8 @@ const LoginRegister = ({ location }) => {
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
+        {showLoading()}  {/* Change into spinner!!! */}
+        {showError()}     {/* It's should be tested more deeply !!! */}
         <div className="login-register-area pt-100 pb-100">
           <div className="container">
             <div className="row">
@@ -52,13 +110,15 @@ const LoginRegister = ({ location }) => {
                           <div className="login-register-form">
                             <form>
                               <input
+                                onChange={handleChange("email")}
+                                name="email"
                                 type="text"
-                                name="user-name"
-                                placeholder="Username"
+                                placeholder="Email"
                               />
                               <input
+                                onChange={handleChange("password")}
+                                name="password"
                                 type="password"
-                                name="user-password"
                                 placeholder="Password"
                               />
                               <div className="button-box">
@@ -69,7 +129,7 @@ const LoginRegister = ({ location }) => {
                                     Forgot Password?
                                   </Link>
                                 </div>
-                                <button type="submit">
+                                <button onClick={clickSubmit}>
                                   <span>Login</span>
                                 </button>
                               </div>
@@ -82,19 +142,24 @@ const LoginRegister = ({ location }) => {
                           <div className="login-register-form">
                             <form>
                               <input
+                                name="name"
                                 type="text"
-                                name="user-name"
-                                placeholder="Username"
+                                placeholder="Name"
                               />
                               <input
-                                type="password"
-                                name="user-password"
-                                placeholder="Password"
+                                name="surname"
+                                type="text"
+                                placeholder="Surname"
                               />
                               <input
-                                name="user-email"
-                                placeholder="Email"
+                                name="email"
                                 type="email"
+                                placeholder="Email"
+                              />
+                              <input
+                                name="password"
+                                type="password"
+                                placeholder="Password"
                               />
                               <div className="button-box">
                                 <button type="submit">
@@ -112,6 +177,7 @@ const LoginRegister = ({ location }) => {
             </div>
           </div>
         </div>
+        {redirectUser()} 
       </LayoutOne>
     </Fragment>
   );
