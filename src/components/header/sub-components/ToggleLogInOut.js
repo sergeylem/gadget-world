@@ -3,7 +3,7 @@ import { signout, isAuthenticated } from "../../../helpers/auth";
 import { Link, withRouter } from "react-router-dom";
 import { ROOT_URL } from "../../../config";
 
-const Login = ({ history }) => (
+const ToggleLogInOut = ({ history }) => (
     <div>
         {isAuthenticated() ? (
             <Link to={ROOT_URL + "/"}
@@ -16,11 +16,11 @@ const Login = ({ history }) => (
                 Logout
             </Link>
         ) : (
-                <Link to={ROOT_URL + "/login-register"}>
+                <Link to={ROOT_URL + "/login"}>
                     Login
                 </Link>
             )}
     </div>
 )
 
-export default withRouter(Login);
+export default withRouter(ToggleLogInOut);

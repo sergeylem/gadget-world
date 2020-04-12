@@ -7,23 +7,22 @@ import Nav from "react-bootstrap/Nav";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { ROOT_URL } from "../../config";
-import { signin, authenticate, isAuthenticated } from "../../helpers/auth";
-import { Redirect } from "react-router-dom";
+import { authenticate, signup } from "../../helpers/auth";
 
 
-const LoginRegister = ({ location }) => {
+const Register = ({ location }) => {
   const { pathname } = location;
-  
+
   const [values, setValues] = useState({
+    name: "",
+    surname: "",
     email: "",
     password: "",
     error: "",
-    loading: false,
-    redirectToReferrer: false
+    success: false
   });
 
-  const { email, password, loading, error, redirectToReferrer } = values;
-  const { user } = isAuthenticated();
+  const { name, surname, email, password, success, error } = values;
 
   const handleChange = name => event => {
     setValues({ ...values, error: false, [name]: event.target.value });
@@ -31,14 +30,15 @@ const LoginRegister = ({ location }) => {
 
   const clickSubmit = event => {
     event.preventDefault();
-    setValues({ ...values, error: false, loading: true });
-    signin({ email, password }).then(data => {
+    setValues({ ...values, error: false });
+    signup({ name, surname,  email, password }).then(data => {
       if (data.error) {
-        setValues({ ...values, error: data.error, loading: false });
+        setValues({ ...values, error: data.error, success: false });
       } else {
         authenticate(data, () => {
           setValues({
             ...values,
+            success: true, // Check it !!!
             redirectToReferrer: true
           });
         });
@@ -55,49 +55,33 @@ const LoginRegister = ({ location }) => {
     </div>
   );
 
-  const showLoading = () =>
-    loading && (
-      <div className="alert alert-info">
-        <h2>Loading...</h2>
-      </div>
-    );
-
-  const redirectUser = () => {
-    if (redirectToReferrer) {
-      if (user && user.role === 1) {
-        return <Redirect to="/user-dashboard" />;
-      } else {
-        return <Redirect to="/user-dashboard" />; // Change it !!! 
-      }
-    }
-    if (isAuthenticated()) {
-      return <Redirect to="/" />;
-    }
-  };
+  const showSuccess = () => (
+    <div
+      className="alert alert-info"
+      style={{ display: success ? "" : "none" }}
+    >
+      New account is created. {/* Please <Link to="/login">Login</Link> */}
+    </div>
+  );
 
   return (
     <Fragment>
       <BreadcrumbsItem to={ROOT_URL + "/"}>Home</BreadcrumbsItem>
       <BreadcrumbsItem to={ROOT_URL + pathname}>
-        Login Register
+        Register
       </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
-        {showLoading()}  {/* Change into spinner!!! */}
+        {showSuccess()}  {/* Change into spinner!!! */}
         {showError()}     {/* It's should be tested more deeply !!! */}
         <div className="login-register-area pt-100 pb-100">
           <div className="container">
             <div className="row">
               <div className="col-lg-7 col-md-12 ml-auto mr-auto">
                 <div className="login-register-wrapper">
-                  <Tab.Container defaultActiveKey="login">
+                  <Tab.Container defaultActiveKey="register">
                     <Nav variant="pills" className="login-register-tab-list">
-                      <Nav.Item>
-                        <Nav.Link eventKey="login">
-                          <h4>Login</h4>
-                        </Nav.Link>
-                      </Nav.Item>
                       <Nav.Item>
                         <Nav.Link eventKey="register">
                           <h4>Register</h4>
@@ -105,14 +89,26 @@ const LoginRegister = ({ location }) => {
                       </Nav.Item>
                     </Nav>
                     <Tab.Content>
-                      <Tab.Pane eventKey="login">
+                      <Tab.Pane eventKey="register">
                         <div className="login-form-container">
                           <div className="login-register-form">
                             <form>
                               <input
+                                onChange={handleChange("name")}
+                                name="name"
+                                type="text"
+                                placeholder="Name"
+                              />
+                              <input
+                                onChange={handleChange("surname")}
+                                name="surname"
+                                type="text"
+                                placeholder="Surname"
+                              />
+                              <input
                                 onChange={handleChange("email")}
                                 name="email"
-                                type="text"
+                                type="email"
                                 placeholder="Email"
                               />
                               <input
@@ -122,47 +118,7 @@ const LoginRegister = ({ location }) => {
                                 placeholder="Password"
                               />
                               <div className="button-box">
-                                <div className="login-toggle-btn">
-                                  <input type="checkbox" />
-                                  <label className="ml-10">Remember me</label>
-                                  <Link to={ROOT_URL + "/"}>
-                                    Forgot Password?
-                                  </Link>
-                                </div>
                                 <button onClick={clickSubmit}>
-                                  <span>Login</span>
-                                </button>
-                              </div>
-                            </form>
-                          </div>
-                        </div>
-                      </Tab.Pane>
-                      <Tab.Pane eventKey="register">
-                        <div className="login-form-container">
-                          <div className="login-register-form">
-                            <form>
-                              <input
-                                name="name"
-                                type="text"
-                                placeholder="Name"
-                              />
-                              <input
-                                name="surname"
-                                type="text"
-                                placeholder="Surname"
-                              />
-                              <input
-                                name="email"
-                                type="email"
-                                placeholder="Email"
-                              />
-                              <input
-                                name="password"
-                                type="password"
-                                placeholder="Password"
-                              />
-                              <div className="button-box">
-                                <button type="submit">
                                   <span>Register</span>
                                 </button>
                               </div>
@@ -177,14 +133,13 @@ const LoginRegister = ({ location }) => {
             </div>
           </div>
         </div>
-        {redirectUser()} 
       </LayoutOne>
     </Fragment>
   );
 };
 
-LoginRegister.propTypes = {
+Register.propTypes = {
   location: PropTypes.object
 };
 
-export default LoginRegister;
+export default Register;

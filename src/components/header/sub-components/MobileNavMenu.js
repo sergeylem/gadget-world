@@ -171,8 +171,13 @@ const MobileNavMenu = ({ strings }) => {
               </Link>
             </li>
             <li>
-              <Link to={ROOT_URL + "/login-register"}>
-                {strings["login_register"]}
+              <Link to={ROOT_URL + "/login"}>
+                {strings["form_login"]}
+              </Link>
+            </li>
+            <li>
+              <Link to={ROOT_URL + "/register"}>
+                {strings["form_register"]}
               </Link>
             </li>
             <li>

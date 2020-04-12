@@ -1,10 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { multilanguage } from "redux-multilanguage";
 import { ROOT_URL } from "../../config";
+import { signout, isAuthenticated } from "../../helpers/auth";
 
-const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
+const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
   return (
     <div
       className={` ${
@@ -198,9 +199,26 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                 </Link>
               </li>
               <li>
-                <Link to={ROOT_URL + "/login-register"}>
-                  {strings["login_register"]}
+                <Link to={ROOT_URL + "/register"}>
+                  {strings["form_register"]}
                 </Link>
+              </li>
+              <li>
+                {isAuthenticated() ? (
+                  <Link to={ROOT_URL + "/"}
+                    onClick={() =>
+                      signout(() => {
+                        history.push("/");
+                      })
+                    }
+                    >
+                    {strings["form_logout"]}
+                  </Link>
+                ) : (
+                    <Link to={ROOT_URL + "/login"}>
+                      {strings["form_login"]}
+                    </Link>
+                  )}
               </li>
               <li>
                 <Link to={ROOT_URL + "/about"}>
@@ -236,5 +254,5 @@ NavMenu.propTypes = {
   strings: PropTypes.object
 };
 
-export default multilanguage(NavMenu);
+export default multilanguage(withRouter(NavMenu));
 //export default NavMenu;

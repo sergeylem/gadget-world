@@ -1,8 +1,10 @@
 import PropTypes from "prop-types";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { multilanguage } from "redux-multilanguage";
 import { ROOT_URL } from "../../config";
+import { signout, isAuthenticated } from "../../helpers/auth";
+
 
 const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
   return (
@@ -11,7 +13,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
         sidebarMenu
           ? "sidebar-menu"
           : `main-menu ${menuWhiteClass ? menuWhiteClass : ""}`
-      } `}
+        } `}
     >
       <nav>
         <ul>
@@ -23,16 +25,16 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                   <i className="fa fa-angle-right"></i>
                 </span>
               ) : (
-                <i className="fa fa-angle-down" />
-              )}
+                  <i className="fa fa-angle-down" />
+                )}
             </Link>
             <ul className="mega-menu mega-menu-padding">
               <li>
-                  <li>
-                    <Link to={ROOT_URL + "/home-furniture-two"}>
-                      {strings["home_furniture_two"]}
-                    </Link>
-                  </li>
+                <li>
+                  <Link to={ROOT_URL + "/home-furniture-two"}>
+                    {strings["home_furniture_two"]}
+                  </Link>
+                </li>
               </li>
             </ul>
           </li>
@@ -45,8 +47,8 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                   <i className="fa fa-angle-right"></i>
                 </span>
               ) : (
-                <i className="fa fa-angle-down" />
-              )}
+                  <i className="fa fa-angle-down" />
+                )}
             </Link>
             <ul className="mega-menu">
               <li>
@@ -191,8 +193,8 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                   <i className="fa fa-angle-right"></i>
                 </span>
               ) : (
-                <i className="fa fa-angle-down" />
-              )}
+                  <i className="fa fa-angle-down" />
+                )}
             </Link>
             <ul className="submenu">
               <li>
@@ -226,9 +228,26 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                 </Link>
               </li>
               <li>
-                <Link to={ROOT_URL + "/login-register"}>
-                  {strings["login_register"]}
+                <Link to={ROOT_URL + "/register"}>
+                  {strings["form_register"]}
                 </Link>
+              </li>
+              <li>
+                {isAuthenticated() ? (
+                  <Link to={ROOT_URL + "/"}
+                    onClick={() =>
+                      signout(() => {
+                        history.push("/");
+                      })
+                    }
+                    >
+                    {strings["form_logout"]}
+                  </Link>
+                ) : (
+                    <Link to={ROOT_URL + "/login"}>
+                      {strings["form_login"]}
+                    </Link>
+                  )}
               </li>
               <li>
                 <Link to={ROOT_URL + "/about"}>
@@ -264,5 +283,5 @@ NavMenu.propTypes = {
   strings: PropTypes.object
 };
 
-export default multilanguage(NavMenu);
+export default multilanguage(withRouter(NavMenu));
 //export default NavMenu;

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import MenuCart from "./sub-components/MenuCart";
 import { deleteFromCart } from "../../redux/actions/cartActions";
 import { ROOT_URL } from "../../config";
-import Login from "../../components/header/sub-components/Login";
+import ToggleLogInOut from "./sub-components/ToggleLogInOut";
 
 const IconGroup = ({
   currency,
@@ -54,16 +54,16 @@ const IconGroup = ({
         <div className="account-dropdown">
           <ul>
             <li>
-              <Login />
+              <ToggleLogInOut />
             </li>
             <li>
-              <Link to={ROOT_URL + "/login-register"}>
+              <Link to={ROOT_URL + "/register"}>
                 Register
               </Link>
             </li>
             <li>
               <Link to={ROOT_URL + "/my-account"}>
-                my account
+                My account
               </Link>
             </li>
           </ul>
