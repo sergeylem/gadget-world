@@ -228,6 +228,11 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                 </Link>
               </li>
               <li>
+                <Link to={ROOT_URL + "/category"}>
+                  {strings["create_category"]}
+                </Link>
+              </li>
+              <li>
                 <Link to={ROOT_URL + "/register"}>
                   {strings["form_register"]}
                 </Link>

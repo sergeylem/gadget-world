@@ -25,6 +25,7 @@ const UserDashboard = lazy(() => import("./pages/other/UserDashboard"));
 const MyAccount = lazy(() => import("./pages/other/MyAccount"));
 const Login = lazy(() => import("./pages/other/Login"));
 const Register = lazy(() => import("./pages/other/Register"));
+const Category = lazy(() => import("./pages/other/Category"));
 
 const Cart = lazy(() => import("./pages/other/Cart"));
 const Wishlist = lazy(() => import("./pages/other/Wishlist"));
@@ -120,6 +121,11 @@ const App = props => {
                 <Route
                   path={ROOT_URL + "/register"}
                   component={Register}
+                />
+
+                <Route
+                  path={ROOT_URL + "/category"}
+                  component={Category}
                 />
 
                 <Route
