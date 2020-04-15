@@ -26,6 +26,7 @@ const MyAccount = lazy(() => import("./pages/other/MyAccount"));
 const Login = lazy(() => import("./pages/other/Login"));
 const Register = lazy(() => import("./pages/other/Register"));
 const Category = lazy(() => import("./pages/other/Category"));
+const Tag = lazy(() => import("./pages/other/Tag"));
 
 const Cart = lazy(() => import("./pages/other/Cart"));
 const Wishlist = lazy(() => import("./pages/other/Wishlist"));
@@ -36,11 +37,11 @@ const NotFound = lazy(() => import("./pages/other/NotFound"));
 
 const App = props => {
   useEffect(() => {
-    
+
     props.dispatch(
       loadLanguages({
         languages: {
-          en: require("./translations/english.json") 
+          en: require("./translations/english.json")
           //,
           // fn: require("./translations/french.json"),
           // de: require("./translations/germany.json")
@@ -121,6 +122,11 @@ const App = props => {
                 <Route
                   path={ROOT_URL + "/register"}
                   component={Register}
+                />
+
+                <Route
+                  path={ROOT_URL + "/tag"}
+                  component={Tag}
                 />
 
                 <Route

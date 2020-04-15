@@ -44,3 +44,31 @@ export const getCategories = () => {
         })
         .catch(err => console.log(err));
 };
+
+export const createTag = (userId, token, tag) => {
+    return fetch(`${API}/tag/create/${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: JSON.stringify(tag)
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
+export const getTags = () => {
+    return fetch(`${API}/tags`, {
+        method: "GET"
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => console.log(err));
+};

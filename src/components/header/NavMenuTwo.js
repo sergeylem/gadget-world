@@ -204,6 +204,11 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
                 </Link>
               </li>
               <li>
+                <Link to={ROOT_URL + "/tag"}>
+                  {strings["create_tag"]}
+                </Link>
+              </li>
+              <li>
                 <Link to={ROOT_URL + "/register"}>
                   {strings["form_register"]}
                 </Link>
