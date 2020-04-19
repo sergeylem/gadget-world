@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { Fragment, useState, useEffect } from "react";
 import { isAuthenticated } from "../../helpers/auth";
-import { createProduct } from "../../helpers/apiAdmin";
+import { createProduct, createSpecification, getCategories, getTags } from "../../helpers/apiAdmin";
 
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import Card from "react-bootstrap/Card";
@@ -18,23 +18,32 @@ const UserDashboard = ({ location }) => {
     discount: "",
     rating: "",
     saleCount: "",
-    isNew: "",
+    isNew: false,
     stock: "",
-//    categories: [],
-    category: "",
-    tag: "",
+    categories: [],
+    tags: [],
     image: "",
     shortDescription: "",
     fullDescription: "",
-    loading: false,
-    error: "",
-    createdProduct: "",
-    redirectToProfile: false,
+    specification: "",
+    model: "",
+    performance: "",
+    display: "",
+    os: "",
+    ram: "",
+    storage: "",
+    camera: "",
+    battery: "",
+    // loading: false,
+    // error: "",
+    // createdProduct: "",
+    // redirectToProfile: false,
     formData: ""
-});
+  });
 
-const { user, token } = isAuthenticated();
-const {
+  const { user, token } = isAuthenticated();
+
+  const {
     name,
     sku,
     price,
@@ -44,36 +53,55 @@ const {
     isNew,
     stock,
     categories,
-    category,
-    tag,
+    tags,
     image,
     shortDescription,
     fullDescription,
-    loading,
-    error,
-    createdProduct,
-    redirectToProfile,
+    specification,
+    model,
+    performance,
+    display,
+    os,
+    ram,
+    storage,
+    camera,
+    battery,
+    // loading,
+    // error,
+    // createdProduct,
+    // redirectToProfile,
     formData
-} = values;
+  } = values;
 
-  //   // load categories and set form data
-  //   const init = () => {
-  //     getCategories().then(data => {
-  //         if (data.error) {
-  //             setValues({ ...values, error: data.error });
-  //         } else {
-  //             setValues({
-  //                 ...values,
-  //                 categories: data,
-  //                 formData: new FormData()
-  //             });
-  //         }
-  //     });
-  // };
+  // load categories and tags 
+  const init = () => {
+    let categories = [];
+    getCategories().then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        categories = data;
+      }
+    });
 
-  // useEffect(() => {
-  //     init();
-  // }, []);
+    getTags().then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({
+          ...values,
+          categories,
+          tags: data,
+          formData: new FormData()
+        });
+      }
+    });
+
+  };
+
+  useEffect(() => {
+    init();
+  }, []);
 
   const handleChange = name => event => {
     const value = event.target.value;
@@ -83,33 +111,56 @@ const {
 
   const clickSubmit = event => {
     event.preventDefault();
-    setValues({ ...values, error: "", loading: true });
+        
+    
+    createSpecification(user._id, token, formData).then(dataS => {
+      if (dataS.error) {
+        setValues({ ...values, error: dataS.error });
+      } else {
 
-    createProduct(user._id, token, formData).then(data => {
-        if (data.error) {
-            setValues({ ...values, error: data.error });
-        } else {
+        //setValues({ ...values, specification: dataS._id });
+        formData.set(specification, dataS._id);
+
+
+        console.log("dataS: " + dataS._id)
+
+        createProduct(user._id, token, formData).then(dataP => {
+          if (dataP.error) {
+            setValues({ ...values, error: dataP.error });
+          } else {
             setValues({
-                ...values,
-                name: "",
-                sku: "",
-                price: "",
-                discount: "",
-                rating: "",
-                saleCount: "",
-                isNew: "",
-                stock: "",
-            //    categories: [],
-                category: "",
-                tag: "",
-                image: "",
-                shortDescription: "",
-                fullDescription: "",
-                loading: false,
-                createdProduct: data.name
+              ...values,
+              // name: "",
+              // sku: "",
+              // price: "",
+              // discount: "",
+              // rating: "",
+              // saleCount: "",
+              // isNew: "",
+              // stock: "",
+              // image: "",
+              // shortDescription: "",
+              // fullDescription: "",
+              // model: "",
+              // performance: "",
+              // display: "",
+              // os: "",
+              // ram: "",
+              // storage: "",
+              // camera: "",
+              // battery: ""
+              // ,
+              //          loading: false,
+              //          createdProduct: data.name
             });
-        }
+          }
+        });
+
+        console.log("idSpec: " + dataS._id);
+        console.log("success");
+      }
     });
+
   };
 
   return (
@@ -140,9 +191,9 @@ const {
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Name</label>
-                              <input 
+                              <input
                                 onChange={handleChange("name")}
-                                type="text" 
+                                type="text"
                                 value={name}
                               />
                             </div>
@@ -150,9 +201,9 @@ const {
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>SKU code</label>
-                              <input 
+                              <input
                                 onChange={handleChange("sku")}
-                                type="text" 
+                                type="text"
                                 value={sku}
                               />
                             </div>
@@ -160,35 +211,37 @@ const {
                           <div className="col-lg-6 col-md-6">
                             <label>Category</label>
                             <select className='form-control'
-                              onChange={handleChange("name")}
+                              onChange={handleChange("category")}
                             >
                               <option>Please select</option>
-                              <option value="Notebook">Notebook</option>
-                              <option value="Smartphone">Smartphone</option>
-                              <option value="Watch">Watch</option>
-                              <option value="Tablet">Tablet</option>
-                              <option value="Accessories">Accessories</option>
+                              {categories &&
+                                categories.map((c, i) => (
+                                  <option key={i} value={c._id}>
+                                    {c.name}
+                                  </option>
+                                ))}
                             </select>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <label>Tag</label>
                             <select className='form-control'
-                              onChange={handleChange("name")}
+                              onChange={handleChange("tag")}
                             >
                               <option>Please select</option>
-                              <option value="Apple">Apple</option>
-                              <option value="Sony">Sony</option>
-                              <option value="Samsung">Samsung</option>
-                              <option value="Huawei">Huawei</option>
-                              <option value="Xiaomi">Xiaomi</option>
+                              {tags &&
+                                tags.map((c, i) => (
+                                  <option key={i} value={c._id}>
+                                    {c.name}
+                                  </option>
+                                ))}
                             </select>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info mt-20">
                               <label>Price</label>
-                              <input 
+                              <input
                                 onChange={handleChange("price")}
-                                type="number" 
+                                type="number"
                                 value={price}
                               />
                             </div>
@@ -196,9 +249,9 @@ const {
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info mt-20">
                               <label>Discount</label>
-                              <input 
+                              <input
                                 onChange={handleChange("discount")}
-                                type="number" 
+                                type="number"
                                 value={discount}
                               />
                             </div>
@@ -206,9 +259,9 @@ const {
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Rating</label>
-                              <input 
+                              <input
                                 onChange={handleChange("rating")}
-                                type="number" 
+                                type="number"
                                 value={rating}
                               />
                             </div>
@@ -216,17 +269,17 @@ const {
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Sale count</label>
-                              <input 
+                              <input
                                 onChange={handleChange("saleCount")}
-                                type="number" 
-                                value={saleCount} 
+                                type="number"
+                                value={saleCount}
                               />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <label>New</label>
                             <select className='form-control'
-                              onChange={handleChange("saleCount")}
+                            // onChange={handleChange("isNew")}
                             >
                               <option>Please select</option>
                               <option value="1">Yes</option>
@@ -236,9 +289,9 @@ const {
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Stock</label>
-                              <input 
+                              <input
                                 onChange={handleChange("stock")}
-                                type="number" 
+                                type="number"
                                 value={stock}
                               />
                             </div>
@@ -246,18 +299,19 @@ const {
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Image path</label>
-                              <input 
-                                type="text" 
-                                // value={}
+                              <input
+                                onChange={handleChange("image")}
+                                type="text"
+                                value={image}
                               />
-                            </div>
+                            </div>  
                           </div>
                           <div className="col-lg-12 col-md-12">
                             <label>Short description</label>
                             <div className="billing-info">
-                              <input 
+                              <input
                                 onChange={handleChange("shortDescription")}
-                                type="text" 
+                                type="text"
                                 value={shortDescription}
                               />
                             </div >
@@ -265,11 +319,34 @@ const {
                           <div className="col-lg-12 col-md-12">
                             <div className="billing-info">
                               <label>Full description</label>
-                              <input 
+                              <input
                                 onChange={handleChange("fullDescription")}
-                                type="text" 
+                                type="text"
                                 value={fullDescription}
                               />
+                            </div>
+                          </div>
+                          <div className="col-lg-12 col-md-12">
+                            <div className="billing-info">
+                              <label>Specification</label>
+                              <input
+                                onChange={handleChange("specification")}
+                                type="text"
+                                value={specification}
+                              />
+                              {/* <label>Specification</label>
+                              <select className='form-control'
+                                onChange={handleChange("specification")}
+                              >
+                                <option>Please select</option>
+                                {categories &&
+                                  categories.map((c, i) => (
+                                    <option key={i} value={c._id}>
+                                      {c.name}
+                                    </option>
+                                  ))}
+                              </select> */}
+
                             </div>
                           </div>
                         </div>
@@ -282,49 +359,81 @@ const {
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Model</label>
-                              <input type="text" />
+                              <input
+                                onChange={handleChange("model")}
+                                type="text"
+                                value={model}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Performance</label>
-                              <input type="text" />
+                              <input
+                                onChange={handleChange("performance")}
+                                type="text"
+                                value={performance}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Display</label>
-                              <input type="text" />
+                              <input
+                                onChange={handleChange("display")}
+                                type="text"
+                                value={display}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Operation System</label>
-                              <input type="text" />
+                              <input
+                                onChange={handleChange("os")}
+                                type="text"
+                                value={os}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info mt-20">
                               <label>Ram</label>
-                              <input type="text" />
+                              <input
+                                onChange={handleChange("ram")}
+                                type="text"
+                                value={ram}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info mt-20">
                               <label>Storage</label>
-                              <input type="text" />
+                              <input
+                                onChange={handleChange("storage")}
+                                type="text"
+                                value={storage}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Camera</label>
-                              <input type="text" />
+                              <input
+                                onChange={handleChange("camera")}
+                                type="text"
+                                value={camera}
+                              />
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Battery</label>
-                              <input type="text" />
+                              <input
+                                onChange={handleChange("battery")}
+                                type="text"
+                                value={battery}
+                              />
                             </div>
                           </div>
                         </div>

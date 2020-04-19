@@ -1,5 +1,22 @@
 import { API } from "../config";
 
+export const createSpecification = (userId, token, specification) => {
+    return fetch(`${API}/specification/create/${userId}`, {
+        method: "POST",
+        headers: {
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`
+        },
+        body: specification
+    })
+        .then(response => {
+            return response.json();
+        })
+        .catch(err => {
+            console.log(err);
+        });
+};
+
 export const createProduct = (userId, token, product) => {
     return fetch(`${API}/product/create/${userId}`, {
         method: "POST",

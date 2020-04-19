@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
@@ -68,7 +68,7 @@ const Category = ({ location }) => {
           className="alert alert-success text-center"
           style={{ display: name ? "" : "none" }}
         >
-          <h3><a href="#" class="alert-link">{`${name}`}</a> is created!</h3>
+          <h3><a href="#top" className="alert-link">{`${name}`}</a> is created!</h3>
         </div>
       );
     }

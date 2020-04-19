@@ -69,7 +69,7 @@ const Tag = ({ location }) => {
           className="alert alert-success text-center"
           style={{ display: name ? "" : "none" }}
         >
-          <h3><a href="#" class="alert-link">{`${name}`}</a> is created!</h3>
+          <h3><a href="#top" className="alert-link">{`${name}`}</a> is created!</h3>
         </div>
       );
     }
