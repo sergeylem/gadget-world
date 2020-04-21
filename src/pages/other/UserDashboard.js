@@ -111,57 +111,40 @@ const UserDashboard = ({ location }) => {
 
   const clickSubmit = event => {
     event.preventDefault();
-        
-    
-    createSpecification(user._id, token, formData).then(dataS => {
-      if (dataS.error) {
-        setValues({ ...values, error: dataS.error });
+
+    createProduct(user._id, token, formData).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
       } else {
-
-        //setValues({ ...values, specification: dataS._id });
-        formData.set(specification, dataS._id);
-
-
-        console.log("dataS: " + dataS._id)
-
-        createProduct(user._id, token, formData).then(dataP => {
-          if (dataP.error) {
-            setValues({ ...values, error: dataP.error });
-          } else {
-            setValues({
-              ...values,
-              // name: "",
-              // sku: "",
-              // price: "",
-              // discount: "",
-              // rating: "",
-              // saleCount: "",
-              // isNew: "",
-              // stock: "",
-              // image: "",
-              // shortDescription: "",
-              // fullDescription: "",
-              // model: "",
-              // performance: "",
-              // display: "",
-              // os: "",
-              // ram: "",
-              // storage: "",
-              // camera: "",
-              // battery: ""
-              // ,
-              //          loading: false,
-              //          createdProduct: data.name
-            });
-          }
+        setValues({
+          ...values,
+          // name: "",
+          // sku: "",
+          // price: "",
+          // discount: "",
+          // rating: "",
+          // saleCount: "",
+          // isNew: "",
+          // stock: "",
+          // image: "",
+          // shortDescription: "",
+          // fullDescription: "",
+          // model: "",
+          // performance: "",
+          // display: "",
+          // os: "",
+          // ram: "",
+          // storage: "",
+          // camera: "",
+          // battery: ""
+          // ,
+          //          loading: false,
+          //          createdProduct: data.name
         });
-
-        console.log("idSpec: " + dataS._id);
-        console.log("success");
       }
     });
+  }
 
-  };
 
   return (
     <Fragment>
@@ -304,7 +287,7 @@ const UserDashboard = ({ location }) => {
                                 type="text"
                                 value={image}
                               />
-                            </div>  
+                            </div>
                           </div>
                           <div className="col-lg-12 col-md-12">
                             <label>Short description</label>
@@ -324,29 +307,6 @@ const UserDashboard = ({ location }) => {
                                 type="text"
                                 value={fullDescription}
                               />
-                            </div>
-                          </div>
-                          <div className="col-lg-12 col-md-12">
-                            <div className="billing-info">
-                              <label>Specification</label>
-                              <input
-                                onChange={handleChange("specification")}
-                                type="text"
-                                value={specification}
-                              />
-                              {/* <label>Specification</label>
-                              <select className='form-control'
-                                onChange={handleChange("specification")}
-                              >
-                                <option>Please select</option>
-                                {categories &&
-                                  categories.map((c, i) => (
-                                    <option key={i} value={c._id}>
-                                      {c.name}
-                                    </option>
-                                  ))}
-                              </select> */}
-
                             </div>
                           </div>
                         </div>
