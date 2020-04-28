@@ -25,15 +25,15 @@ const Register = ({ location }) => {
   const { name, surname, email, password, success, error } = values;
 
   const handleChange = name => event => {
-    setValues({ ...values, error: false, [name]: event.target.value });
+    setValues({ ...values, error: "", success: false, [name]: event.target.value });
   };
 
   const clickSubmit = event => {
     event.preventDefault();
-    setValues({ ...values, error: false });
+    setValues({ ...values, error: "" });
     signup({ name, surname,  email, password }).then(data => {
-      if (data.error) {
-        setValues({ ...values, error: data.error, success: false });
+      if (data.errors) {
+        setValues({ ...values, error: data.errors[0].msg, success: false });
       } else {
         authenticate(data, () => {
           setValues({

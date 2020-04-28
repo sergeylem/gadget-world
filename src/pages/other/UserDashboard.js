@@ -1,13 +1,12 @@
 import PropTypes from "prop-types";
 import React, { Fragment, useState, useEffect } from "react";
-import { isAuthenticated } from "../../helpers/auth";
-import { createProduct, createSpecification, getCategories, getTags } from "../../helpers/apiAdmin";
-
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import Card from "react-bootstrap/Card";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { ROOT_URL } from "../../config";
+import { isAuthenticated } from "../../helpers/auth";
+import { createProduct, getCategories, getTags } from "../../helpers/apiAdmin";
 
 const UserDashboard = ({ location }) => {
   const { pathname } = location;
@@ -18,10 +17,12 @@ const UserDashboard = ({ location }) => {
     discount: "",
     rating: "",
     saleCount: "",
-    isNew: false,
+    new: false,
     stock: "",
     categories: [],
+    category,
     tags: [],
+    tag,
     image: "",
     shortDescription: "",
     fullDescription: "",
@@ -34,11 +35,12 @@ const UserDashboard = ({ location }) => {
     storage: "",
     camera: "",
     battery: "",
-    // loading: false,
-    // error: "",
-    // createdProduct: "",
+    loading: false,
+    error: "",
+    success: false,
+    createdProduct: "",
     // redirectToProfile: false,
-    formData: ""
+    // formData: ""
   });
 
   const { user, token } = isAuthenticated();
@@ -50,14 +52,15 @@ const UserDashboard = ({ location }) => {
     discount,
     rating,
     saleCount,
-    isNew,
+    //    new,
     stock,
     categories,
+    category,
     tags,
+    tag,
     image,
     shortDescription,
     fullDescription,
-    specification,
     model,
     performance,
     display,
@@ -66,11 +69,12 @@ const UserDashboard = ({ location }) => {
     storage,
     camera,
     battery,
-    // loading,
-    // error,
-    // createdProduct,
+    loading,
+    error,
+    success,
+    createdProduct,
     // redirectToProfile,
-    formData
+    // formData
   } = values;
 
   // load categories and tags 
@@ -92,7 +96,7 @@ const UserDashboard = ({ location }) => {
           ...values,
           categories,
           tags: data,
-          formData: new FormData()
+          // formData: new FormData()
         });
       }
     });
@@ -104,46 +108,105 @@ const UserDashboard = ({ location }) => {
   }, []);
 
   const handleChange = name => event => {
-    const value = event.target.value;
-    formData.set(name, value);
-    setValues({ ...values, [name]: value });
+    // formData.set(name, event.target.value);
+    setValues({ ...values, error: "", success: false, createdProduct: "", [name]: event.target.value });
   };
 
   const clickSubmit = event => {
     event.preventDefault();
+    setValues({ ...values, error: "", createdProduct: "", loading: true });
 
-    createProduct(user._id, token, formData).then(data => {
-      if (data.error) {
-        setValues({ ...values, error: data.error });
+    createProduct(user._id, 
+      token, 
+      {
+        name,
+        sku,
+        price,
+        discount,
+        rating,
+        saleCount,
+        //    new,
+        stock,
+        categories,
+        category,
+        tags,
+        tag,
+        image,
+        shortDescription,
+        fullDescription,
+        model,
+        performance,
+        display,
+        os,
+        ram,
+        storage,
+        camera,
+        battery
+        // loading,
+        // error,
+        // success,
+        // createdProduct,
+    
+        }
+//      formData
+      ).then(data => {
+      if (data.errors) {
+        setValues({ ...values, error: data.errors[0].msg, success: false });
       } else {
         setValues({
           ...values,
-          // name: "",
-          // sku: "",
-          // price: "",
-          // discount: "",
-          // rating: "",
-          // saleCount: "",
-          // isNew: "",
-          // stock: "",
-          // image: "",
-          // shortDescription: "",
-          // fullDescription: "",
-          // model: "",
-          // performance: "",
-          // display: "",
-          // os: "",
-          // ram: "",
-          // storage: "",
-          // camera: "",
-          // battery: ""
-          // ,
-          //          loading: false,
-          //          createdProduct: data.name
+          name: "",
+          sku: "",
+          price: "",
+          discount: "",
+          rating: "",
+          saleCount: "",
+          new: "",
+          stock: "",
+          image: "",
+          shortDescription: "",
+          fullDescription: "",
+
+          model: "",
+          performance: "",
+          display: "",
+          os: "",
+          ram: "",
+          storage: "",
+          camera: "",
+          battery: "",
+          loading: false,
+          success: true,
+          createdProduct: data.name
         });
       }
     });
   }
+
+  const showError = () => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      <h3>{error}</h3>
+    </div>
+  );
+
+  const showSuccess = () => (
+    <div
+      className="alert alert-info"
+      style={{ display: success ? "" : "none" }}
+    >
+      <h3>{`${createdProduct} is created!`}</h3>
+    </div>
+  );
+
+  const showLoading = () =>
+    loading && (
+      <div className="alert alert-success">
+        <h2>Loading...</h2>
+      </div>
+    );
 
 
   return (
@@ -155,6 +218,11 @@ const UserDashboard = ({ location }) => {
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
         <Breadcrumb />
+
+        {showLoading()}
+        {showSuccess()}
+        {showError()}
+
         <form className="myaccount-area pb-80 pt-50"
           onSubmit={clickSubmit}
         >
@@ -162,9 +230,9 @@ const UserDashboard = ({ location }) => {
             <div className="row">
               <div className="ml-auto mr-auto col-lg-9">
                 <div className="myaccount-wrapper">
-                  <Card className="single-my-account mb-20">
+                   <Card className="single-my-account mb-20">
 
-                    <Card.Body>
+                    <Card.Body> 
                       <div className="myaccount-info-wrapper">
                         <div className="account-info-wrapper">
                           <h4>Product creation form</h4>
@@ -178,6 +246,7 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("name")}
                                 type="text"
                                 value={name}
+                                name="name"
                               />
                             </div>
                           </div>
@@ -188,6 +257,7 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("sku")}
                                 type="text"
                                 value={sku}
+                                name="sku"
                               />
                             </div>
                           </div>
@@ -226,6 +296,7 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("price")}
                                 type="number"
                                 value={price}
+                                name="price"
                               />
                             </div>
                           </div>
@@ -236,6 +307,7 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("discount")}
                                 type="number"
                                 value={discount}
+                                name="discount"
                               />
                             </div>
                           </div>
@@ -262,7 +334,7 @@ const UserDashboard = ({ location }) => {
                           <div className="col-lg-6 col-md-6">
                             <label>New</label>
                             <select className='form-control'
-                            // onChange={handleChange("isNew")}
+                              onChange={handleChange("new")}
                             >
                               <option>Please select</option>
                               <option value="1">Yes</option>

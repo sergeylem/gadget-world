@@ -22,9 +22,11 @@ export const createProduct = (userId, token, product) => {
         method: "POST",
         headers: {
             Accept: "application/json",
+            "Content-Type": "application/json",  
             Authorization: `Bearer ${token}`
         },
-        body: product
+        body: JSON.stringify(product)
+//        body: product
     })
         .then(response => {
             return response.json();
