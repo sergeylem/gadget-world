@@ -17,7 +17,7 @@ const UserDashboard = ({ location }) => {
     discount: "",
     rating: "",
     saleCount: "",
-    new: false,
+    isNew: false,
     stock: "",
     categories: [],
     category,
@@ -40,7 +40,6 @@ const UserDashboard = ({ location }) => {
     success: false,
     createdProduct: "",
     // redirectToProfile: false,
-    // formData: ""
   });
 
   const { user, token } = isAuthenticated();
@@ -52,7 +51,7 @@ const UserDashboard = ({ location }) => {
     discount,
     rating,
     saleCount,
-    //    new,
+    isNew,
     stock,
     categories,
     category,
@@ -74,7 +73,6 @@ const UserDashboard = ({ location }) => {
     success,
     createdProduct,
     // redirectToProfile,
-    // formData
   } = values;
 
   // load categories and tags 
@@ -96,7 +94,6 @@ const UserDashboard = ({ location }) => {
           ...values,
           categories,
           tags: data,
-          // formData: new FormData()
         });
       }
     });
@@ -108,7 +105,6 @@ const UserDashboard = ({ location }) => {
   }, []);
 
   const handleChange = name => event => {
-    // formData.set(name, event.target.value);
     setValues({ ...values, error: "", success: false, createdProduct: "", [name]: event.target.value });
   };
 
@@ -125,7 +121,7 @@ const UserDashboard = ({ location }) => {
         discount,
         rating,
         saleCount,
-        //    new,
+        isNew,
         stock,
         categories,
         category,
@@ -148,7 +144,6 @@ const UserDashboard = ({ location }) => {
         // createdProduct,
     
         }
-//      formData
       ).then(data => {
       if (data.errors) {
         setValues({ ...values, error: data.errors[0].msg, success: false });
@@ -161,7 +156,7 @@ const UserDashboard = ({ location }) => {
           discount: "",
           rating: "",
           saleCount: "",
-          new: "",
+          isNew: "",
           stock: "",
           image: "",
           shortDescription: "",
@@ -334,7 +329,7 @@ const UserDashboard = ({ location }) => {
                           <div className="col-lg-6 col-md-6">
                             <label>New</label>
                             <select className='form-control'
-                              onChange={handleChange("new")}
+                              onChange={handleChange("isNew")}
                             >
                               <option>Please select</option>
                               <option value="1">Yes</option>
