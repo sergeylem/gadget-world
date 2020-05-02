@@ -7,6 +7,7 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { ROOT_URL } from "../../config";
 import { isAuthenticated } from "../../helpers/auth";
 import { createProduct, getCategories, getTags } from "../../helpers/apiAdmin";
+import ImageUpload from "../../components/image-upload/ImageUpload"
 
 const UserDashboard = ({ location }) => {
   const { pathname } = location;
@@ -17,12 +18,12 @@ const UserDashboard = ({ location }) => {
     discount: "",
     rating: "",
     saleCount: "",
-    isNew: false,
+    isnew: false,
     stock: "",
     categories: [],
-    category,
+    //category,
     tags: [],
-    tag,
+    //tag,
     image: "",
     shortDescription: "",
     fullDescription: "",
@@ -51,7 +52,7 @@ const UserDashboard = ({ location }) => {
     discount,
     rating,
     saleCount,
-    isNew,
+    isnew,
     stock,
     categories,
     category,
@@ -112,8 +113,8 @@ const UserDashboard = ({ location }) => {
     event.preventDefault();
     setValues({ ...values, error: "", createdProduct: "", loading: true });
 
-    createProduct(user._id, 
-      token, 
+    createProduct(user._id,
+      token,
       {
         name,
         sku,
@@ -121,7 +122,7 @@ const UserDashboard = ({ location }) => {
         discount,
         rating,
         saleCount,
-        isNew,
+        isnew,
         stock,
         categories,
         category,
@@ -142,9 +143,9 @@ const UserDashboard = ({ location }) => {
         // error,
         // success,
         // createdProduct,
-    
-        }
-      ).then(data => {
+
+      }
+    ).then(data => {
       if (data.errors) {
         setValues({ ...values, error: data.errors[0].msg, success: false });
       } else {
@@ -156,7 +157,7 @@ const UserDashboard = ({ location }) => {
           discount: "",
           rating: "",
           saleCount: "",
-          isNew: "",
+          isnew: "",
           stock: "",
           image: "",
           shortDescription: "",
@@ -225,9 +226,9 @@ const UserDashboard = ({ location }) => {
             <div className="row">
               <div className="ml-auto mr-auto col-lg-9">
                 <div className="myaccount-wrapper">
-                   <Card className="single-my-account mb-20">
+                  <Card className="single-my-account mb-20">
 
-                    <Card.Body> 
+                    <Card.Body>
                       <div className="myaccount-info-wrapper">
                         <div className="account-info-wrapper">
                           <h4>Product creation form</h4>
@@ -329,7 +330,7 @@ const UserDashboard = ({ location }) => {
                           <div className="col-lg-6 col-md-6">
                             <label>New</label>
                             <select className='form-control'
-                              onChange={handleChange("isNew")}
+                              onChange={handleChange("isnew")}
                             >
                               <option>Please select</option>
                               <option value="1">Yes</option>
@@ -346,7 +347,18 @@ const UserDashboard = ({ location }) => {
                               />
                             </div>
                           </div>
-                          <div className="col-lg-6 col-md-6">
+                          <div className="col-lg-12 col-md-12">
+                            <div className="billing-info">
+                            <label>Image</label>
+                              <ImageUpload
+                                center
+                                id="image"
+                                // onInput={inputHandler}
+                                // errorText="Please provide an image."
+                              />
+                            </div>
+                          </div>
+                          {/* <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
                               <label>Image path</label>
                               <input
@@ -355,7 +367,7 @@ const UserDashboard = ({ location }) => {
                                 value={image}
                               />
                             </div>
-                          </div>
+                          </div> */}
                           <div className="col-lg-12 col-md-12">
                             <label>Short description</label>
                             <div className="billing-info">

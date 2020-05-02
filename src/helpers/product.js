@@ -12,8 +12,8 @@ export const getProducts = (products, category, type, limit) => {
       )
     : products;
 
-  if (type && type === "new") {
-    const newProducts = finalProducts.filter(single => single.new);
+  if (type && type === "isnew") {
+    const newProducts = finalProducts.filter(single => single.isnew);
     return newProducts.slice(0, limit ? limit : newProducts.length);
   }
   if (type && type === "bestSeller") {

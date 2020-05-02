@@ -47,7 +47,7 @@ const TabProductSix = ({
               <div className="row">
                 <ProductGridFour
                   category={category}
-                  type="new"
+                  type="isnew"
                   limit={8}
                   spaceBottomClass="mb-25"
                 />
