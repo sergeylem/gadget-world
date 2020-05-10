@@ -7,10 +7,10 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { ROOT_URL } from "../../config";
 import { isAuthenticated } from "../../helpers/auth";
 import { createProduct, getCategories, getTags } from "../../helpers/apiAdmin";
-import ImageUpload from "../../components/image-upload/ImageUpload"
 
 const UserDashboard = ({ location }) => {
   const { pathname } = location;
+
   const [values, setValues] = useState({
     name: "",
     sku: "",
@@ -24,7 +24,7 @@ const UserDashboard = ({ location }) => {
     //category,
     tags: [],
     //tag,
-    image: "",
+    //image: "",
     shortDescription: "",
     fullDescription: "",
     specification: "",
@@ -40,6 +40,7 @@ const UserDashboard = ({ location }) => {
     error: "",
     success: false,
     createdProduct: "",
+    formData: ""
     // redirectToProfile: false,
   });
 
@@ -58,7 +59,7 @@ const UserDashboard = ({ location }) => {
     category,
     tags,
     tag,
-    image,
+    //image,
     shortDescription,
     fullDescription,
     model,
@@ -73,6 +74,7 @@ const UserDashboard = ({ location }) => {
     error,
     success,
     createdProduct,
+    formData
     // redirectToProfile,
   } = values;
 
@@ -95,6 +97,7 @@ const UserDashboard = ({ location }) => {
           ...values,
           categories,
           tags: data,
+          formData: new FormData()
         });
       }
     });
@@ -105,78 +108,43 @@ const UserDashboard = ({ location }) => {
     init();
   }, []);
 
-  const handleChange = name => event => {
-    setValues({ ...values, error: "", success: false, createdProduct: "", [name]: event.target.value });
-  };
-
   const clickSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: "", createdProduct: "", loading: true });
 
-    createProduct(user._id,
-      token,
-      {
-        name,
-        sku,
-        price,
-        discount,
-        rating,
-        saleCount,
-        isnew,
-        stock,
-        categories,
-        category,
-        tags,
-        tag,
-        image,
-        shortDescription,
-        fullDescription,
-        model,
-        performance,
-        display,
-        os,
-        ram,
-        storage,
-        camera,
-        battery
-        // loading,
-        // error,
-        // success,
-        // createdProduct,
+    createProduct(user._id, token, formData)
+      .then(data => {
+        if (data.errors) {
+          setValues({ ...values, error: data.errors[0].msg, success: false });
+        } else {
+          setValues({
+            ...values,
+            name: "",
+            sku: "",
+            price: "",
+            discount: "",
+            rating: "",
+            saleCount: "",
+            isnew: "",
+            stock: "",
+            image: "",
+            shortDescription: "",
+            fullDescription: "",
 
-      }
-    ).then(data => {
-      if (data.errors) {
-        setValues({ ...values, error: data.errors[0].msg, success: false });
-      } else {
-        setValues({
-          ...values,
-          name: "",
-          sku: "",
-          price: "",
-          discount: "",
-          rating: "",
-          saleCount: "",
-          isnew: "",
-          stock: "",
-          image: "",
-          shortDescription: "",
-          fullDescription: "",
-
-          model: "",
-          performance: "",
-          display: "",
-          os: "",
-          ram: "",
-          storage: "",
-          camera: "",
-          battery: "",
-          loading: false,
-          success: true,
-          createdProduct: data.name
-        });
-      }
-    });
+            model: "",
+            performance: "",
+            display: "",
+            os: "",
+            ram: "",
+            storage: "",
+            camera: "",
+            battery: "",
+            loading: false,
+            success: true,
+            createdProduct: data.name
+          });
+        }
+      });
   }
 
   const showError = () => (
@@ -203,6 +171,13 @@ const UserDashboard = ({ location }) => {
         <h2>Loading...</h2>
       </div>
     );
+
+  const handleChange = name => event => {
+    const value =
+      name === "image" ? event.target.files[0] : event.target.value;
+    formData.set(name, value);
+    setValues({ ...values, error: "", success: false, createdProduct: "", [name]: value });
+  };
 
 
   return (
@@ -348,26 +323,22 @@ const UserDashboard = ({ location }) => {
                             </div>
                           </div>
                           <div className="col-lg-12 col-md-12">
-                            <div className="billing-info">
+                            {/* <div className="billing-info"> */}
                             <label>Image</label>
-                              <ImageUpload
-                                center
-                                id="image"
-                                // onInput={inputHandler}
-                                // errorText="Please provide an image."
-                              />
-                            </div>
+                            <input
+                              type="file"
+                              id="image"
+                              name="image"
+                              accept="image/png, image/jpeg"
+                              onChange={handleChange("image")}
+                            />
+                            {/* <button className="btn btn-primary"
+                                //onClick={onSubmit}
+                              >
+                                Upload
+                              </button> */}
+                            {/* </div> */}
                           </div>
-                          {/* <div className="col-lg-6 col-md-6">
-                            <div className="billing-info">
-                              <label>Image path</label>
-                              <input
-                                onChange={handleChange("image")}
-                                type="text"
-                                value={image}
-                              />
-                            </div>
-                          </div> */}
                           <div className="col-lg-12 col-md-12">
                             <label>Short description</label>
                             <div className="billing-info">
@@ -490,7 +461,7 @@ const UserDashboard = ({ location }) => {
           </div>
         </form>
       </LayoutOne>
-    </Fragment>
+    </Fragment >
   );
 };
 

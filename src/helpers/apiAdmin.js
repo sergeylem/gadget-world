@@ -1,4 +1,5 @@
 import { API } from "../config";
+import axios from "axios";
 
 export const createSpecification = (userId, token, specification) => {
     return fetch(`${API}/specification/create/${userId}`, {
@@ -18,15 +19,17 @@ export const createSpecification = (userId, token, specification) => {
 };
 
 export const createProduct = (userId, token, product) => {
+
     return fetch(`${API}/product/create/${userId}`, {
         method: "POST",
         headers: {
             Accept: "application/json",
-            "Content-Type": "application/json",  
+//            "Content-Type": "application/json",  
+//            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`
         },
-        body: JSON.stringify(product)
-//        body: product
+//        body: JSON.stringify(product)
+        body: product
     })
         .then(response => {
             return response.json();
