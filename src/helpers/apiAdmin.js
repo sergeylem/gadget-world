@@ -1,5 +1,4 @@
 import { API } from "../config";
-import axios from "axios";
 
 export const createSpecification = (userId, token, specification) => {
     return fetch(`${API}/specification/create/${userId}`, {

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState, useEffect, useRef } from "react";
 import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import Card from "react-bootstrap/Card";
 import LayoutOne from "../../layouts/LayoutOne";
@@ -10,6 +10,7 @@ import { createProduct, getCategories, getTags } from "../../helpers/apiAdmin";
 
 const UserDashboard = ({ location }) => {
   const { pathname } = location;
+  const [previewUrl, setPreviewUrl] = useState();
 
   const [values, setValues] = useState({
     name: "",
@@ -21,10 +22,7 @@ const UserDashboard = ({ location }) => {
     isnew: false,
     stock: "",
     categories: [],
-    //category,
     tags: [],
-    //tag,
-    //image: "",
     shortDescription: "",
     fullDescription: "",
     specification: "",
@@ -53,13 +51,9 @@ const UserDashboard = ({ location }) => {
     discount,
     rating,
     saleCount,
-    isnew,
     stock,
     categories,
-    category,
     tags,
-    tag,
-    //image,
     shortDescription,
     fullDescription,
     model,
@@ -101,7 +95,6 @@ const UserDashboard = ({ location }) => {
         });
       }
     });
-
   };
 
   useEffect(() => {
@@ -130,7 +123,6 @@ const UserDashboard = ({ location }) => {
             image: "",
             shortDescription: "",
             fullDescription: "",
-
             model: "",
             performance: "",
             display: "",
@@ -177,6 +169,19 @@ const UserDashboard = ({ location }) => {
       name === "image" ? event.target.files[0] : event.target.value;
     formData.set(name, value);
     setValues({ ...values, error: "", success: false, createdProduct: "", [name]: value });
+    if (name === "image") {
+      const fileReader = new FileReader();
+      fileReader.onload = () => {
+        setPreviewUrl(fileReader.result);
+      };
+      fileReader.readAsDataURL(event.target.files[0]);
+    }
+  };
+
+  const filePickerRef = useRef();
+
+  const pickImageHandler = () => {
+    filePickerRef.current.click();
   };
 
 
@@ -327,17 +332,24 @@ const UserDashboard = ({ location }) => {
                             <label>Image</label>
                             <input
                               type="file"
-                              id="image"
+                              style={{ display: 'none' }}
+                              id="fileupload"
                               name="image"
                               accept="image/png, image/jpeg"
+                              ref={filePickerRef}
                               onChange={handleChange("image")}
                             />
-                            {/* <button className="btn btn-primary"
-                                //onClick={onSubmit}
-                              >
-                                Upload
-                              </button> */}
-                            {/* </div> */}
+                            <div className="image-upload__preview">
+                              {previewUrl && <img src={previewUrl} alt="Preview" />}
+                              {/* {!previewUrl && <p>Please pick an image.</p>} */}
+                            </div>
+
+                            <button className="btn btn-primary"
+                              onClick={pickImageHandler}
+                            >
+                              Pick file
+                              </button>
+
                           </div>
                           <div className="col-lg-12 col-md-12">
                             <label>Short description</label>
