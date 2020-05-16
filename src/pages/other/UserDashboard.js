@@ -45,18 +45,18 @@ const UserDashboard = ({ location }) => {
   const { user, token } = isAuthenticated();
 
   const {
-    name,
-    sku,
-    price,
-    discount,
-    rating,
-    saleCount,
-    stock,
-    categories,
-    tags,
-    shortDescription,
+    name,               //required
+    sku,                //required
+    price,              //required
+    discount,           //required
+    rating,             //required
+    saleCount,          //required
+    stock,              //required
+    categories,         //required
+    tags,               //required
+    shortDescription,   //required
     fullDescription,
-    model,
+    model,              //required
     performance,
     display,
     os,
@@ -72,6 +72,19 @@ const UserDashboard = ({ location }) => {
     // redirectToProfile,
   } = values;
 
+  const errors = {
+    name: "",
+    sku: "",
+    category: "",
+    tag: "",
+    price: "",
+    discount: "",
+    rating: "",
+    saleCount: "",
+    stock: "",
+    shortDescription: "",
+    model: ""
+  }
   // load categories and tags 
   const init = () => {
     let categories = [];
@@ -101,8 +114,21 @@ const UserDashboard = ({ location }) => {
     init();
   }, []);
 
+  const isErrorsEmpty = () => {
+    for (let field in errors) {
+      if (errors[field] !== "") {
+        console.log(`${field}: ${errors[field]}`)
+        return false;
+      }
+    }
+    return true;
+  }
+
   const clickSubmit = event => {
     event.preventDefault();
+    console.log("isErrorsEmpty " + isErrorsEmpty())
+    if (!isErrorsEmpty()) return;
+
     setValues({ ...values, error: "", createdProduct: "", loading: true });
 
     createProduct(user._id, token, formData)
@@ -164,11 +190,56 @@ const UserDashboard = ({ location }) => {
       </div>
     );
 
+
+  const checkErrors = (name, value) => {
+    switch (name) {
+      case 'name':
+        errors.name =
+          value.length === 0 || value.length < 3
+            ? 'Name must not be empty or less than 3 characters long!'
+            : '';
+        console.log(`name  ${name}`);
+        console.log(`errors.name  ${errors.name}`);
+        break;
+      case 'sku':
+        errors.sku =
+          value.length === 0 || value.length > 7
+            ? 'SKU must not be empty or more than 7 characters long!'
+            : '';
+        console.log(`sku  ${sku}`);
+        console.log(`errors.sku  ${errors.sku}`);
+        break;
+      case 'category':
+        errors.category =
+          value.length === 0
+            ? 'Category must not be empty!'
+            : '';
+        //        console.log("category" + category);
+        console.log(`errors.category  ${errors.category}`);
+        break;
+      case 'tag':
+        errors.tag =
+          value.length === 0
+            ? 'Tag must not be empty!'
+            : '';
+        console.log(`errors.tag  ${errors.tag}`);
+        break;
+
+      default:
+        break;
+    }
+  }
+
   const handleChange = name => event => {
     const value =
       name === "image" ? event.target.files[0] : event.target.value;
+
+
     formData.set(name, value);
     setValues({ ...values, error: "", success: false, createdProduct: "", [name]: value });
+
+    checkErrors(name, value);
+
     if (name === "image") {
       const fileReader = new FileReader();
       fileReader.onload = () => {
@@ -224,6 +295,7 @@ const UserDashboard = ({ location }) => {
                                 value={name}
                                 name="name"
                               />
+                              <p>{errors.name}</p>
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
@@ -235,6 +307,7 @@ const UserDashboard = ({ location }) => {
                                 value={sku}
                                 name="sku"
                               />
+                              <p>{errors.sku}</p>
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
@@ -344,7 +417,7 @@ const UserDashboard = ({ location }) => {
                               {/* {!previewUrl && <p>Please pick an image.</p>} */}
                             </div>
 
-                            <button className="btn btn-primary"
+                            <button className="btn btn-primary mt-3 mb-3"
                               onClick={pickImageHandler}
                             >
                               Pick file
