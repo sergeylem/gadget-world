@@ -11,6 +11,7 @@ import { createProduct, getCategories, getTags } from "../../helpers/apiAdmin";
 const UserDashboard = ({ location }) => {
   const { pathname } = location;
   const [previewUrl, setPreviewUrl] = useState();
+  const [showErrors, setShowErrors] = useState(false);
 
   const [values, setValues] = useState({
     name: "",
@@ -76,14 +77,14 @@ const UserDashboard = ({ location }) => {
     name: "",
     sku: "",
     category: "",
-    tag: "",
-    price: "",
-    discount: "",
-    rating: "",
-    saleCount: "",
-    stock: "",
-    shortDescription: "",
-    model: ""
+    tag: ""
+    // price: "",
+    // discount: "",
+    // rating: "",
+    // saleCount: "",
+    // stock: "",
+    // shortDescription: "",
+    // model: ""
   }
   // load categories and tags 
   const init = () => {
@@ -114,20 +115,62 @@ const UserDashboard = ({ location }) => {
     init();
   }, []);
 
-  const isErrorsEmpty = () => {
-    for (let field in errors) {
-      if (errors[field] !== "") {
-        console.log(`${field}: ${errors[field]}`)
-        return false;
-      }
+  const isFieldEmpty = () => {
+    let length = 0;
+    let isError = false;
+    length = document.forms["product"]["name"].value.length;
+    if (length === 0 || length < 3) {
+      errors["name"] = 'Name must not be empty or less than 3 characters long!'
+      isError = true;
     }
-    return true;
+    else
+      errors["name"] = '';
+
+    length = document.forms["product"]["sku"].value.length;
+    if (length === 0 || length > 7) {
+      errors["sku"] = 'SKU must not be empty or more than 7 characters long!'
+      isError = true;
+    }
+    else
+      errors["sku"] = '';
+
+    length = document.forms["product"]["category"].value.length;
+    if (length === 0) {
+      errors["category"] = 'Category must not be empty!'
+      isError = true;
+    }
+    else
+      errors["category"] = '';
+
+    length = document.forms["product"]["tag"].value.length;
+    if (length === 0) {
+      errors["tag"] = 'Tag must not be empty!'
+      isError = true;
+    }
+    else
+      errors["tag"] = '';
+
+    if (isError)
+      setShowErrors(true)
+    else
+      setShowErrors(false)
   }
+
+  // const isErrorsEmpty = () => {
+  //   for (let field in errors) {
+  //     if (errors[field] !== "") {
+  //       console.log(`${field}: ${errors[field]}`)
+  //       return false;
+  //     }
+  //   }
+  //   return true;
+  // }
 
   const clickSubmit = event => {
     event.preventDefault();
-    console.log("isErrorsEmpty " + isErrorsEmpty())
-    if (!isErrorsEmpty()) return;
+
+    console.log("isFieldEmpty " + isFieldEmpty())
+    if (!isFieldEmpty()) return;
 
     setValues({ ...values, error: "", createdProduct: "", loading: true });
 
@@ -190,55 +233,12 @@ const UserDashboard = ({ location }) => {
       </div>
     );
 
-
-  const checkErrors = (name, value) => {
-    switch (name) {
-      case 'name':
-        errors.name =
-          value.length === 0 || value.length < 3
-            ? 'Name must not be empty or less than 3 characters long!'
-            : '';
-        console.log(`name  ${name}`);
-        console.log(`errors.name  ${errors.name}`);
-        break;
-      case 'sku':
-        errors.sku =
-          value.length === 0 || value.length > 7
-            ? 'SKU must not be empty or more than 7 characters long!'
-            : '';
-        console.log(`sku  ${sku}`);
-        console.log(`errors.sku  ${errors.sku}`);
-        break;
-      case 'category':
-        errors.category =
-          value.length === 0
-            ? 'Category must not be empty!'
-            : '';
-        //        console.log("category" + category);
-        console.log(`errors.category  ${errors.category}`);
-        break;
-      case 'tag':
-        errors.tag =
-          value.length === 0
-            ? 'Tag must not be empty!'
-            : '';
-        console.log(`errors.tag  ${errors.tag}`);
-        break;
-
-      default:
-        break;
-    }
-  }
-
   const handleChange = name => event => {
     const value =
       name === "image" ? event.target.files[0] : event.target.value;
 
-
     formData.set(name, value);
     setValues({ ...values, error: "", success: false, createdProduct: "", [name]: value });
-
-    checkErrors(name, value);
 
     if (name === "image") {
       const fileReader = new FileReader();
@@ -271,6 +271,7 @@ const UserDashboard = ({ location }) => {
         {showError()}
 
         <form className="myaccount-area pb-80 pt-50"
+          name="product"
           onSubmit={clickSubmit}
         >
           <div className="container">
@@ -294,6 +295,7 @@ const UserDashboard = ({ location }) => {
                                 type="text"
                                 value={name}
                                 name="name"
+                                id="name"
                               />
                               <p>{errors.name}</p>
                             </div>
@@ -306,6 +308,8 @@ const UserDashboard = ({ location }) => {
                                 type="text"
                                 value={sku}
                                 name="sku"
+                                id="sku"
+
                               />
                               <p>{errors.sku}</p>
                             </div>
