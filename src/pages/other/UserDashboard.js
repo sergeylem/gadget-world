@@ -7,11 +7,26 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { ROOT_URL } from "../../config";
 import { isAuthenticated } from "../../helpers/auth";
 import { createProduct, getCategories, getTags } from "../../helpers/apiAdmin";
+import { isFieldsEmpty } from "../../helpers/isFieldsEmpty";
 
 const UserDashboard = ({ location }) => {
   const { pathname } = location;
   const [previewUrl, setPreviewUrl] = useState();
   const [showErrors, setShowErrors] = useState(false);
+  const [errors, setErrors] = useState({
+    name: "",
+    sku: "",
+    category: "",
+    tag: "",
+    price: "",
+    discount: "",
+    rating: "",
+    saleCount: "",
+    stock: "",
+    shortDescription: "",
+    model: ""
+  });
+
 
   const [values, setValues] = useState({
     name: "",
@@ -46,18 +61,18 @@ const UserDashboard = ({ location }) => {
   const { user, token } = isAuthenticated();
 
   const {
-    name,               //required
-    sku,                //required
-    price,              //required
-    discount,           //required
-    rating,             //required
-    saleCount,          //required
-    stock,              //required
-    categories,         //required
-    tags,               //required
-    shortDescription,   //required
+    name,
+    sku,
+    price,
+    discount,
+    rating,
+    saleCount,
+    stock,
+    categories,
+    tags,
+    shortDescription,
     fullDescription,
-    model,              //required
+    model,
     performance,
     display,
     os,
@@ -73,19 +88,7 @@ const UserDashboard = ({ location }) => {
     // redirectToProfile,
   } = values;
 
-  const errors = {
-    name: "",
-    sku: "",
-    category: "",
-    tag: ""
-    // price: "",
-    // discount: "",
-    // rating: "",
-    // saleCount: "",
-    // stock: "",
-    // shortDescription: "",
-    // model: ""
-  }
+
   // load categories and tags 
   const init = () => {
     let categories = [];
@@ -115,62 +118,26 @@ const UserDashboard = ({ location }) => {
     init();
   }, []);
 
-  const isFieldEmpty = () => {
-    let length = 0;
-    let isError = false;
-    length = document.forms["product"]["name"].value.length;
-    if (length === 0 || length < 3) {
-      errors["name"] = 'Name must not be empty or less than 3 characters long!'
-      isError = true;
-    }
-    else
-      errors["name"] = '';
-
-    length = document.forms["product"]["sku"].value.length;
-    if (length === 0 || length > 7) {
-      errors["sku"] = 'SKU must not be empty or more than 7 characters long!'
-      isError = true;
-    }
-    else
-      errors["sku"] = '';
-
-    length = document.forms["product"]["category"].value.length;
-    if (length === 0) {
-      errors["category"] = 'Category must not be empty!'
-      isError = true;
-    }
-    else
-      errors["category"] = '';
-
-    length = document.forms["product"]["tag"].value.length;
-    if (length === 0) {
-      errors["tag"] = 'Tag must not be empty!'
-      isError = true;
-    }
-    else
-      errors["tag"] = '';
-
-    if (isError)
-      setShowErrors(true)
-    else
-      setShowErrors(false)
-  }
-
-  // const isErrorsEmpty = () => {
-  //   for (let field in errors) {
-  //     if (errors[field] !== "") {
-  //       console.log(`${field}: ${errors[field]}`)
-  //       return false;
-  //     }
-  //   }
-  //   return true;
-  // }
 
   const clickSubmit = event => {
     event.preventDefault();
 
-    console.log("isFieldEmpty " + isFieldEmpty())
-    if (!isFieldEmpty()) return;
+    const err = isFieldsEmpty();
+    if (err.isError) {
+      setErrors({
+        ...errors, name: err.name, sku: err.sku, category: err.category, tag: err.tag,
+        price: err.price, discount: err.discount, rating: err.rating, saleCount: err.saleCount,
+        stock: err.stock, shortDescription: err.shortDescription, model: err.model
+      })
+      setShowErrors(true);
+      return;
+    } else {
+      setErrors({
+        ...errors, name: "", sku: "", category: "", tag: "", price: "",
+        discount: "", rating: "", saleCount: "", stock: "", shortDescription: "", model: ""
+      })
+      setShowErrors(false);
+    }
 
     setValues({ ...values, error: "", createdProduct: "", loading: true });
 
@@ -297,7 +264,8 @@ const UserDashboard = ({ location }) => {
                                 name="name"
                                 id="name"
                               />
-                              <p>{errors.name}</p>
+                              {showErrors &&
+                                <p>{errors.name}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
@@ -309,15 +277,16 @@ const UserDashboard = ({ location }) => {
                                 value={sku}
                                 name="sku"
                                 id="sku"
-
                               />
-                              <p>{errors.sku}</p>
+                              {showErrors &&
+                                <p>{errors.sku}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <label>Category</label>
                             <select className='form-control'
                               onChange={handleChange("category")}
+                              name="category"
                             >
                               <option>Please select</option>
                               {categories &&
@@ -327,11 +296,14 @@ const UserDashboard = ({ location }) => {
                                   </option>
                                 ))}
                             </select>
+                            {showErrors &&
+                              <p>{errors.category}</p>}
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <label>Tag</label>
                             <select className='form-control'
                               onChange={handleChange("tag")}
+                              name="tag"
                             >
                               <option>Please select</option>
                               {tags &&
@@ -341,6 +313,8 @@ const UserDashboard = ({ location }) => {
                                   </option>
                                 ))}
                             </select>
+                            {showErrors &&
+                              <p>{errors.tag}</p>}
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info mt-20">
@@ -351,6 +325,8 @@ const UserDashboard = ({ location }) => {
                                 value={price}
                                 name="price"
                               />
+                              {showErrors &&
+                                <p>{errors.price}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
@@ -362,6 +338,8 @@ const UserDashboard = ({ location }) => {
                                 value={discount}
                                 name="discount"
                               />
+                              {showErrors &&
+                                <p>{errors.discount}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
@@ -371,7 +349,10 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("rating")}
                                 type="number"
                                 value={rating}
+                                name="rating"
                               />
+                              {showErrors &&
+                                <p>{errors.rating}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
@@ -381,12 +362,15 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("saleCount")}
                                 type="number"
                                 value={saleCount}
+                                name="saleCount"
                               />
+                              {showErrors &&
+                                <p>{errors.saleCount}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <label>New</label>
-                            <select className='form-control'
+                            <select className='form-control' name="isNew"
                               onChange={handleChange("isnew")}
                             >
                               <option>Please select</option>
@@ -401,7 +385,10 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("stock")}
                                 type="number"
                                 value={stock}
+                                name="stock"
                               />
+                              {showErrors &&
+                                <p>{errors.stock}</p>}
                             </div>
                           </div>
                           <div className="col-lg-12 col-md-12">
@@ -418,10 +405,10 @@ const UserDashboard = ({ location }) => {
                             />
                             <div className="image-upload__preview">
                               {previewUrl && <img src={previewUrl} alt="Preview" />}
-                              {/* {!previewUrl && <p>Please pick an image.</p>} */}
+                              {showErrors && !previewUrl && <p>Image must not be empty!</p>}
                             </div>
 
-                            <button className="btn btn-primary mt-3 mb-3"
+                            <button className="btn btn-primary mt-0 mb-4"
                               onClick={pickImageHandler}
                             >
                               Pick file
@@ -435,7 +422,10 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("shortDescription")}
                                 type="text"
                                 value={shortDescription}
+                                name="shortDescription"
                               />
+                              {showErrors &&
+                                <p>{errors.shortDescription}</p>}
                             </div >
                           </div>
                           <div className="col-lg-12 col-md-12">
@@ -462,7 +452,10 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("model")}
                                 type="text"
                                 value={model}
+                                name="model"
                               />
+                              {showErrors &&
+                                <p>{errors.model}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
