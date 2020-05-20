@@ -22,6 +22,7 @@ const UserDashboard = ({ location }) => {
     discount: "",
     rating: "",
     saleCount: "",
+    isNew: "",
     stock: "",
     shortDescription: "",
     model: ""
@@ -35,7 +36,7 @@ const UserDashboard = ({ location }) => {
     discount: "",
     rating: "",
     saleCount: "",
-    isnew: false,
+    //    isnew: false,
     stock: "",
     categories: [],
     tags: [],
@@ -55,7 +56,6 @@ const UserDashboard = ({ location }) => {
     success: false,
     createdProduct: "",
     formData: ""
-    // redirectToProfile: false,
   });
 
   const { user, token } = isAuthenticated();
@@ -85,7 +85,6 @@ const UserDashboard = ({ location }) => {
     success,
     createdProduct,
     formData
-    // redirectToProfile,
   } = values;
 
 
@@ -123,23 +122,23 @@ const UserDashboard = ({ location }) => {
     event.preventDefault();
 
     const err = isFieldsEmpty();
-    if (err.isError) {
+    if (err.isError || !previewUrl) {
       setErrors({
         ...errors, name: err.name, sku: err.sku, category: err.category, tag: err.tag,
         price: err.price, discount: err.discount, rating: err.rating, saleCount: err.saleCount,
-        stock: err.stock, shortDescription: err.shortDescription, model: err.model
+        isNew: err.isNew, stock: err.stock, shortDescription: err.shortDescription, model: err.model
       })
       setShowErrors(true);
       return;
     } else {
       setErrors({
-        ...errors, name: "", sku: "", category: "", tag: "", price: "",
-        discount: "", rating: "", saleCount: "", stock: "", shortDescription: "", model: ""
+        ...errors, name: "", sku: "", category: "", tag: "", price: "", discount: "", rating: "",
+        saleCount: "", isNew: "", stock: "", shortDescription: "", model: ""
       })
       setShowErrors(false);
     }
 
-    setValues({ ...values, error: "", createdProduct: "", loading: true });
+    setValues({ ...values, error: "", loading: true });
 
     createProduct(user._id, token, formData)
       .then(data => {
@@ -154,7 +153,7 @@ const UserDashboard = ({ location }) => {
             discount: "",
             rating: "",
             saleCount: "",
-            isnew: "",
+            //            isnew: "",
             stock: "",
             image: "",
             shortDescription: "",
@@ -169,15 +168,20 @@ const UserDashboard = ({ location }) => {
             battery: "",
             loading: false,
             success: true,
-            createdProduct: data.name
+            createdProduct: name
           });
         }
       });
+    //Cleaning select and image components  
+    setPreviewUrl(null);
+    document.getElementById('category').value = "Please select";
+    document.getElementById('tag').value = "Please select";
+    document.getElementById('isNew').value = "Please select";
   }
 
   const showError = () => (
     <div
-      className="alert alert-danger"
+      className="alert alert-danger text-center"
       style={{ display: error ? "" : "none" }}
     >
       <h3>{error}</h3>
@@ -186,16 +190,16 @@ const UserDashboard = ({ location }) => {
 
   const showSuccess = () => (
     <div
-      className="alert alert-info"
+      className="alert alert-info text-center"
       style={{ display: success ? "" : "none" }}
     >
-      <h3>{`${createdProduct} is created!`}</h3>
+      <h4>{`"${createdProduct}" is created!`}</h4>
     </div>
   );
 
   const showLoading = () =>
     loading && (
-      <div className="alert alert-success">
+      <div className="alert alert-success text-center">
         <h2>Loading...</h2>
       </div>
     );
@@ -205,7 +209,7 @@ const UserDashboard = ({ location }) => {
       name === "image" ? event.target.files[0] : event.target.value;
 
     formData.set(name, value);
-    setValues({ ...values, error: "", success: false, createdProduct: "", [name]: value });
+    setValues({ ...values, error: "", success: false, [name]: value });
 
     if (name === "image") {
       const fileReader = new FileReader();
@@ -218,10 +222,10 @@ const UserDashboard = ({ location }) => {
 
   const filePickerRef = useRef();
 
-  const pickImageHandler = () => {
+  const pickImageHandler = (event) => {
+    event.preventDefault();
     filePickerRef.current.click();
   };
-
 
   return (
     <Fragment>
@@ -286,7 +290,7 @@ const UserDashboard = ({ location }) => {
                             <label>Category</label>
                             <select className='form-control'
                               onChange={handleChange("category")}
-                              name="category"
+                              name="category" id="category"
                             >
                               <option>Please select</option>
                               {categories &&
@@ -303,7 +307,7 @@ const UserDashboard = ({ location }) => {
                             <label>Tag</label>
                             <select className='form-control'
                               onChange={handleChange("tag")}
-                              name="tag"
+                              name="tag" id="tag"
                             >
                               <option>Please select</option>
                               {tags &&
@@ -369,14 +373,17 @@ const UserDashboard = ({ location }) => {
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
-                            <label>New</label>
-                            <select className='form-control' name="isNew"
+                            <label>Is New</label>
+                            <select className='form-control'
+                              name="isNew" id="isNew"
                               onChange={handleChange("isnew")}
                             >
                               <option>Please select</option>
                               <option value="1">Yes</option>
                               <option value="0">No</option>
                             </select>
+                            {showErrors &&
+                              <p>{errors.isNew}</p>}
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
@@ -407,13 +414,11 @@ const UserDashboard = ({ location }) => {
                               {previewUrl && <img src={previewUrl} alt="Preview" />}
                               {showErrors && !previewUrl && <p>Image must not be empty!</p>}
                             </div>
-
                             <button className="btn btn-primary mt-0 mb-4"
                               onClick={pickImageHandler}
                             >
                               Pick file
-                              </button>
-
+                            </button>
                           </div>
                           <div className="col-lg-12 col-md-12">
                             <label>Short description</label>

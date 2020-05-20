@@ -10,6 +10,7 @@ export const isFieldsEmpty = () => {
     discount: "",
     rating: "",
     saleCount: "",
+    isNew: "",
     stock: "",
     shortDescription: "",
     model: "",
@@ -75,6 +76,13 @@ export const isFieldsEmpty = () => {
     isError = true;
   } else
     errors.saleCount = '';
+
+  index = document.forms["product"]["isNew"].options.selectedIndex;
+  if (index === 0) {
+    errors.isNew = 'Is New must not be empty!'
+    isError = true;
+  } else
+    errors.isNew = '';
 
   length = document.forms["product"]["stock"].value.length;
   value = document.forms["product"]["stock"].value;
