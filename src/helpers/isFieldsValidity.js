@@ -1,4 +1,4 @@
-export const isFieldsEmpty = () => {
+export const isFieldsValidity = () => {
   let length, value, index = 0;
   let isError = false;
   let errors = {
@@ -14,6 +14,13 @@ export const isFieldsEmpty = () => {
     stock: "",
     shortDescription: "",
     model: "",
+    performance: "",
+    storage: "",
+    camera: "",
+    battery: "",
+    display: "",
+    ram: "",
+    os: "",
     isError: false
   };
 
@@ -105,6 +112,55 @@ export const isFieldsEmpty = () => {
     isError = true;
   } else
     errors.model = '';
+
+  length = document.forms["product"]["performance"].value.length;
+  if (length > 100) {
+    errors.performance = 'Performance must not be more than 100 chars!'
+    isError = true;
+  } else
+    errors.performance = '';
+
+  length = document.forms["product"]["storage"].value.length;
+  if (length > 4) {
+    errors.storage = 'Storage must not be more than 3 chars!'
+    isError = true;
+  } else
+    errors.storage = '';
+
+  length = document.forms["product"]["camera"].value.length;
+  if (length > 100) {
+    errors.camera = 'Camera must not be more than 100 chars!'
+    isError = true;
+  } else
+    errors.camera = '';
+
+  length = document.forms["product"]["battery"].value.length;
+  if (length > 4) {
+    errors.battery = 'Battery must not be more than 4 chars!'
+    isError = true;
+  } else
+    errors.battery = '';
+
+  length = document.forms["product"]["display"].value.length;
+  if (length > 4) {
+    errors.display = 'Display must not be more than 4 chars!'
+    isError = true;
+  } else
+    errors.display = '';
+
+  length = document.forms["product"]["ram"].value.length;
+  if (length > 4) {
+    errors.ram = 'Ram must not be more than 4 chars!'
+    isError = true;
+  } else
+    errors.ram = '';
+
+  length = document.forms["product"]["os"].value.length;
+  if (length > 12) {
+    errors.os = 'OS must not be more than 12 chars!'
+    isError = true;
+  } else
+    errors.os = '';
 
   if (isError) {
     errors.isError = true;

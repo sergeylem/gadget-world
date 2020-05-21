@@ -65,9 +65,9 @@ const Login = ({ location }) => {
   const redirectUser = () => {
     if (redirectToReferrer) {
       if (user && user.role === 1) {
-        return <Redirect to="/user-dashboard" />;
+        return <Redirect to="/add-product" />;
       } else {
-        return <Redirect to="/user-dashboard" />; // Change it !!! 
+        return <Redirect to="/add-product" />; // Change it !!! 
       }
     }
     if (isAuthenticated()) {

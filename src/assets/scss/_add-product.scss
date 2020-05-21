@@ -83,12 +83,49 @@
         font-size: 14px;
         text-transform: capitalize;
       }
+      p {
+        color: red;
+        font-size: 11px;
+      }
       input {
         background: transparent none repeat scroll 0 0;
         border: 1px solid #ebebeb;
         color: #000;
         height: 40px;
-        padding: 0 15px;
+        padding: 0 10px;
+      }
+      select {
+        background: transparent none repeat scroll 0 0;
+        border: 1px solid #ebebeb;
+        color: #000;
+        height: 40px;
+        font-size: 14px;
+      }
+    }
+    .billing-pick-btn {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 0px;
+      margin-bottom: 30px;
+      align-items: center;
+      .billing-btn {
+        button {
+          background-color: #f2f2f2;
+          border: medium none;
+          color: #000;
+          display: inline-block;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1;
+          padding: 16px 30px 17px;
+          text-transform: uppercase;
+          cursor: pointer;
+          transition: all 0.3s ease 0s;
+          &:hover {
+            background: $theme-color;
+            color: #fff;
+          }
+        }
       }
     }
     .billing-back-btn {

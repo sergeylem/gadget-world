@@ -21,7 +21,7 @@ const About = ({ location }) => {
         <title>Gadget World | About us</title>
         <meta
           name="description"
-          content="About page of flone react minimalist eCommerce template."
+          content="About page of eCommerce."
         />
       </MetaTags>
       <BreadcrumbsItem to={ROOT_URL + "/"}>Home</BreadcrumbsItem>

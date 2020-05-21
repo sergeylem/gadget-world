@@ -194,7 +194,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
                 </Link>
               </li>
               <li>
-                <Link to={ROOT_URL + "/user-dashboard"}>
+                <Link to={ROOT_URL + "/add-product"}>
                   {strings["user_dashboard"]}
                 </Link>
               </li>

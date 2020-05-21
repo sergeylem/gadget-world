@@ -58,7 +58,7 @@ const ShopGridStandard = ({location, products}) => {
         <Fragment>
             <MetaTags>
                 <title>Gadget World | Shop Page</title>
-                <meta name="description" content="Shop page of flone react minimalist eCommerce template." />
+                <meta name="description" content="Shop page of eCommerce." />
             </MetaTags>
 
             <BreadcrumbsItem to={ROOT_URL + '/'}>Home</BreadcrumbsItem>

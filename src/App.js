@@ -21,7 +21,7 @@ const Product = lazy(() => import("./pages/shop-product/Product"));
 // other pages
 const About = lazy(() => import("./pages/other/About"));
 const Contact = lazy(() => import("./pages/other/Contact"));
-const UserDashboard = lazy(() => import("./pages/other/UserDashboard"));
+const AddProduct = lazy(() => import("./pages/other/AddProduct"));
 const MyAccount = lazy(() => import("./pages/other/MyAccount"));
 const Login = lazy(() => import("./pages/other/Login"));
 const Register = lazy(() => import("./pages/other/Register"));
@@ -62,8 +62,8 @@ const App = props => {
           <ScrollToTop>
             <Suspense
               fallback={
-                <div className="flone-preloader-wrapper">
-                  <div className="flone-preloader">
+                <div className="shop-preloader-wrapper">
+                  <div className="shop-preloader">
                     <span></span>
                     <span></span>
                   </div>
@@ -88,10 +88,10 @@ const App = props => {
                   component={ShopGridStandard}
                 />
 
-                {/* UserDashboard pages */}
+                {/* AddProduct pages */}
                 <Route
-                  path={ROOT_URL + "/user-dashboard"}
-                  component={UserDashboard}
+                  path={ROOT_URL + "/add-product"}
+                  component={AddProduct}
                 />
 
                 {/* Shop product pages */}

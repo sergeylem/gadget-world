@@ -30,7 +30,7 @@ const Compare = ({
         <title>Gadget World | Compare</title>
         <meta
           name="description"
-          content="Compare page of flone react minimalist eCommerce template."
+          content="Compare page of eCommerce."
         />
       </MetaTags>
       <BreadcrumbsItem to={ROOT_URL + "/"}>Home</BreadcrumbsItem>

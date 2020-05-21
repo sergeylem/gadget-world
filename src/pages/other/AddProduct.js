@@ -7,9 +7,9 @@ import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { ROOT_URL } from "../../config";
 import { isAuthenticated } from "../../helpers/auth";
 import { createProduct, getCategories, getTags } from "../../helpers/apiAdmin";
-import { isFieldsEmpty } from "../../helpers/isFieldsEmpty";
+import { isFieldsValidity } from "../../helpers/isFieldsValidity";
 
-const UserDashboard = ({ location }) => {
+const AddProduct = ({ location }) => {
   const { pathname } = location;
   const [previewUrl, setPreviewUrl] = useState();
   const [showErrors, setShowErrors] = useState(false);
@@ -25,7 +25,14 @@ const UserDashboard = ({ location }) => {
     isNew: "",
     stock: "",
     shortDescription: "",
-    model: ""
+    model: "",
+    performance: "",
+    storage: "",
+    camera: "",
+    battery: "",
+    display: "",
+    ram: "",
+    os: "",
   });
 
 
@@ -115,25 +122,29 @@ const UserDashboard = ({ location }) => {
 
   useEffect(() => {
     init();
+    // eslint-disable-next-line 
   }, []);
 
 
   const clickSubmit = event => {
     event.preventDefault();
 
-    const err = isFieldsEmpty();
+    const err = isFieldsValidity();
     if (err.isError || !previewUrl) {
       setErrors({
         ...errors, name: err.name, sku: err.sku, category: err.category, tag: err.tag,
         price: err.price, discount: err.discount, rating: err.rating, saleCount: err.saleCount,
-        isNew: err.isNew, stock: err.stock, shortDescription: err.shortDescription, model: err.model
+        isNew: err.isNew, stock: err.stock, shortDescription: err.shortDescription, model: err.model,
+        performance: err.performance, storage: err.storage, camera: err.camera, battery: err.battery,
+        display: err.display, ram: err.ram, os: err.os
       })
       setShowErrors(true);
       return;
     } else {
       setErrors({
         ...errors, name: "", sku: "", category: "", tag: "", price: "", discount: "", rating: "",
-        saleCount: "", isNew: "", stock: "", shortDescription: "", model: ""
+        saleCount: "", isNew: "", stock: "", shortDescription: "", model: "", performance: "",
+        storage: "", camera: "", battery: "", display: "", ram: "", os: ""
       })
       setShowErrors(false);
     }
@@ -287,38 +298,42 @@ const UserDashboard = ({ location }) => {
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
-                            <label>Category</label>
-                            <select className='form-control'
-                              onChange={handleChange("category")}
-                              name="category" id="category"
-                            >
-                              <option>Please select</option>
-                              {categories &&
-                                categories.map((c, i) => (
-                                  <option key={i} value={c._id}>
-                                    {c.name}
-                                  </option>
-                                ))}
-                            </select>
-                            {showErrors &&
-                              <p>{errors.category}</p>}
+                            <div className="billing-info">
+                              <label>Category</label>
+                              <select className='form-control'
+                                onChange={handleChange("category")}
+                                name="category" id="category"
+                              >
+                                <option>Please select</option>
+                                {categories &&
+                                  categories.map((c, i) => (
+                                    <option key={i} value={c._id}>
+                                      {c.name}
+                                    </option>
+                                  ))}
+                              </select>
+                              {showErrors &&
+                                <p>{errors.category}</p>}
+                            </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
-                            <label>Tag</label>
-                            <select className='form-control'
-                              onChange={handleChange("tag")}
-                              name="tag" id="tag"
-                            >
-                              <option>Please select</option>
-                              {tags &&
-                                tags.map((c, i) => (
-                                  <option key={i} value={c._id}>
-                                    {c.name}
-                                  </option>
-                                ))}
-                            </select>
-                            {showErrors &&
-                              <p>{errors.tag}</p>}
+                            <div className="billing-info">
+                              <label>Tag</label>
+                              <select className='form-control'
+                                onChange={handleChange("tag")}
+                                name="tag" id="tag"
+                              >
+                                <option>Please select</option>
+                                {tags &&
+                                  tags.map((c, i) => (
+                                    <option key={i} value={c._id}>
+                                      {c.name}
+                                    </option>
+                                  ))}
+                              </select>
+                              {showErrors &&
+                                <p>{errors.tag}</p>}
+                            </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info mt-20">
@@ -373,17 +388,19 @@ const UserDashboard = ({ location }) => {
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
-                            <label>Is New</label>
-                            <select className='form-control'
-                              name="isNew" id="isNew"
-                              onChange={handleChange("isnew")}
-                            >
-                              <option>Please select</option>
-                              <option value="1">Yes</option>
-                              <option value="0">No</option>
-                            </select>
-                            {showErrors &&
-                              <p>{errors.isNew}</p>}
+                            <div className="billing-info">
+                              <label>Is New</label>
+                              <select className='form-control'
+                                name="isNew" id="isNew"
+                                onChange={handleChange("isnew")}
+                              >
+                                <option>Please select</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                              </select>
+                              {showErrors &&
+                                <p>{errors.isNew}</p>}
+                            </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
                             <div className="billing-info">
@@ -410,15 +427,19 @@ const UserDashboard = ({ location }) => {
                               ref={filePickerRef}
                               onChange={handleChange("image")}
                             />
-                            <div className="image-upload__preview">
+                            <div className="billing-info">
                               {previewUrl && <img src={previewUrl} alt="Preview" />}
                               {showErrors && !previewUrl && <p>Image must not be empty!</p>}
                             </div>
-                            <button className="btn btn-primary mt-0 mb-4"
-                              onClick={pickImageHandler}
-                            >
-                              Pick file
+                            <div className="billing-pick-btn">
+                              <div className="billing-btn">
+                                <button
+                                  onClick={pickImageHandler}
+                                >
+                                  Pick file
                             </button>
+                              </div>
+                            </div>
                           </div>
                           <div className="col-lg-12 col-md-12">
                             <label>Short description</label>
@@ -470,7 +491,10 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("performance")}
                                 type="text"
                                 value={performance}
+                                name="performance"
                               />
+                              {showErrors &&
+                                <p>{errors.performance}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
@@ -480,7 +504,10 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("display")}
                                 type="text"
                                 value={display}
+                                name="display"
                               />
+                              {showErrors &&
+                                <p>{errors.display}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
@@ -490,7 +517,10 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("os")}
                                 type="text"
                                 value={os}
+                                name="os"
                               />
+                              {showErrors &&
+                                <p>{errors.os}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
@@ -500,7 +530,10 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("ram")}
                                 type="text"
                                 value={ram}
+                                name="ram"
                               />
+                              {showErrors &&
+                                <p>{errors.ram}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
@@ -510,7 +543,10 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("storage")}
                                 type="text"
                                 value={storage}
+                                name="storage"
                               />
+                              {showErrors &&
+                                <p>{errors.storage}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
@@ -520,7 +556,10 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("camera")}
                                 type="text"
                                 value={camera}
+                                name="camera"
                               />
+                              {showErrors &&
+                                <p>{errors.camera}</p>}
                             </div>
                           </div>
                           <div className="col-lg-6 col-md-6">
@@ -530,7 +569,10 @@ const UserDashboard = ({ location }) => {
                                 onChange={handleChange("battery")}
                                 type="text"
                                 value={battery}
+                                name="battery"
                               />
+                              {showErrors &&
+                                <p>{errors.battery}</p>}
                             </div>
                           </div>
                         </div>
@@ -552,8 +594,8 @@ const UserDashboard = ({ location }) => {
   );
 };
 
-UserDashboard.propTypes = {
+AddProduct.propTypes = {
   location: PropTypes.object
 };
 
-export default UserDashboard;
+export default AddProduct;
