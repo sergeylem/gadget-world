@@ -22,6 +22,8 @@ const Product = lazy(() => import("./pages/shop-product/Product"));
 const About = lazy(() => import("./pages/other/About"));
 const Contact = lazy(() => import("./pages/other/Contact"));
 const AddProduct = lazy(() => import("./pages/other/AddProduct"));
+const UpdateProduct = lazy(() => import("./pages/other/UpdateProduct"));
+const ManageProducts = lazy(() => import("./pages/other/ManageProducts"));
 const MyAccount = lazy(() => import("./pages/other/MyAccount"));
 const Login = lazy(() => import("./pages/other/Login"));
 const Register = lazy(() => import("./pages/other/Register"));
@@ -92,6 +94,18 @@ const App = props => {
                 <Route
                   path={ROOT_URL + "/add-product"}
                   component={AddProduct}
+                />
+
+                {/* UpdateProduct pages */}
+                <Route
+                  path={ROOT_URL + "/admin/product/update/:productId"}
+                  component={UpdateProduct}
+                />
+
+                {/* ManageProducts pages */}
+                <Route
+                  path={ROOT_URL + "/manage-products"}
+                  component={ManageProducts}
                 />
 
                 {/* Shop product pages */}
