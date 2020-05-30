@@ -181,7 +181,42 @@ const UpdateProduct = ({ match }) => {
       setShowErrors(false);
     }
 
-    setValues({ ...values, error: "", loading: true });
+    let _name = document.forms["product"]["name"].value;
+    
+    setValues({ ...values, name: _name, error: "", loading: true });
+
+    let _name1 = document.forms["product"]["name"].value;
+    
+    console.log("_name " + _name);
+    console.log("_name1 " + _name1);
+
+    let c = document.forms["product"]["category"].options.selectedIndex;
+    let t = document.forms["product"]["tag"].options.selectedIndex;
+    let n = document.forms["product"]["isNew"].options.selectedIndex ? true : false;
+
+    formData.set("name", document.forms["product"]["name"].value);
+    formData.set("sku", document.forms["product"]["sku"].value);
+    formData.set("category", categories[c]._id);
+    formData.set("tag", tags[t]._id);
+    formData.set("isnew", n);
+    //formData.set("image", previewUrl);
+
+    formData.set("price", document.forms["product"]["price"].value);
+    formData.set("discount", document.forms["product"]["discount"].value);
+    formData.set("rating", document.forms["product"]["rating"].value);
+    formData.set("saleCount", document.forms["product"]["saleCount"].value);
+    formData.set("stock", document.forms["product"]["stock"].value);
+    formData.set("shortDescription", document.forms["product"]["shortDescription"].value);
+    formData.set("fullDescription", document.forms["product"]["fullDescription"].value);
+    formData.set("model", document.forms["product"]["model"].value);
+    formData.set("performance", document.forms["product"]["performance"].value);
+
+    formData.set("display", document.forms["product"]["display"].value);
+    formData.set("os", document.forms["product"]["os"].value);
+    formData.set("ram", document.forms["product"]["ram"].value);
+    formData.set("storage", document.forms["product"]["storage"].value);
+    formData.set("camera", document.forms["product"]["camera"].value);
+    formData.set("battery", document.forms["product"]["battery"].value);
 
     updateProduct(match.params.productId, user._id, token, formData)
       .then(data => {
@@ -268,6 +303,7 @@ const UpdateProduct = ({ match }) => {
     event.preventDefault();
     filePickerRef.current.click();
   };
+
 
   return (
     <Fragment>
@@ -493,6 +529,8 @@ const UpdateProduct = ({ match }) => {
                                 onChange={handleChange("fullDescription")}
                                 type="text"
                                 value={fullDescription}
+                                name="fullDescription"
+
                               />
                             </div>
                           </div>
