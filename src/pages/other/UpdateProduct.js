@@ -46,7 +46,6 @@ const UpdateProduct = ({ match }) => {
     tags: [],
     shortDescription: "",
     fullDescription: "",
-    specification: "",
     model: "",
     performance: "",
     display: "",

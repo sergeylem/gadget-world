@@ -49,7 +49,6 @@ const AddProduct = ({ location }) => {
     tags: [],
     shortDescription: "",
     fullDescription: "",
-    specification: "",
     model: "",
     performance: "",
     display: "",

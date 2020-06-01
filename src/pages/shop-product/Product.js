@@ -43,13 +43,13 @@ const Product = ({ location, product }) => {
         <ProductDescriptionTab
           spaceBottomClass="pb-90"
           productFullDesc={product.fullDescription}
-          productModel={product.specification.model}
-          productPerformance={product.specification.performance}
-          productStorage={product.specification.storage}
-          productCamera={product.specification.camera}
-          productBattery={product.specification.battery}
-          productDisplay={product.specification.display}
-          productRam={product.specification.ram}
+          productModel={product.model}
+          productPerformance={product.performance}
+          productStorage={product.storage}
+          productCamera={product.camera}
+          productBattery={product.battery}
+          productDisplay={product.display}
+          productRam={product.ram}
         />
 
         {/* related product slider */}
