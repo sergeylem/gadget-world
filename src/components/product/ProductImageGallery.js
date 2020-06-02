@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { Fragment, useEffect, useState } from "react";
 import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
 import Swiper from "react-id-swiper";
-import { ROOT_URL } from "../../config";
+//import { ROOT_URL} from "../../config";
 
 const ProductImageGallery = ({ product }) => {
   const [gallerySwiper, getGallerySwiper] = useState(null);
@@ -78,7 +78,8 @@ const ProductImageGallery = ({ product }) => {
                   <div key={key}>
                     <LightgalleryItem
                       group="any"
-                      src={ROOT_URL + single}
+                      // src={ROOT_URL + single}
+                      src={`${process.env.REACT_APP_DB_URL}/${single}`}
                     >
                       <button>
                         <i className="pe-7s-expand1"></i>
@@ -86,7 +87,8 @@ const ProductImageGallery = ({ product }) => {
                     </LightgalleryItem>
                     <div className="single-image">
                       <img
-                        src={ROOT_URL + single}
+                        // src={ROOT_URL + single}
+                        src={`${process.env.REACT_APP_DB_URL}/${single}`}
                         className="img-fluid"
                         alt=""
                       />
@@ -105,7 +107,8 @@ const ProductImageGallery = ({ product }) => {
                 <div key={key}>
                   <div className="single-image">
                     <img
-                      src={ROOT_URL + single}
+                      // src={ROOT_URL + single}
+                      src={`${process.env.REACT_APP_DB_URL}/${single}`}
                       className="img-fluid"
                       alt=""
                     />
