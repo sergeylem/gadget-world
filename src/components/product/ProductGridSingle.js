@@ -42,8 +42,8 @@ const ProductGridSingle = ({
             <Link to={ROOT_URL + "/product/" + product._id}>
               <img
                 className="default-img"
-                src={ROOT_URL + product.image[0]}
-                // src={process.env.REACT_APP_API_URL + '/product/image/' + product._id}
+                // src={ROOT_URL + product.image[0]}
+                src={process.env.REACT_APP_DB_URL + '/' + product.image[0]}
                 alt=""
               />
               {product.image.length > 1 ? ( 

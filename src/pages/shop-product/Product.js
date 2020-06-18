@@ -12,7 +12,6 @@ import { ROOT_URL } from "../../config";
 
 const Product = ({ location, product }) => {
   const { pathname } = location;
-  
   return (
     <Fragment>
       <MetaTags>
@@ -55,7 +54,7 @@ const Product = ({ location, product }) => {
         {/* related product slider */}
         <RelatedProductSlider
           spaceBottomClass="pb-95"
-          category={product.category[0]}
+          category={product.category.name}
         />
       </LayoutOne>
     </Fragment>
