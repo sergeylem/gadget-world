@@ -2,16 +2,14 @@
 export const getProducts = (products, category, type, limit) => {
   // const finalProducts = category
   //   ? products.filter(
-  //       product => product.category === category
+  //       product => product.category.filter(categ => categ === category)[0]
   //     )
   //   : products;
-  
-  const finalProducts = category
-    ? products.filter(
-        product => product.category.filter(categ => categ === category)[0]
-      )
-    : products;
 
+  const finalProducts = category
+    ? products.filter(product => product.category.name === category)
+    : products;
+    
   if (type && type === "isnew") {
     const newProducts = finalProducts.filter(single => single.isnew);
     return newProducts.slice(0, limit ? limit : newProducts.length);
@@ -68,13 +66,11 @@ export const getSortedProducts = (products, sortType, sortValue) => {
   if (products && sortType && sortValue) {
     if (sortType === "category") {
       return products.filter(
-        product => product.category.filter(single => single === sortValue)[0]
-      );
+        product => product.category.name === sortValue)
     }
     if (sortType === "tag") {
       return products.filter(
-        product => product.tag.filter(single => single === sortValue)[0]
-      );
+        product => product.tag.name === sortValue)
     }
     if (sortType === "color") {
       return products.filter(
@@ -112,16 +108,16 @@ export const getSortedProducts = (products, sortType, sortValue) => {
   return products;
 };
 
-// get individual element
-const getIndividualItemArray = array => {
-  let individualItemArray = array.filter(function(v, i, self) {
+// get individual element (!get the first element of array, otherwise the categories will be repeated) 
+const getIndividualItemArray_old = array => {
+  let individualItemArray = array.filter(function (v, i, self) {
     return i === self.indexOf(v);
   });
   return individualItemArray;
 };
 
 // get individual categories
-export const getIndividualCategories = products => {
+export const getIndividualCategories_old = products => {
   let productCategories = [];
   products &&
     products.map(product => {
@@ -136,17 +132,37 @@ export const getIndividualCategories = products => {
   return individualProductCategories;
 };
 
+// get individual element (!get the first element of array, otherwise the categories will be repeated) 
+const getIndividualItemArray = array => {
+  let individualItemArray = array.filter(function (v, i, self) {
+    return i === self.indexOf(v);
+  });
+  return individualItemArray;
+};
+
+// get individual categories
+export const getIndividualCategories = products => {
+  let productCategories = [];
+  products &&
+    products.map(product => {
+      return (
+        product.category.name &&
+          productCategories.push(product.category.name)
+        )
+    });    
+  const individualProductCategories = getIndividualItemArray(productCategories);
+  return individualProductCategories;
+};
+
 // get individual tags
 export const getIndividualTags = products => {
   let productTags = [];
   products &&
     products.map(product => {
       return (
-        product.tag &&
-        product.tag.map(single => {
-          return productTags.push(single);
-        })
-      );
+        product.tag.name &&
+          productTags.push(product.tag.name)
+        )
     });
   const individualProductTags = getIndividualItemArray(productTags);
   return individualProductTags;

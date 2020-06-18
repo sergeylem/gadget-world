@@ -25,7 +25,7 @@ const ProductGridSingleFour = ({
     discountedPrice * currency.currencyRate
   ).toFixed(2);
 
-  //console.log(product);
+  // console.log(product);
 
   return (
     <Fragment>
@@ -45,8 +45,8 @@ const ProductGridSingleFour = ({
             {/* to={`${process.env.REACT_APP_API_URL}/product/image/${product._id}`}> */}
               <img
                 className="default-img"
-                src={ROOT_URL + product.image[0]}
-                // src={process.env.REACT_APP_API_URL + '/product/image/' + product._id}
+                // src={ROOT_URL + product.image[0]}
+                src={process.env.REACT_APP_DB_URL + '/' + product.image[0]}
                 alt=""
               />
             </Link>

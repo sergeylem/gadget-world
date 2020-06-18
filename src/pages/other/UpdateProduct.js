@@ -42,6 +42,8 @@ const UpdateProduct = ({ match }) => {
     rating: "",
     saleCount: "",
     stock: "",
+    // category: "",
+    // tag: "",
     categories: [],
     tags: [],
     shortDescription: "",
@@ -71,6 +73,8 @@ const UpdateProduct = ({ match }) => {
     rating,
     saleCount,
     stock,
+    // category,
+    // tag,
     categories,
     tags,
     shortDescription,
@@ -142,7 +146,7 @@ const UpdateProduct = ({ match }) => {
         setValues({ ...values, error: data.error });
       } else {
         setValues({
-          //          ...values,
+          //  ...values, //!!! so all values are now "" after initialization
           categories,
           tags: data,
           formData: new FormData()
@@ -183,14 +187,11 @@ const UpdateProduct = ({ match }) => {
     let _name = document.forms["product"]["name"].value;
     
     setValues({ ...values, name: _name, error: "", loading: true });
-
-    let _name1 = document.forms["product"]["name"].value;
     
-    console.log("_name " + _name);
-    console.log("_name1 " + _name1);
+    console.log("name " + _name);
 
-    let c = document.forms["product"]["category"].options.selectedIndex;
-    let t = document.forms["product"]["tag"].options.selectedIndex;
+    let c = document.forms["product"]["category"].options.selectedIndex - 1;
+    let t = document.forms["product"]["tag"].options.selectedIndex - 1;
     let n = document.forms["product"]["isNew"].options.selectedIndex ? true : false;
 
     formData.set("name", document.forms["product"]["name"].value);
@@ -224,6 +225,7 @@ const UpdateProduct = ({ match }) => {
         } else {
           setValues({
             ...values,
+            updatedProduct: _name,
             name: "",
             sku: "",
             price: "",
@@ -243,16 +245,15 @@ const UpdateProduct = ({ match }) => {
             camera: "",
             battery: "",
             loading: false,
-            success: true,
-            updatedProduct: name
+            success: true
           });
         }
       });
     //Cleaning select and image components  
     setPreviewUrl(null);
-    document.getElementById('category').value = "Please select";
-    document.getElementById('tag').value = "Please select";
-    document.getElementById('isNew').value = "Please select";
+    // document.getElementById('category').value = "Please select";
+    // document.getElementById('tag').value = "Please select";
+    // document.getElementById('isNew').value = "Please select";
   }
 
   const showError = () => (
