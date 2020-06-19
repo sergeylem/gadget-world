@@ -11,7 +11,7 @@ import { getDiscountPrice } from "../../helpers/product";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import Rating from "../../components/product/sub-components/ProductRating";
-import { ROOT_URL } from "../../config";
+import { ROOT_URL, DB_URL } from "../../config";
 
 const Compare = ({
   location,
@@ -67,29 +67,18 @@ const Compare = ({
                                     </button>
                                   </div>
                                   <Link
-                                    to={
-                                      ROOT_URL +
-                                      "/product/" +
-                                      compareItem._id
-                                    }
+                                    to={ROOT_URL + "/product/" + compareItem._id}
                                     className="image"
                                   >
                                     <img
                                       className="img-fluid"
-                                      src={
-                                        ROOT_URL +
-                                        compareItem.image[0]
-                                      }
+                                      src={DB_URL + "/" + compareItem.image[0]}
                                       alt=""
                                     />
                                   </Link>
                                   <div className="product-title">
                                     <Link
-                                      to={
-                                        ROOT_URL +
-                                        "/product/" +
-                                        compareItem._id
-                                      }
+                                      to={ROOT_URL + "/product/" + compareItem._id}
                                     >
                                       {compareItem.name}
                                     </Link>
@@ -106,43 +95,43 @@ const Compare = ({
                                       </a>
                                     ) : compareItem.variation &&
                                       compareItem.variation.length >= 1 ? (
-                                      <Link
-                                        to={`${ROOT_URL}/product/${compareItem._id}`}
-                                      >
-                                        Select Option
-                                      </Link>
-                                    ) : compareItem.stock &&
-                                      compareItem.stock > 0 ? (
-                                      <button
-                                        onClick={() =>
-                                          addToCart(compareItem, addToast)
-                                        }
-                                        className={
-                                          cartItem !== undefined &&
-                                          cartItem.quantity > 0
-                                            ? "active"
-                                            : ""
-                                        }
-                                        disabled={
-                                          cartItem !== undefined &&
-                                          cartItem.quantity > 0
-                                        }
-                                        title={
-                                          compareItem !== undefined
-                                            ? "Added to cart"
-                                            : "Add to cart"
-                                        }
-                                      >
-                                        {cartItem !== undefined &&
-                                        cartItem.quantity > 0
-                                          ? "Added"
-                                          : "Add to cart"}
-                                      </button>
-                                    ) : (
-                                      <button disabled className="active">
-                                        Out of Stock
-                                      </button>
-                                    )}
+                                          <Link
+                                            to={`${ROOT_URL}/product/${compareItem._id}`}
+                                          >
+                                            Select Option
+                                          </Link>
+                                        ) : compareItem.stock &&
+                                          compareItem.stock > 0 ? (
+                                            <button
+                                              onClick={() =>
+                                                addToCart(compareItem, addToast)
+                                              }
+                                              className={
+                                                cartItem !== undefined &&
+                                                  cartItem.quantity > 0
+                                                  ? "active"
+                                                  : ""
+                                              }
+                                              disabled={
+                                                cartItem !== undefined &&
+                                                cartItem.quantity > 0
+                                              }
+                                              title={
+                                                compareItem !== undefined
+                                                  ? "Added to cart"
+                                                  : "Add to cart"
+                                              }
+                                            >
+                                              {cartItem !== undefined &&
+                                                cartItem.quantity > 0
+                                                ? "Added"
+                                                : "Add to cart"}
+                                            </button>
+                                          ) : (
+                                            <button disabled className="active">
+                                              Out of Stock
+                                            </button>
+                                          )}
                                   </div>
                                 </td>
                               );
@@ -175,11 +164,11 @@ const Compare = ({
                                       </span>
                                     </Fragment>
                                   ) : (
-                                    <span className="amount">
-                                      {currency.currencySymbol +
-                                        finalProductPrice}
-                                    </span>
-                                  )}
+                                      <span className="amount">
+                                        {currency.currencySymbol +
+                                          finalProductPrice}
+                                      </span>
+                                    )}
                                 </td>
                               );
                             })}
@@ -217,22 +206,22 @@ const Compare = ({
                 </div>
               </div>
             ) : (
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="item-empty-area text-center">
-                    <div className="item-empty-area__icon mb-30">
-                      <i className="pe-7s-shuffle"></i>
-                    </div>
-                    <div className="item-empty-area__text">
-                      No items found in compare <br />{" "}
-                      <Link to={ROOT_URL + "/shop-grid-standard"}>
-                        Add Items
+                <div className="row">
+                  <div className="col-lg-12">
+                    <div className="item-empty-area text-center">
+                      <div className="item-empty-area__icon mb-30">
+                        <i className="pe-7s-shuffle"></i>
+                      </div>
+                      <div className="item-empty-area__text">
+                        No items found in compare <br />{" "}
+                        <Link to={ROOT_URL + "/shop-grid-standard"}>
+                          Add Items
                       </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         </div>
       </LayoutOne>

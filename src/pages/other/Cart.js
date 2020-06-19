@@ -15,7 +15,7 @@ import {
 } from "../../redux/actions/cartActions";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-import { ROOT_URL } from "../../config";
+import { ROOT_URL, DB_URL } from "../../config";
 
 const Cart = ({
   location,
@@ -83,9 +83,9 @@ const Cart = ({
 
                             discountedPrice != null
                               ? (cartTotalPrice +=
-                                  finalDiscountedPrice * cartItem.quantity)
+                                finalDiscountedPrice * cartItem.quantity)
                               : (cartTotalPrice +=
-                                  finalProductPrice * cartItem.quantity);
+                                finalProductPrice * cartItem.quantity);
                             return (
                               <tr key={key}>
                                 <td className="product-thumbnail">
@@ -98,12 +98,7 @@ const Cart = ({
                                   >
                                     <img
                                       className="img-fluid"
-                                      src={
-                                        // ROOT_URL +
-                                        // cartItem.image[0]
-                                        ROOT_URL + " " +
-                                        cartItem.image
-                                      }
+                                      src={DB_URL + "/" + cartItem.image[0]}
                                       alt=""
                                     />
                                   </Link>
@@ -111,27 +106,23 @@ const Cart = ({
 
                                 <td className="product-name">
                                   <Link
-                                    to={
-                                      ROOT_URL +
-                                      "/product/" +
-                                      cartItem._id
-                                    }
+                                    to={ROOT_URL + "/product/" + cartItem._id}
                                   >
                                     {cartItem.name}
                                   </Link>
                                   {cartItem.selectedProductColor &&
-                                  cartItem.selectedProductSize ? (
-                                    <div className="cart-item-variation">
-                                      <span>
-                                        Color: {cartItem.selectedProductColor}
-                                      </span>
-                                      <span>
-                                        Size: {cartItem.selectedProductSize}
-                                      </span>
-                                    </div>
-                                  ) : (
-                                    ""
-                                  )}
+                                    cartItem.selectedProductSize ? (
+                                      <div className="cart-item-variation">
+                                        <span>
+                                          Color: {cartItem.selectedProductColor}
+                                        </span>
+                                        <span>
+                                          Size: {cartItem.selectedProductSize}
+                                        </span>
+                                      </div>
+                                    ) : (
+                                      ""
+                                    )}
                                 </td>
 
                                 <td className="product-price-cart">
@@ -147,11 +138,11 @@ const Cart = ({
                                       </span>
                                     </Fragment>
                                   ) : (
-                                    <span className="amount">
-                                      {currency.currencySymbol +
-                                        finalProductPrice}
-                                    </span>
-                                  )}
+                                      <span className="amount">
+                                        {currency.currencySymbol +
+                                          finalProductPrice}
+                                      </span>
+                                    )}
                                 </td>
 
                                 <td className="product-quantity">
@@ -183,11 +174,11 @@ const Cart = ({
                                         cartItem !== undefined &&
                                         cartItem.quantity &&
                                         cartItem.quantity >=
-                                          cartItemStock(
-                                            cartItem,
-                                            cartItem.selectedProductColor,
-                                            cartItem.selectedProductSize
-                                          )
+                                        cartItemStock(
+                                          cartItem,
+                                          cartItem.selectedProductColor,
+                                          cartItem.selectedProductSize
+                                        )
                                       }
                                     >
                                       +
@@ -197,13 +188,13 @@ const Cart = ({
                                 <td className="product-subtotal">
                                   {discountedPrice !== null
                                     ? currency.currencySymbol +
-                                      (
-                                        finalDiscountedPrice * cartItem.quantity
-                                      ).toFixed(2)
+                                    (
+                                      finalDiscountedPrice * cartItem.quantity
+                                    ).toFixed(2)
                                     : currency.currencySymbol +
-                                      (
-                                        finalProductPrice * cartItem.quantity
-                                      ).toFixed(2)}
+                                    (
+                                      finalProductPrice * cartItem.quantity
+                                    ).toFixed(2)}
                                 </td>
 
                                 <td className="product-remove">
@@ -334,22 +325,22 @@ const Cart = ({
                 </div>
               </Fragment>
             ) : (
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="item-empty-area text-center">
-                    <div className="item-empty-area__icon mb-30">
-                      <i className="pe-7s-cart"></i>
-                    </div>
-                    <div className="item-empty-area__text">
-                      No items found in cart <br />{" "}
-                      <Link to={ROOT_URL + "/shop-grid-standard"}>
-                        Shop Now
+                <div className="row">
+                  <div className="col-lg-12">
+                    <div className="item-empty-area text-center">
+                      <div className="item-empty-area__icon mb-30">
+                        <i className="pe-7s-cart"></i>
+                      </div>
+                      <div className="item-empty-area__text">
+                        No items found in cart <br />{" "}
+                        <Link to={ROOT_URL + "/shop-grid-standard"}>
+                          Shop Now
                       </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         </div>
       </LayoutOne>

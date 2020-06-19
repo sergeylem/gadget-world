@@ -5,7 +5,7 @@ import { useToasts } from "react-toast-notifications";
 import { getDiscountPrice } from "../../helpers/product";
 import Rating from "./sub-components/ProductRating";
 import ProductModal from "./ProductModal";
-import { ROOT_URL } from "../../config";
+import { ROOT_URL, DB_URL } from "../../config";
 
 const ProductGridListSingle = ({
   product,
@@ -28,7 +28,6 @@ const ProductGridListSingle = ({
     discountedPrice * currency.currencyRate
   ).toFixed(2);
 
-  // console.log("URL " + process.env.REACT_APP_DB_URL + '/uploads/images/' + product._id);
   return (
     <Fragment>
       <div
@@ -43,14 +42,13 @@ const ProductGridListSingle = ({
             <Link to={ROOT_URL + "/product/" + product._id}>
               <img
                 className="default-img"
-                // src={ROOT_URL + product.image[0]}
-                src={process.env.REACT_APP_DB_URL + '/' + product.image[0]}
+                src={DB_URL + '/' + product.image[0]}
                 alt=""
               />
               { product.image.length > 1 ? (
                 <img
                   className="hover-img"
-                  src={ROOT_URL + product.image[1]}
+                  src={DB_URL + '/' + product.image[1]}
                   alt=""
                 />
               ) : (
@@ -166,13 +164,13 @@ const ProductGridListSingle = ({
                   <Link to={ROOT_URL + "/product/" + product._id}>
                     <img
                       className="default-img img-fluid"
-                      src={ROOT_URL + product.image[0]}
+                      src={DB_URL + '/' + product.image[0]}
                       alt=""
                     />
                     {product.image.length > 1 ? (
                       <img
                         className="hover-img img-fluid"
-                        src={ROOT_URL + product.image[1]}
+                        src={DB_URL + '/' + product.image[1]}
                         alt=""
                       />
                     ) : (

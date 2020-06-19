@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
 import { getDiscountPrice } from "../../../helpers/product";
-import { ROOT_URL } from "../../../config";
+import { ROOT_URL, DB_URL } from "../../../config";
 
 const MenuCart = ({ cartData, currency, deleteFromCart }) => {
   let cartTotalPrice = 0;
@@ -35,10 +35,10 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                     <Link to={ROOT_URL + "/product/" + single._id}>
                       <img
                         alt=""
-                        src={ROOT_URL + single.image[0]}
+                        src={DB_URL + "/" + single.image[0]}
                         className="img-fluid"
                       />
-                      
+
                     </Link>
                   </div>
                   <div className="shopping-cart-title">
@@ -57,14 +57,14 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                         : currency.currencySymbol + finalProductPrice}
                     </span>
                     {single.selectedProductColor &&
-                    single.selectedProductSize ? (
-                      <div className="cart-item-variation">
-                        <span>Color: {single.selectedProductColor}</span>
-                        <span>Size: {single.selectedProductSize}</span>
-                      </div>
-                    ) : (
-                      ""
-                    )}
+                      single.selectedProductSize ? (
+                        <div className="cart-item-variation">
+                          <span>Color: {single.selectedProductColor}</span>
+                          <span>Size: {single.selectedProductSize}</span>
+                        </div>
+                      ) : (
+                        ""
+                      )}
                   </div>
                   <div className="shopping-cart-delete">
                     <button onClick={() => deleteFromCart(single, addToast)}>
@@ -96,8 +96,8 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
           </div>
         </Fragment>
       ) : (
-        <p className="text-center">No items added to cart</p>
-      )}
+          <p className="text-center">No items added to cart</p>
+        )}
     </div>
   );
 };

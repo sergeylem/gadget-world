@@ -109,28 +109,28 @@ export const getSortedProducts = (products, sortType, sortValue) => {
 };
 
 // get individual element (!get the first element of array, otherwise the categories will be repeated) 
-const getIndividualItemArray_old = array => {
-  let individualItemArray = array.filter(function (v, i, self) {
-    return i === self.indexOf(v);
-  });
-  return individualItemArray;
-};
+// const getIndividualItemArray = array => {
+//   let individualItemArray = array.filter(function (v, i, self) {
+//     return i === self.indexOf(v);
+//   });
+//   return individualItemArray;
+// };
 
 // get individual categories
-export const getIndividualCategories_old = products => {
-  let productCategories = [];
-  products &&
-    products.map(product => {
-      return (
-        product.category &&
-        product.category.map(single => {
-          return productCategories.push(single);
-        })
-      );
-    });
-  const individualProductCategories = getIndividualItemArray(productCategories);
-  return individualProductCategories;
-};
+// export const getIndividualCategories = products => {
+//   let productCategories = [];
+//   products &&
+//     products.map(product => {
+//       return (
+//         product.category &&
+//         product.category.map(single => {
+//           return productCategories.push(single);
+//         })
+//       );
+//     });
+//   const individualProductCategories = getIndividualItemArray(productCategories);
+//   return individualProductCategories;
+// };
 
 // get individual element (!get the first element of array, otherwise the categories will be repeated) 
 const getIndividualItemArray = array => {

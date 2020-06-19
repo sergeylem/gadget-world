@@ -1,38 +1,37 @@
 [
   {
     "id": "2",
-    "image": "/assets/img/product/banners/surface7.jpg",
+    "image": "/assets/img/banners/notebook.jpg",
     "subtitle": "3 Products",
     "title": "Notebook",
     "link": "/shop-grid-standard"
   },
   {
     "id": "3",
-    "image": "/assets/img/product/banners/s23-1.jpeg",
+    "image": "/assets/img/banners/smartphone.jpeg",
     "subtitle": "15 Products",
     "title": "Smartphone",
     "link": "/shop-grid-standard"
   },
   {
     "id": "4",
-    "image": "/assets/img/product/banners/w3-1.jpeg",
+    "image": "/assets/img/banners/watch.jpeg",
     "subtitle": "8 Products",
     "title": "Watch",
     "link": "/shop-grid-standard"
   },
   {
     "id": "1",
-    "image": "/assets/img/product/banners/ipad.jpg",
+    "image": "/assets/img/banners/tablet.jpg",
     "subtitle": "4 Products",
     "title": "Tablet",
     "link": "/shop-grid-standard"
   },
   {
     "id": "5",
-    "image": "/assets/img/product/banners/airpods.jpg",
+    "image": "/assets/img/banners/airpods.jpg",
     "subtitle": "3 Products",
     "title": "Accessories",
     "link": "/shop-grid-standard"
   }
-
 ]

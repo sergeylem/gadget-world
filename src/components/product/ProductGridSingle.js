@@ -5,7 +5,7 @@ import { useToasts } from "react-toast-notifications";
 import { getDiscountPrice } from "../../helpers/product";
 import Rating from "./sub-components/ProductRating";
 import ProductModal from "./ProductModal";
-import { ROOT_URL } from "../../config";
+import { ROOT_URL, DB_URL } from "../../config";
 
 const ProductGridSingle = ({
   product,
@@ -42,14 +42,13 @@ const ProductGridSingle = ({
             <Link to={ROOT_URL + "/product/" + product._id}>
               <img
                 className="default-img"
-                // src={ROOT_URL + product.image[0]}
-                src={process.env.REACT_APP_DB_URL + '/' + product.image[0]}
+                src={DB_URL + '/' + product.image[0]}
                 alt=""
               />
               {product.image.length > 1 ? ( 
                 <img
                   className="hover-img"
-                  src={ROOT_URL + product.image[1]}
+                  src={DB_URL + '/' + product.image[1]}
                   alt=""
                 />
               ) : (

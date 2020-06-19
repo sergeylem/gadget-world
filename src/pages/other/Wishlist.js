@@ -14,7 +14,7 @@ import {
 import { addToCart } from "../../redux/actions/cartActions";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
-import { ROOT_URL } from "../../config";
+import { ROOT_URL, DB_URL } from "../../config";
 
 const Wishlist = ({
   location,
@@ -83,17 +83,11 @@ const Wishlist = ({
                               <tr key={key}>
                                 <td className="product-thumbnail">
                                   <Link
-                                    to={
-                                      ROOT_URL +
-                                      "/product/" +
-                                      wishlistItem._id
-                                    }
+                                    to={ROOT_URL + "/product/" + wishlistItem._id}
                                   >
                                     <img
                                       className="img-fluid"
-                                      src={
-                                        ROOT_URL + wishlistItem.image[0]
-                                      }
+                                      src={DB_URL + "/" + wishlistItem.image[0]}
                                       alt=""
                                     />
                                   </Link>
@@ -101,11 +95,7 @@ const Wishlist = ({
 
                                 <td className="product-name text-center">
                                   <Link
-                                    to={
-                                      ROOT_URL +
-                                      "/product/" +
-                                      wishlistItem._id
-                                    }
+                                    to={ROOT_URL + "/product/" + wishlistItem._id}
                                   >
                                     {wishlistItem.name}
                                   </Link>
@@ -124,11 +114,11 @@ const Wishlist = ({
                                       </span>
                                     </Fragment>
                                   ) : (
-                                    <span className="amount">
-                                      {currency.currencySymbol +
-                                        finalProductPrice}
-                                    </span>
-                                  )}
+                                      <span className="amount">
+                                        {currency.currencySymbol +
+                                          finalProductPrice}
+                                      </span>
+                                    )}
                                 </td>
 
                                 <td className="product-wishlist-cart">
@@ -143,43 +133,43 @@ const Wishlist = ({
                                     </a>
                                   ) : wishlistItem.variation &&
                                     wishlistItem.variation.length >= 1 ? (
-                                    <Link
-                                      to={`${ROOT_URL}/product/${wishlistItem._id}`}
-                                    >
-                                      Select option
-                                    </Link>
-                                  ) : wishlistItem.stock &&
-                                    wishlistItem.stock > 0 ? (
-                                    <button
-                                      onClick={() =>
-                                        addToCart(wishlistItem, addToast)
-                                      }
-                                      className={
-                                        cartItem !== undefined &&
-                                        cartItem.quantity > 0
-                                          ? "active"
-                                          : ""
-                                      }
-                                      disabled={
-                                        cartItem !== undefined &&
-                                        cartItem.quantity > 0
-                                      }
-                                      title={
-                                        wishlistItem !== undefined
-                                          ? "Added to cart"
-                                          : "Add to cart"
-                                      }
-                                    >
-                                      {cartItem !== undefined &&
-                                      cartItem.quantity > 0
-                                        ? "Added"
-                                        : "Add to cart"}
-                                    </button>
-                                  ) : (
-                                    <button disabled className="active">
-                                      Out of stock
-                                    </button>
-                                  )}
+                                        <Link
+                                          to={`${ROOT_URL}/product/${wishlistItem._id}`}
+                                        >
+                                          Select option
+                                        </Link>
+                                      ) : wishlistItem.stock &&
+                                        wishlistItem.stock > 0 ? (
+                                          <button
+                                            onClick={() =>
+                                              addToCart(wishlistItem, addToast)
+                                            }
+                                            className={
+                                              cartItem !== undefined &&
+                                                cartItem.quantity > 0
+                                                ? "active"
+                                                : ""
+                                            }
+                                            disabled={
+                                              cartItem !== undefined &&
+                                              cartItem.quantity > 0
+                                            }
+                                            title={
+                                              wishlistItem !== undefined
+                                                ? "Added to cart"
+                                                : "Add to cart"
+                                            }
+                                          >
+                                            {cartItem !== undefined &&
+                                              cartItem.quantity > 0
+                                              ? "Added"
+                                              : "Add to cart"}
+                                          </button>
+                                        ) : (
+                                          <button disabled className="active">
+                                            Out of stock
+                                          </button>
+                                        )}
                                 </td>
 
                                 <td className="product-remove">
@@ -220,22 +210,22 @@ const Wishlist = ({
                 </div>
               </Fragment>
             ) : (
-              <div className="row">
-                <div className="col-lg-12">
-                  <div className="item-empty-area text-center">
-                    <div className="item-empty-area__icon mb-30">
-                      <i className="pe-7s-like"></i>
-                    </div>
-                    <div className="item-empty-area__text">
-                      No items found in wishlist <br />{" "}
-                      <Link to={ROOT_URL + "/shop-grid-standard"}>
-                        Add Items
+                <div className="row">
+                  <div className="col-lg-12">
+                    <div className="item-empty-area text-center">
+                      <div className="item-empty-area__icon mb-30">
+                        <i className="pe-7s-like"></i>
+                      </div>
+                      <div className="item-empty-area__text">
+                        No items found in wishlist <br />{" "}
+                        <Link to={ROOT_URL + "/shop-grid-standard"}>
+                          Add Items
                       </Link>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
           </div>
         </div>
       </LayoutOne>
