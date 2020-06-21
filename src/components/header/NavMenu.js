@@ -5,39 +5,30 @@ import { multilanguage } from "redux-multilanguage";
 import { ROOT_URL } from "../../config";
 import { signout, isAuthenticated } from "../../helpers/auth";
 
-
-const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
+const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
   return (
     <div
       className={` ${
         sidebarMenu
           ? "sidebar-menu"
           : `main-menu ${menuWhiteClass ? menuWhiteClass : ""}`
-        } `}
+      } `}
     >
       <nav>
         <ul>
           <li>
             <Link to={ROOT_URL + "/"}>
               {strings["home"]}
-              {sidebarMenu ? (
+              {/* {sidebarMenu ? (
                 <span>
                   <i className="fa fa-angle-right"></i>
                 </span>
               ) : (
-                  <i className="fa fa-angle-down" />
-                )}
+                <i className="fa fa-angle-down" />
+              )} */}
             </Link>
-            <ul className="mega-menu mega-menu-padding">
-              <li>
-                <li>
-                  <Link to={ROOT_URL + "/home-furniture-two"}>
-                    {strings["home_furniture_two"]}
-                  </Link>
-                </li>
-              </li>
-            </ul>
           </li>
+
           <li>
             <Link to={ROOT_URL + "/shop-grid-standard"}>
               {" "}
@@ -47,62 +38,52 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                   <i className="fa fa-angle-right"></i>
                 </span>
               ) : (
-                  <i className="fa fa-angle-down" />
-                )}
+                <i className="fa fa-angle-down" />
+              )}
             </Link>
             <ul className="mega-menu">
               <li>
                 <ul>
-                  <li className="mega-menu-title">
+                  <li className="mega-menu-title">  
                     <Link to={ROOT_URL + "/shop-grid-standard"}>
-                      {strings["shop_layout"]}
+                      {strings["shop_products"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/shop-grid-standard"}>
-                      {strings["shop_grid_standard"]}
+                      {strings["shop_smartphone"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/shop-grid-filter"}>
-                      {strings["shop_grid_filter"]}
+                      {strings["shop_tablet"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/shop-grid-two-column"}>
-                      {strings["shop_grid_two_column"]}
+                      {strings["shop_wearable"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/shop-grid-no-sidebar"}>
-                      {strings["shop_grid_no_sidebar"]}
+                      {strings["shop_camera"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/shop-grid-full-width"}>
-                      {strings["shop_grid_full_width"]}
+                      {strings["shop_laptop"]}
                     </Link>
                   </li>
                   <li>
                     <Link
                       to={ROOT_URL + "/shop-grid-right-sidebar"}
                     >
-                      {strings["shop_grid_right_sidebar"]}
+                      {strings["shop_drone"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/shop-list-standard"}>
-                      {strings["shop_list_standard"]}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={ROOT_URL + "/shop-list-full-width"}>
-                      {strings["shop_list_full_width"]}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={ROOT_URL + "/shop-list-two-column"}>
-                      {strings["shop_list_two_column"]}
+                      {strings["shop_accessories"]}
                     </Link>
                   </li>
                 </ul>
@@ -111,54 +92,44 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                 <ul>
                   <li className="mega-menu-title">
                     <Link to={ROOT_URL + "/product/1"}>
-                      {strings["product_details"]}
+                      {strings["product_vendors"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/product/1"}>
-                      {strings["product_tab_bottom"]}
+                      {strings["product_apple"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/product-tab-left/1"}>
-                      {strings["product_tab_left"]}
+                      {strings["product_samsung"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/product-tab-right/1"}>
-                      {strings["product_tab_right"]}
+                      {strings["product_huawei"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/product-sticky/1"}>
-                      {strings["product_sticky"]}
+                      {strings["product_xiaomi"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/product-slider/1"}>
-                      {strings["product_slider"]}
+                      {strings["product_meizu"]}
                     </Link>
                   </li>
                   <li>
                     <Link
                       to={ROOT_URL + "/product-fixed-image/1"}
                     >
-                      {strings["product_fixed_image"]}
+                      {strings["product_oppo"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/product/8"}>
-                      {strings["product_simple"]}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={ROOT_URL + "/product/1"}>
-                      {strings["product_variation"]}
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={ROOT_URL + "/product/9"}>
-                      {strings["product_affiliate"]}
+                      {strings["product_zte"]}
                     </Link>
                   </li>
                 </ul>
@@ -170,7 +141,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                       <img
                         src={
                           ROOT_URL +
-                          "/assets/img/banner/banner-12.png"
+                          "/assets/img/banner/banner-1.jpg"
                         }
                         alt=""
                       />
@@ -193,8 +164,8 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                   <i className="fa fa-angle-right"></i>
                 </span>
               ) : (
-                  <i className="fa fa-angle-down" />
-                )}
+                <i className="fa fa-angle-down" />
+              )}
             </Link>
             <ul className="submenu">
               <li>
@@ -224,7 +195,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
               </li>
               <li>
                 <Link to={ROOT_URL + "/add-product"}>
-                  {strings["user_dahboard"]}
+                  {strings["user_dashboard"]}
                 </Link>
               </li>
               <li>
@@ -269,11 +240,11 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu }) => {
                   {strings["contact_us"]}
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to={ROOT_URL + "/not-found"}>
                   {strings["404_page"]}
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </li>
           <li>

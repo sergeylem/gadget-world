@@ -3,10 +3,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Tab from "react-bootstrap/Tab";
 import Nav from "react-bootstrap/Nav";
-import ProductGridFour from "./ProductGridFour";
+import ProductGridTwo from "./ProductGridTwo";
 import { ROOT_URL } from "../../config";
 
-const TabProductSix = ({
+const TabProduct = ({
   spaceTopClass,
   spaceBottomClass,
   category,
@@ -45,7 +45,7 @@ const TabProductSix = ({
           <Tab.Content>
             <Tab.Pane eventKey="newArrival">
               <div className="row">
-                <ProductGridFour
+                <ProductGridTwo
                   category={category}
                   type="isnew"
                   limit={8}
@@ -55,7 +55,7 @@ const TabProductSix = ({
             </Tab.Pane>
             <Tab.Pane eventKey="bestSeller">
               <div className="row">
-                <ProductGridFour
+                <ProductGridTwo
                   category={category}
                   type="bestSeller"
                   limit={8}
@@ -65,7 +65,7 @@ const TabProductSix = ({
             </Tab.Pane>
             <Tab.Pane eventKey="saleItems">
               <div className="row">
-                <ProductGridFour
+                <ProductGridTwo
                   category={category}
                   type="saleItems"
                   limit={8}
@@ -88,11 +88,11 @@ const TabProductSix = ({
   );
 };
 
-TabProductSix.propTypes = {
+TabProduct.propTypes = {
   category: PropTypes.string,
   productTabClass: PropTypes.string,
   spaceBottomClass: PropTypes.string,
   spaceTopClass: PropTypes.string
 };
 
-export default TabProductSix;
+export default TabProduct;

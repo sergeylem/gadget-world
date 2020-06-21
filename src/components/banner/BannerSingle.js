@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { ROOT_URL } from "../../config";
 
-const BannerOneSingle = ({ data, spaceBottomClass }) => {
+const BannerSingle = ({ data, spaceBottomClass }) => {
   return (
     <div className="col-lg-4 col-md-4">
       <div
@@ -26,9 +26,9 @@ const BannerOneSingle = ({ data, spaceBottomClass }) => {
   );
 };
 
-BannerOneSingle.propTypes = {
+BannerSingle.propTypes = {
   data: PropTypes.object,
   spaceBottomClass: PropTypes.string
 };
 
-export default BannerOneSingle;
+export default BannerSingle;

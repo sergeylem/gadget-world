@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React from "react";
 import { ROOT_URL } from "../../config";
 
-const HeroSliderElevenSingle = ({ data, sliderClass }) => {
+const HeroSliderSingle = ({ data, sliderClass }) => {
   return (
     <div
       className={`slider-height-6 d-flex align-items-center justify-content-center bg-img ${
@@ -19,9 +19,9 @@ const HeroSliderElevenSingle = ({ data, sliderClass }) => {
   );
 };
 
-HeroSliderElevenSingle.propTypes = {
+HeroSliderSingle.propTypes = {
   data: PropTypes.object,
   sliderClass: PropTypes.string
 };
 
-export default HeroSliderElevenSingle;
+export default HeroSliderSingle;

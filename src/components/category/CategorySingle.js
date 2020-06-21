@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { ROOT_URL } from "../../config";
 
 
-const CategoryTwoSingle = ({ data, sliderClass }) => {
+const CategorySingle = ({ data, sliderClass }) => {
   return (
     <div className={`collection-product ${sliderClass ? sliderClass : ""}`}>
       <div className="collection-img">
@@ -22,9 +22,9 @@ const CategoryTwoSingle = ({ data, sliderClass }) => {
   );
 };
 
-CategoryTwoSingle.propTypes = {
+CategorySingle.propTypes = {
   data: PropTypes.object,
   sliderClass: PropTypes.string
 };
 
-export default CategoryTwoSingle;
+export default CategorySingle;

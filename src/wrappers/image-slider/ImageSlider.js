@@ -1,9 +1,9 @@
 import React from "react";
 import Swiper from "react-id-swiper";
-import ImageSliderOneSingle from "../../components/image-slider/ImageSliderOneSingle";
-import imageData from "../../data/image-slider/image-slider-one.json";
+//import ImageSliderSingle from "../../components/image-slider/ImageSliderSingle";
+//import imageData from "../../data/image-slider/image-slider-one.json";
 
-const ImageSliderOne = () => {
+const ImageSlider = () => {
   const settings = {
     loop: false,
     grabCursor: true,
@@ -30,7 +30,7 @@ const ImageSliderOne = () => {
           {imageData &&
             imageData.map((single, key) => {
               return (
-                <ImageSliderOneSingle
+                <ImageSliderSingle
                   data={single}
                   sliderClass="swiper-slide"
                   key={key}
@@ -43,4 +43,4 @@ const ImageSliderOne = () => {
   );
 };
 
-export default ImageSliderOne;
+export default ImageSlider;

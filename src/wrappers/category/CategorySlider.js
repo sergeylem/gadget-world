@@ -2,10 +2,10 @@ import PropTypes from "prop-types";
 import React from "react";
 import Swiper from "react-id-swiper";
 import categoryData from "../../data/category/category-two.json";
-import CategoryTwoSingle from "../../components/category/CategoryTwoSingle.js";
+import CategorySingle from "../../components/category/CategorySingle.js";
 import SectionTitleFour from "../../components/section-title/SectionTitleFour.js";
 
-const CategoryTwoSlider = ({ spaceTopClass, spaceBottomClass }) => {
+const CategorySlider = ({ spaceTopClass, spaceBottomClass }) => {
   // swiper slider settings
   const settings = {
     loop: false,
@@ -41,7 +41,7 @@ const CategoryTwoSlider = ({ spaceTopClass, spaceBottomClass }) => {
                 {categoryData &&
                   categoryData.map((single, key) => {
                     return (
-                      <CategoryTwoSingle
+                      <CategorySingle
                         data={single}
                         key={key}
                         sliderClass="swiper-slide"
@@ -56,9 +56,9 @@ const CategoryTwoSlider = ({ spaceTopClass, spaceBottomClass }) => {
   );
 };
 
-CategoryTwoSlider.propTypes = {
+CategorySlider.propTypes = {
   spaceBottomClass: PropTypes.string,
   spaceTopClass: PropTypes.string
 };
 
-export default CategoryTwoSlider;
+export default CategorySlider;

@@ -5,7 +5,7 @@ import { useToasts } from "react-toast-notifications";
 import { getDiscountPrice } from "../../helpers/product";
 import { ROOT_URL, DB_URL } from "../../config";
 
-const ProductGridSingleFour = ({
+const ProductGridSingleTwo = ({
   product,
   currency,
   addToCart,
@@ -183,7 +183,7 @@ const ProductGridSingleFour = ({
   );
 };
 
-ProductGridSingleFour.propTypes = {
+ProductGridSingleTwo.propTypes = {
   addToCart: PropTypes.func,
   addToCompare: PropTypes.func,
   addToWishlist: PropTypes.func,
@@ -196,4 +196,4 @@ ProductGridSingleFour.propTypes = {
   wishlistItem: PropTypes.object
 };
 
-export default ProductGridSingleFour;
+export default ProductGridSingleTwo;

@@ -10,17 +10,17 @@
   {
     "id": 2,
     "image": "/assets/img/banner/banner-2.jpg",
-    "title": "Plo Bag",
+    "title": "Smartphones",
     "subtitle": "Starting at",
-    "price": "$79.00",
+    "price": "$299.00",
     "link": "/shop-grid-standard"
   },
   {
     "id": 3,
     "image": "/assets/img/banner/banner-3.jpg",
-    "title": "Sunglass",
+    "title": "Notebook",
     "subtitle": "Starting at",
-    "price": "$29.00",
+    "price": "$599.00",
     "link": "/shop-grid-standard"
   }
 ]

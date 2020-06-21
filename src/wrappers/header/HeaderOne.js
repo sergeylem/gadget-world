@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import React, { useEffect, useState } from "react";
 import Logo from "../../components/header/Logo";
 //import {ReactComponent as Logo} from "../../data/logo.svg";
-import NavMenuTwo from "../../components/header/NavMenuTwo";
+import NavMenu from "../../components/header/NavMenu";
 import IconGroup from "../../components/header/IconGroup";
 import MobileMenu from "../../components/header/MobileMenu";
 import HeaderTop from "../../components/header/HeaderTop";
@@ -62,7 +62,7 @@ const HeaderOne = ({
             </div>
             <div className="col-xl-8 col-lg-8 d-none d-lg-block">
               {/* Nav menu */}
-              <NavMenuTwo />
+              <NavMenu />
             </div>
             <div className="col-xl-2 col-lg-2 col-md-6 col-8">
               {/* Icon group */}

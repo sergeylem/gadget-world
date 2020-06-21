@@ -6,7 +6,7 @@ import FooterCopyright from "../../components/footer/FooterCopyright";
 import FooterNewsletter from "../../components/footer/FooterNewsletter";
 import { ROOT_URL } from "../../config";
 
-const FooterThree = ({
+const FooterTwo = ({
   backgroundColorClass,
   spaceTopClass,
   spaceBottomClass
@@ -161,10 +161,10 @@ const FooterThree = ({
   );
 };
 
-FooterThree.propTypes = {
+FooterTwo.propTypes = {
   backgroundColorClass: PropTypes.string,
   spaceBottomClass: PropTypes.string,
   spaceTopClass: PropTypes.string
 };
 
-export default FooterThree;
+export default FooterTwo;

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React from "react";
 import bannerData from "../../data/banner/banner-one.json";
-import BannerOneSingle from "../../components/banner/BannerOneSingle.js";
+import BannerSingle from "../../components/banner/BannerSingle.js";
 
 const BannerOne = ({ spaceTopClass, spaceBottomClass }) => {
   return (
@@ -15,7 +15,7 @@ const BannerOne = ({ spaceTopClass, spaceBottomClass }) => {
           {bannerData &&
             bannerData.map((single, key) => {
               return (
-                <BannerOneSingle
+                <BannerSingle
                   data={single}
                   key={key}
                   spaceBottomClass="mb-30"

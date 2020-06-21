@@ -10,7 +10,7 @@ import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic";
 import { ROOT_URL } from "./config";
 
 // home pages
-const HomeFurnitureTwo = lazy(() => import("./pages/home/HomeFurnitureTwo"));
+const HomeShop = lazy(() => import("./pages/home/HomeShop"));
 
 // shop pages
 const ShopGridStandard = lazy(() => import("./pages/shop/ShopGridStandard"));
@@ -76,12 +76,12 @@ const App = props => {
                 <Route
                   exact
                   path={ROOT_URL + "/"}
-                  component={HomeFurnitureTwo}
+                  component={HomeShop}
                 />
 
                 <Route
                   path={ROOT_URL + "/home-furniture-two"}
-                  component={HomeFurnitureTwo}
+                  component={HomeShop}
                 />
 
                 {/* Shop pages */}
@@ -165,10 +165,10 @@ const App = props => {
                   component={Checkout}
                 />
 
-                <Route
+                {/* <Route
                   path={ROOT_URL + "/not-found"}
                   component={NotFound}
-                />
+                /> */}
 
                 <Route exact component={NotFound} />
               </Switch>

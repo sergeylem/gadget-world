@@ -190,11 +190,11 @@ const MobileNavMenu = ({ strings }) => {
                 {strings["contact_us"]}
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link to={ROOT_URL + "/not-found"}>
                 {strings["404_page"]}
               </Link>
-            </li>
+            </li> */}
           </ul>
         </li>
         <li>
