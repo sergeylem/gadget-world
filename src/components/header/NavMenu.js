@@ -138,7 +138,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
                 <ul>
                   <li className="mega-menu-img">
                     <Link to={ROOT_URL + "/shop-grid-standard"}>
-                      <img
+                      <img className="menu-image-one"
                         src={
                           ROOT_URL +
                           "/assets/img/banner/banner-1.jpg"
@@ -195,16 +195,21 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
               </li>
               <li>
                 <Link to={ROOT_URL + "/add-product"}>
-                  {strings["user_dashboard"]}
+                  {strings["add_product"]}
                 </Link>
               </li>
               <li>
-                <Link to={ROOT_URL + "/category"}>
+                <Link to={ROOT_URL + "/manage-products"}>
+                  {strings["manage_products"]}
+                </Link>
+              </li>
+              <li>
+                <Link to={ROOT_URL + "/add-category"}>
                   {strings["create_category"]}
                 </Link>
               </li>
               <li>
-                <Link to={ROOT_URL + "/tag"}>
+                <Link to={ROOT_URL + "/add-tag"}>
                   {strings["create_tag"]}
                 </Link>
               </li>
@@ -240,11 +245,6 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
                   {strings["contact_us"]}
                 </Link>
               </li>
-              {/* <li>
-                <Link to={ROOT_URL + "/not-found"}>
-                  {strings["404_page"]}
-                </Link>
-              </li> */}
             </ul>
           </li>
           <li>

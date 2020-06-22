@@ -7,9 +7,10 @@ import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import { ROOT_URL } from "../../config";
 import { isAuthenticated } from "../../helpers/auth";
-import { createCategory } from "../../helpers/apiAdmin";
+import { createTag } from "../../helpers/apiAdmin";
 
-const Category = ({ location }) => {
+
+const AddTag = ({ location }) => {
   const { pathname } = location;
 
   const [name, setName] = useState("");
@@ -22,15 +23,15 @@ const Category = ({ location }) => {
   const handleChange = e => {
     setError("");
     setSuccess(false);
-    setName(e.target.value);    
+    setName(e.target.value);
   };
 
   const clickSubmit = e => {
     e.preventDefault();
     setError("");
     setSuccess(false);
-    // make request to api to create category
-    createCategory(user._id, token, { name }).then(data => {
+    // make request to api to create tag
+    createTag(user._id, token, { name }).then(data => {
       if (data.error) {
         setError(data.error);
       } else {
@@ -42,7 +43,7 @@ const Category = ({ location }) => {
 
   // const showError = () => {
   //   if (error) {
-  //       return <h3 className="text-danger">Category should be unique</h3>;
+  //       return <h3 className="text-danger">Tag should be unique</h3>;
   //   }
   // };
 
@@ -78,7 +79,7 @@ const Category = ({ location }) => {
     <Fragment>
       <BreadcrumbsItem to={ROOT_URL + "/"}>Home</BreadcrumbsItem>
       <BreadcrumbsItem to={ROOT_URL + pathname}>
-        Category
+        Tag
       </BreadcrumbsItem>
       <LayoutOne headerTop="visible">
         {/* breadcrumb */}
@@ -94,7 +95,7 @@ const Category = ({ location }) => {
                     <Nav variant="pills" className="login-register-tab-list">
                       <Nav.Item>
                         <Nav.Link eventKey="login">
-                          <h4>Create category</h4>
+                          <h4>Create tag</h4>
                         </Nav.Link>
                       </Nav.Item>
                     </Nav>
@@ -107,7 +108,7 @@ const Category = ({ location }) => {
                                 onChange={handleChange}
                                 value={name}
                                 type="text"
-                                placeholder="Category"
+                                placeholder="Tag"
                               />
                               <div className="button-box">
                                 <button onClick={clickSubmit}>
@@ -130,8 +131,8 @@ const Category = ({ location }) => {
   );
 };
 
-Category.propTypes = {
+AddTag.propTypes = {
   location: PropTypes.object
 };
 
-export default Category;
+export default AddTag;

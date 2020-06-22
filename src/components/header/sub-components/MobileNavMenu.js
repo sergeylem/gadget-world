@@ -167,9 +167,25 @@ const MobileNavMenu = ({ strings }) => {
             </li>
             <li>
               <Link to={ROOT_URL + "/add-product"}>
-                {strings["user_dashboard"]}
+                {strings["add_product"]}
               </Link>
             </li>
+            <li>
+              <Link to={ROOT_URL + "/manage-products"}>
+                {strings["manage_products"]}
+              </Link>
+            </li>
+            <li>
+              <Link to={ROOT_URL + "/add-category"}>
+                {strings["create_category"]}
+              </Link>
+            </li>
+            <li>
+              <Link to={ROOT_URL + "/add-tag"}>
+                {strings["create_tag"]}
+              </Link>
+            </li>
+
             <li>
               <Link to={ROOT_URL + "/login"}>
                 {strings["form_login"]}

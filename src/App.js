@@ -27,8 +27,8 @@ const ManageProducts = lazy(() => import("./pages/other/ManageProducts"));
 const MyAccount = lazy(() => import("./pages/other/MyAccount"));
 const Login = lazy(() => import("./pages/other/Login"));
 const Register = lazy(() => import("./pages/other/Register"));
-const Category = lazy(() => import("./pages/other/Category"));
-const Tag = lazy(() => import("./pages/other/Tag"));
+const AddCategory = lazy(() => import("./pages/other/AddCategory"));
+const AddTag = lazy(() => import("./pages/other/AddTag"));
 
 const Cart = lazy(() => import("./pages/other/Cart"));
 const Wishlist = lazy(() => import("./pages/other/Wishlist"));
@@ -139,13 +139,13 @@ const App = props => {
                 />
 
                 <Route
-                  path={ROOT_URL + "/tag"}
-                  component={Tag}
+                  path={ROOT_URL + "/add-tag"}
+                  component={AddTag}
                 />
 
                 <Route
-                  path={ROOT_URL + "/category"}
-                  component={Category}
+                  path={ROOT_URL + "/add-category"}
+                  component={AddCategory}
                 />
 
                 <Route
