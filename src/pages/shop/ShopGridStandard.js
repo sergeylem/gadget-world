@@ -52,7 +52,8 @@ const ShopGridStandard = ({location, products}) => {
         sortedProducts = filterSortedProducts;
         setSortedProducts(sortedProducts);
         setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
-    }, [offset, products, sortType, sortValue, filterSortType, filterSortValue ]);
+        setSortValue(categoryPath);
+    }, [categoryPath, offset, products, sortType, sortValue, filterSortType, filterSortValue ]);
 
     return (
         <Fragment>

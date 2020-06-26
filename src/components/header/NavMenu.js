@@ -52,50 +52,49 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-grid-standard"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/Smartphone"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/smartphone.jpg") }}
                     >
                       {strings["shop_smartphone"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-grid-filter"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/Tablet"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/tablet.jpg") }}
                     >
                       {strings["shop_tablet"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-grid-two-column"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/Watch"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/watch.jpg") }}
                     >
                       {strings["shop_wearable"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-grid-no-sidebar"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/Camera"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/camera.jpg") }}
                     >
                       {strings["shop_camera"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-grid-full-width"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/Notebook"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/macbook.jpg") }}
                     >
                       {strings["shop_laptop"]}
                     </Link>
                   </li>
                   <li>
-                    <Link
-                      to={ROOT_URL + "/shop-grid-right-sidebar"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/Drone"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/drone.jpg") }}
                     >
                       {strings["shop_drone"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-list-standard"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/Accessories"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/headphone.jpg") }}
                     >
                       {strings["shop_accessories"]}
