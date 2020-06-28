@@ -89,7 +89,6 @@ const App = props => {
                   path={ROOT_URL + "/shop-grid-standard"}
                   component={ShopGridStandard}
                 />
-
                 {/* AddProduct pages */}
                 <Route
                   path={ROOT_URL + "/add-product"}
@@ -164,11 +163,6 @@ const App = props => {
                   path={ROOT_URL + "/checkout"}
                   component={Checkout}
                 />
-
-                {/* <Route
-                  path={ROOT_URL + "/not-found"}
-                  component={NotFound}
-                /> */}
 
                 <Route exact component={NotFound} />
               </Switch>

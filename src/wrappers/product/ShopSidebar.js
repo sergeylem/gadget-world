@@ -24,9 +24,7 @@ const ShopSidebar = ({ products, getSortParams, sideSpaceClass }) => {
       <ShopSearch />
 
       {/* filter by categories */}
-      <ShopCategories
-        categories={uniqueCategories}
-        getSortParams={getSortParams}
+      <ShopCategories categories={uniqueCategories} getSortParams={getSortParams}
       />
 
       {/* filter by color */}

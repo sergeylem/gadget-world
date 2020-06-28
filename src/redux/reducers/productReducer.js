@@ -1,7 +1,9 @@
 import { FETCH_PRODUCTS_SUCCESS } from "../actions/productActions";
+import { SET_CATEGORY } from "../actions/productActions";
 
 const initState = {
-  products: []
+  products: [],
+  category: "Smartphone"
 };
 
 const productReducer = (state = initState, action) => {
@@ -12,6 +14,13 @@ const productReducer = (state = initState, action) => {
       products: action.payload
     };
   }
+  if (action.type === SET_CATEGORY) {
+        return {
+          ...state,
+          category: action.payload
+        };
+      }
+    
   return state;
 };
 

@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { setActiveSort } from "../../helpers/product";
+import { setCategory } from "../../redux/actions/productActions";
+import { connect } from "react-redux";
 
 const ShopCategories = ({ categories, getSortParams }) => {
   return (
@@ -27,9 +29,10 @@ const ShopCategories = ({ categories, getSortParams }) => {
                   <div className="sidebar-widget-list-left">
                     <button
                       onClick={e => {
-                         getSortParams("category", category);
-                        //  console.log("category:" + category);
-                         setActiveSort(e);
+                        setCategory(category);
+                        getSortParams("category", category);
+                        console.log("from shop categories:" + category);
+                        setActiveSort(e);
                       }}
                     >
                       {" "}
@@ -41,8 +44,8 @@ const ShopCategories = ({ categories, getSortParams }) => {
             })}
           </ul>
         ) : (
-          "No categories found"
-        )}
+            "No categories found"
+          )}
       </div>
     </div>
   );
@@ -53,4 +56,13 @@ ShopCategories.propTypes = {
   getSortParams: PropTypes.func
 };
 
-export default ShopCategories;
+const mapDispatchToProps = dispatch => {
+  return {
+    setCategory: category => {
+      dispatch(setCategory(category));
+    }
+  };
+};
+
+
+export default connect(null, mapDispatchToProps)(ShopCategories);

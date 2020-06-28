@@ -11,100 +11,112 @@ import ShopSidebar from '../../wrappers/product/ShopSidebar';
 import ShopTopbar from '../../wrappers/product/ShopTopbar';
 import ShopProducts from '../../wrappers/product/ShopProducts';
 import { ROOT_URL } from "../../config";
+import { setCategory } from "../../redux/actions/productActions";
 
 
-const ShopGridStandard = ({location, products}) => {
-    const [layout, setLayout] = useState('grid three-column');
-    // const [sortType, setSortType] = useState('');
-    // const [sortValue, setSortValue] = useState('');
-    const {pathname} = location;    
-    const n = pathname.lastIndexOf("/");
-    const categoryPath = pathname.slice(n+1);
-    const [sortType, setSortType] = useState('category');
-    const [sortValue, setSortValue] = useState(categoryPath);
+const ShopGridStandard = ({ location, products, category }) => {
+  const [layout, setLayout] = useState('grid three-column');
+  // const [sortType, setSortType] = useState('');
+  // const [sortValue, setSortValue] = useState('');
+  const { pathname } = location;
+  const n = pathname.lastIndexOf("/");
+  const categoryPath = pathname.slice(n + 1);
 
-    const [filterSortType, setFilterSortType] = useState('');
-    const [filterSortValue, setFilterSortValue] = useState('');
-    const [offset, setOffset] = useState(0);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [currentData, setCurrentData] = useState([]);
-    const [sortedProducts, setSortedProducts] = useState([]);
+  setCategory(categoryPath);
 
-    const pageLimit = 15;
-    
-    const getLayout = (layout) => {
-        setLayout(layout)
-    }
+  const [sortType, setSortType] = useState('category');
+  const [sortValue, setSortValue] = useState(category);
 
-    const getSortParams = (sortType, sortValue) => {
-        setSortType(sortType);
-        setSortValue(sortValue);
-    }
+  const [filterSortType, setFilterSortType] = useState('');
+  const [filterSortValue, setFilterSortValue] = useState('');
+  const [offset, setOffset] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentData, setCurrentData] = useState([]);
+  const [sortedProducts, setSortedProducts] = useState([]);
 
-    const getFilterSortParams = (sortType, sortValue) => {
-        setFilterSortType(sortType);
-        setFilterSortValue(sortValue);
-    }
+  const pageLimit = 15;
 
-    useEffect(() => {
-        let sortedProducts = getSortedProducts(products, sortType, sortValue);
-        const filterSortedProducts = getSortedProducts(sortedProducts, filterSortType, filterSortValue);
-        sortedProducts = filterSortedProducts;
-        setSortedProducts(sortedProducts);
-        setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
-        setSortValue(categoryPath);
-    }, [categoryPath, offset, products, sortType, sortValue, filterSortType, filterSortValue ]);
+  const getLayout = (layout) => {
+    setLayout(layout)
+  }
 
-    return (
-        <Fragment>
-            <MetaTags>
-                <title>Gadget World | Shop Page</title>
-                <meta name="description" content="Shop page of eCommerce." />
-            </MetaTags>
+  const getSortParams = (sortType, sortValue) => {
+    setSortType(sortType);
+    setSortValue(sortValue);
+    console.log("sortType " + sortType);
+    console.log("sortValue " + sortValue);
+  }
 
-            <BreadcrumbsItem to={ROOT_URL + '/'}>Home</BreadcrumbsItem>
-            <BreadcrumbsItem to={ROOT_URL + pathname}>Shop</BreadcrumbsItem>
+  const getFilterSortParams = (sortType, sortValue) => {
+    setFilterSortType(sortType);
+    setFilterSortValue(sortValue);
+  }
 
-            <LayoutOne headerTop="visible">
-                {/* breadcrumb */}
-                <Breadcrumb />
+  useEffect(() => {
+    let sortedProducts = getSortedProducts(products, sortType, sortValue);
+    const filterSortedProducts = getSortedProducts(sortedProducts, filterSortType, filterSortValue);
+    sortedProducts = filterSortedProducts;
+    setSortedProducts(sortedProducts);
+    setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
 
-                <div className="shop-area pt-95 pb-100">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-lg-3 order-2 order-lg-1">
-                                {/* shop sidebar */}
-                                <ShopSidebar products={products} getSortParams={getSortParams} sideSpaceClass="mr-30"/>
-                            </div>
-                            <div className="col-lg-9 order-1 order-lg-2">
-                                {/* shop topbar default */}
-                                <ShopTopbar getLayout={getLayout} getFilterSortParams={getFilterSortParams} 
-                                productCount={products.length} sortedProductCount={currentData.length} />
+    // setCategory(categoryPath);
 
-                                {/* shop page content default */}
-                                <ShopProducts layout={layout} products={currentData} />
+    // setSortValue(category);
+    //console.log("categoryPath " + categoryPath);
 
-                                {/* shop product pagination */}
-                                <div className="pro-pagination-style text-center mt-30">
-                                    <Paginator
-                                        totalRecords={sortedProducts.length}
-                                        pageLimit={pageLimit}
-                                        pageNeighbours={2}
-                                        setOffset={setOffset}
-                                        currentPage={currentPage}
-                                        setCurrentPage={setCurrentPage}
-                                        pageContainerClass="mb-0 mt-0"
-                                        pagePrevText="«"
-                                        pageNextText="»"
-                                    />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  // }, [categoryPath, category, offset, products, sortType, sortValue, filterSortType, filterSortValue]);
+  }, [offset, products, sortType, sortValue, filterSortType, filterSortValue ]);
+
+  return (
+    <Fragment>
+      <MetaTags>
+        <title>Gadget World | Shop Page</title>
+        <meta name="description" content="Shop page of eCommerce." />
+      </MetaTags>
+
+      <BreadcrumbsItem to={ROOT_URL + '/'}>Home</BreadcrumbsItem>
+      <BreadcrumbsItem to={ROOT_URL + pathname}>Shop</BreadcrumbsItem>
+
+      <LayoutOne headerTop="visible">
+        {/* breadcrumb */}
+        <Breadcrumb />
+
+        <div className="shop-area pt-95 pb-100">
+          <div className="container">
+            <div className="row">
+              <div className="col-lg-3 order-2 order-lg-1">
+                {/* shop sidebar */}
+                <ShopSidebar products={products} getSortParams={getSortParams} sideSpaceClass="mr-30" />
+              </div>
+              <div className="col-lg-9 order-1 order-lg-2">
+                {/* shop topbar default */}
+                <ShopTopbar getLayout={getLayout} getFilterSortParams={getFilterSortParams}
+                  productCount={products.length} sortedProductCount={currentData.length} />
+
+                {/* shop page content default */}
+                <ShopProducts layout={layout} products={currentData} />
+
+                {/* shop product pagination */}
+                <div className="pro-pagination-style text-center mt-30">
+                  <Paginator
+                    totalRecords={sortedProducts.length}
+                    pageLimit={pageLimit}
+                    pageNeighbours={2}
+                    setOffset={setOffset}
+                    currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
+                    pageContainerClass="mb-0 mt-0"
+                    pagePrevText="«"
+                    pageNextText="»"
+                  />
                 </div>
-            </LayoutOne>
-        </Fragment>
-    )
+              </div>
+            </div>
+          </div>
+        </div>
+      </LayoutOne>
+    </Fragment>
+  )
 }
 
 ShopGridStandard.propTypes = {
@@ -113,9 +125,19 @@ ShopGridStandard.propTypes = {
 }
 
 const mapStateToProps = state => {
-    return{
-        products: state.productData.products
-    }
+  return {
+    products: state.productData.products,
+    category: state.productData.category
+  }
 }
 
-export default connect(mapStateToProps)(ShopGridStandard);
+const mapDispatchToProps = dispatch => {
+  return {
+    setCategory: category => {
+      dispatch(setCategory(category));
+    }
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(ShopGridStandard);

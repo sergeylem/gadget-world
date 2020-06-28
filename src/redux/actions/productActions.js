@@ -1,5 +1,6 @@
 import axios from "axios";
 export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
+export const SET_CATEGORY = "SET_CATEGORY";
 
 export const fetchProducts = () => {
   return dispatch => {
@@ -8,12 +9,21 @@ export const fetchProducts = () => {
       .then(response => {
         dispatch({
           type: FETCH_PRODUCTS_SUCCESS,
-          payload: response.data 
+          payload: response.data
         });
       })
       .catch(err => {
         console.log("Error: ", err);
       });
+  };
+};
+
+export const setCategory = category => {
+  return dispatch => {
+        dispatch({
+          type: SET_CATEGORY,
+          payload: category
+        });
   };
 };
 
