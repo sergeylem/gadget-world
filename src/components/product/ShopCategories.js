@@ -1,8 +1,11 @@
 import PropTypes from "prop-types";
 import React from "react";
 import { setActiveSort } from "../../helpers/product";
-import { setCategory } from "../../redux/actions/productActions";
-import { connect } from "react-redux";
+// import { setCategory } from "../../redux/actions/productActions";
+// import { connect } from "react-redux";
+import { Link } from "react-router-dom";
+import { ROOT_URL } from "../../config";
+
 
 const ShopCategories = ({ categories, getSortParams }) => {
   return (
@@ -10,34 +13,35 @@ const ShopCategories = ({ categories, getSortParams }) => {
       <h4 className="pro-sidebar-title">Categories </h4>
       <div className="sidebar-widget-list mt-30">
         {categories ? (
-          <ul>
+          <ul className="ul-shop-categories"> {/* ! ul has indent to right without this style */}
             <li>
               <div className="sidebar-widget-list-left">
-                <button
-                  onClick={e => {
-                    getSortParams("category", "");
-                    setActiveSort(e);
-                  }}
-                >
-                  <span className="checkmark" /> All Categories
+                <Link to={ROOT_URL + "/shop-grid-standard/"}>
+                  <button
+                    onClick={e => {
+                      setActiveSort(e);
+                    }}
+                  >
+                    <span className="checkmark" /> All Categories
                 </button>
+                </Link>
               </div>
             </li>
             {categories.map((category, key) => {
               return (
                 <li key={key}>
                   <div className="sidebar-widget-list-left">
-                    <button
-                      onClick={e => {
-                        setCategory(category);
-                        getSortParams("category", category);
-                        console.log("from shop categories:" + category);
-                        setActiveSort(e);
-                      }}
-                    >
-                      {" "}
-                      <span className="checkmark" /> {category}{" "}
-                    </button>
+                    <Link to={ROOT_URL + "/shop-grid-standard/category/" + category}>
+                      <button
+                        onClick={e => {
+                          setActiveSort(e);
+                        }}
+                      >
+                        {" "}
+                        <span className="checkmark" />
+                        {category} {" "}
+                      </button>
+                    </Link>
                   </div>
                 </li>
               );
@@ -56,13 +60,14 @@ ShopCategories.propTypes = {
   getSortParams: PropTypes.func
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setCategory: category => {
-      dispatch(setCategory(category));
-    }
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     setCategory: category => {
+//       dispatch(setCategory(category));
+//     }
+//   };
+// };
 
 
-export default connect(null, mapDispatchToProps)(ShopCategories);
+//export default connect(null, mapDispatchToProps)(ShopCategories);
+export default ShopCategories;

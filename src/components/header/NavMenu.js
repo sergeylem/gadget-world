@@ -52,49 +52,49 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-grid-standard/Smartphone"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/category/Smartphone"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/smartphone.jpg") }}
                     >
                       {strings["shop_smartphone"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-grid-standard/Tablet"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/category/Tablet"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/tablet.jpg") }}
                     >
                       {strings["shop_tablet"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-grid-standard/Watch"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/category/Watch"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/watch.jpg") }}
                     >
                       {strings["shop_wearable"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-grid-standard/Camera"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/category/Camera"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/camera.jpg") }}
                     >
                       {strings["shop_camera"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-grid-standard/Notebook"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/category/Notebook"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/macbook.jpg") }}
                     >
-                      {strings["shop_laptop"]}
+                      {strings["shop_notebook"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-grid-standard/Drone"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/category/Drone"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/drone.jpg") }}
                     >
                       {strings["shop_drone"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/shop-grid-standard/Accessories"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/category/Accessories"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/headphone.jpg") }}
                     >
                       {strings["shop_accessories"]}
@@ -110,35 +110,35 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/product/1"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/tag/Apple"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/logo-apple.jpg") }}
                       >
                       {strings["product_apple"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/product-tab-left/1"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/tag/Samsung"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/logo-samsung.jpg") }}
                       >
                       {strings["product_samsung"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/product-tab-right/1"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/tag/Huawei"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/logo-huawei.jpg") }}
                       >
                       {strings["product_huawei"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/product-sticky/1"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/tag/Xiaomi"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/logo-хiaomi.jpg") }}
                     >
                       {strings["product_xiaomi"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/product-slider/1"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/tag/Meizu"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/logo-meizu.jpg") }}
                       >
                       {strings["product_meizu"]}
@@ -146,14 +146,14 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
                   </li>
                   <li>
                     <Link
-                      to={ROOT_URL + "/product-fixed-image/1"}
+                      to={ROOT_URL + "/shop-grid-standard/tag/Oppo"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/logo-oppo.jpg") }}
                     >
                       {strings["product_oppo"]}
                     </Link>
                   </li>
                   <li>
-                    <Link to={ROOT_URL + "/product/8"}
+                    <Link to={ROOT_URL + "/shop-grid-standard/tag/ZTE"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/logo-zte.jpg") }}
                     >
                       {strings["product_zte"]}

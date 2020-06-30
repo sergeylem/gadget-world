@@ -37,6 +37,11 @@
   }
 }
 
+.ul-shop-categories {
+  // list-style: none;
+  margin-left: -30px;
+}
+
 .sidebar-widget {
   h4.pro-sidebar-title {
     font-size: 16px;
@@ -70,7 +75,7 @@
           }
           .checkmark {
             position: absolute;
-            left: 0;
+            left: 0;  
             height: 15px;
             width: 15px;
             background-color: #fff;

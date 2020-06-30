@@ -3,7 +3,6 @@ import React, { Fragment, useState, useEffect } from 'react';
 import MetaTags from 'react-meta-tags';
 import Paginator from 'react-hooks-paginator';
 import { BreadcrumbsItem } from 'react-breadcrumbs-dynamic';
-import { connect } from 'react-redux';
 import { getSortedProducts } from '../../helpers/product';
 import LayoutOne from '../../layouts/LayoutOne';
 import Breadcrumb from '../../wrappers/breadcrumb/Breadcrumb';
@@ -11,21 +10,30 @@ import ShopSidebar from '../../wrappers/product/ShopSidebar';
 import ShopTopbar from '../../wrappers/product/ShopTopbar';
 import ShopProducts from '../../wrappers/product/ShopProducts';
 import { ROOT_URL } from "../../config";
-import { setCategory } from "../../redux/actions/productActions";
+import { connect } from 'react-redux';
+// import { setCategory } from "../../redux/actions/productActions";
 
 
-const ShopGridStandard = ({ location, products, category }) => {
+const ShopGridStandard = ({ location, products }) => {
   const [layout, setLayout] = useState('grid three-column');
   // const [sortType, setSortType] = useState('');
   // const [sortValue, setSortValue] = useState('');
   const { pathname } = location;
-  const n = pathname.lastIndexOf("/");
-  const categoryPath = pathname.slice(n + 1);
+  const [sortType, setSortType] = useState('');
 
-  setCategory(categoryPath);
+  const n = pathname.lastIndexOf("/category/");
+  if (n === -1) {
+    n = pathname.lastIndexOf("/tag/");
+    if (n > -1 ) {
+      setSortType('tag');
+    }
+  } else {
+    setSortType('category');
+  } 
 
-  const [sortType, setSortType] = useState('category');
-  const [sortValue, setSortValue] = useState(category);
+  const categorytag = pathname.slice(n + 1);
+
+  const [sortValue, setSortValue] = useState(categorytag);
 
   const [filterSortType, setFilterSortType] = useState('');
   const [filterSortValue, setFilterSortValue] = useState('');
@@ -43,8 +51,8 @@ const ShopGridStandard = ({ location, products, category }) => {
   const getSortParams = (sortType, sortValue) => {
     setSortType(sortType);
     setSortValue(sortValue);
-    console.log("sortType " + sortType);
-    console.log("sortValue " + sortValue);
+    // console.log("sortType " + sortType);
+    // console.log("sortValue " + sortValue);
   }
 
   const getFilterSortParams = (sortType, sortValue) => {
@@ -59,13 +67,10 @@ const ShopGridStandard = ({ location, products, category }) => {
     setSortedProducts(sortedProducts);
     setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
 
-    // setCategory(categoryPath);
+    setSortValue(pathname);
 
-    // setSortValue(category);
-    //console.log("categoryPath " + categoryPath);
-
-  // }, [categoryPath, category, offset, products, sortType, sortValue, filterSortType, filterSortValue]);
-  }, [offset, products, sortType, sortValue, filterSortType, filterSortValue ]);
+  }, [pathname, offset, products, sortType, sortValue, filterSortType, filterSortValue]);
+  // }, [offset, products, sortType, sortValue, filterSortType, filterSortValue ]);
 
   return (
     <Fragment>
@@ -126,18 +131,19 @@ ShopGridStandard.propTypes = {
 
 const mapStateToProps = state => {
   return {
-    products: state.productData.products,
-    category: state.productData.category
+    products: state.productData.products
+    // ,
+    // category: state.productData.category
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setCategory: category => {
-      dispatch(setCategory(category));
-    }
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     setCategory: category => {
+//       dispatch(setCategory(category));
+//     }
+//   };
+// };
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ShopGridStandard);
+export default connect(mapStateToProps)(ShopGridStandard);
