@@ -11,32 +11,28 @@ import ShopTopbar from '../../wrappers/product/ShopTopbar';
 import ShopProducts from '../../wrappers/product/ShopProducts';
 import { ROOT_URL } from "../../config";
 import { connect } from 'react-redux';
-// import { setCategory } from "../../redux/actions/productActions";
-
 
 const ShopGridStandard = ({ location, products }) => {
   const [layout, setLayout] = useState('grid three-column');
-  // const [sortType, setSortType] = useState('');
-  // const [sortValue, setSortValue] = useState('');
+  
   const { pathname } = location;
-  const [sortType, setSortType] = useState('');
-
-  const n = pathname.lastIndexOf("/category/");
-  if (n === -1) {
-    n = pathname.lastIndexOf("/tag/");
-    if (n > -1 ) {
-      setSortType('tag');
-    }
+  let foundType = "";
+  const c = pathname.lastIndexOf("category/");
+  const t = pathname.lastIndexOf("tag/");
+  if (c > -1) {
+    foundType = "category"
   } else {
-    setSortType('category');
-  } 
+    if (t > -1) {
+      foundType = "tag"
+    }
+  }
 
-  const categorytag = pathname.slice(n + 1);
+  const n = pathname.lastIndexOf("/");
+  const foundTypeValue = pathname.slice(n + 1);
 
-  const [sortValue, setSortValue] = useState(categorytag);
+  const [sortType, setSortType] = useState(foundType);
+  const [sortValue, setSortValue] = useState(foundTypeValue);
 
-  const [filterSortType, setFilterSortType] = useState('');
-  const [filterSortValue, setFilterSortValue] = useState('');
   const [offset, setOffset] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [currentData, setCurrentData] = useState([]);
@@ -48,29 +44,14 @@ const ShopGridStandard = ({ location, products }) => {
     setLayout(layout)
   }
 
-  const getSortParams = (sortType, sortValue) => {
-    setSortType(sortType);
-    setSortValue(sortValue);
-    // console.log("sortType " + sortType);
-    // console.log("sortValue " + sortValue);
-  }
-
-  const getFilterSortParams = (sortType, sortValue) => {
-    setFilterSortType(sortType);
-    setFilterSortValue(sortValue);
-  }
-
   useEffect(() => {
     let sortedProducts = getSortedProducts(products, sortType, sortValue);
-    const filterSortedProducts = getSortedProducts(sortedProducts, filterSortType, filterSortValue);
-    sortedProducts = filterSortedProducts;
     setSortedProducts(sortedProducts);
     setCurrentData(sortedProducts.slice(offset, offset + pageLimit));
 
-    setSortValue(pathname);
-
-  }, [pathname, offset, products, sortType, sortValue, filterSortType, filterSortValue]);
-  // }, [offset, products, sortType, sortValue, filterSortType, filterSortValue ]);
+    setSortType(foundType);
+    setSortValue(foundTypeValue);
+  }, [foundType, foundTypeValue, offset, products, sortType, sortValue]);
 
   return (
     <Fragment>
@@ -91,11 +72,11 @@ const ShopGridStandard = ({ location, products }) => {
             <div className="row">
               <div className="col-lg-3 order-2 order-lg-1">
                 {/* shop sidebar */}
-                <ShopSidebar products={products} getSortParams={getSortParams} sideSpaceClass="mr-30" />
+                <ShopSidebar products={products} sideSpaceClass="mr-30" />
               </div>
               <div className="col-lg-9 order-1 order-lg-2">
                 {/* shop topbar default */}
-                <ShopTopbar getLayout={getLayout} getFilterSortParams={getFilterSortParams}
+                <ShopTopbar getLayout={getLayout} 
                   productCount={products.length} sortedProductCount={currentData.length} />
 
                 {/* shop page content default */}
@@ -132,18 +113,7 @@ ShopGridStandard.propTypes = {
 const mapStateToProps = state => {
   return {
     products: state.productData.products
-    // ,
-    // category: state.productData.category
   }
 }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     setCategory: category => {
-//       dispatch(setCategory(category));
-//     }
-//   };
-// };
-
 
 export default connect(mapStateToProps)(ShopGridStandard);

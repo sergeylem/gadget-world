@@ -105,7 +105,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
               <li>
                 <ul>
                   <li className="mega-menu-title">
-                    <Link to={ROOT_URL + "/product/1"}>
+                    <Link to={ROOT_URL + "/shop-grid-standard"}>
                       {strings["product_vendors"]}
                     </Link>
                   </li>
@@ -146,7 +146,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
                   </li>
                   <li>
                     <Link
-                      to={ROOT_URL + "/shop-grid-standard/tag/Oppo"}
+                      to={ROOT_URL + "/shop-grid-standard/tag/OPPO"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/logo-oppo.jpg") }}
                     >
                       {strings["product_oppo"]}
@@ -291,4 +291,3 @@ NavMenu.propTypes = {
 };
 
 export default multilanguage(withRouter(NavMenu));
-//export default NavMenu;

@@ -1,6 +1,5 @@
 import axios from "axios";
 export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
-// export const SET_CATEGORY = "SET_CATEGORY";
 
 export const fetchProducts = () => {
   return dispatch => {
@@ -17,16 +16,6 @@ export const fetchProducts = () => {
       });
   };
 };
-
-// export const setCategory = category => {
-//   return dispatch => {
-//         dispatch({
-//           type: SET_CATEGORY,
-//           payload: category
-//         });
-//   };
-// };
-
 
 // const fetchProductsSuccess = products => ({
 //   type: FETCH_PRODUCTS_SUCCESS,

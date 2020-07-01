@@ -42,6 +42,11 @@
   margin-left: -30px;
 }
 
+.ul-shop-tags {
+  //list-style: none;
+  margin-left: -10px;
+}
+
 .sidebar-widget {
   h4.pro-sidebar-title {
     font-size: 16px;
@@ -173,13 +178,15 @@
           background: none;
           border: none;
           background-color: #f6f6f6;
-          padding: 9px 17px 12px;
+          // padding: 9px 17px 12px;
+          padding: 5px 10px 6px;
           text-transform: capitalize;
           @media #{$lg-layout} {
-            padding: 9px 13px 12px;
+            // padding: 9px 13px 12px;
+            padding: 5px 10px 6px;
           }
           line-height: 1;
-          border-radius: 50px;
+          border-radius: 15px;
           &:hover,
           &.active {
             background-color: $theme-color;
