@@ -41,7 +41,7 @@ const FooterTwo = ({
       <div className="container">
         <div className="footer-border pt-100">
           <div className="row">
-            <div className="col-lg-2 col-sm-4">
+            <div className="col-lg-3 col-sm-4">
               {/* footer copyright */}
               <FooterCopyright
                 footerLogo="/assets/img/logo/logo.svg"
@@ -71,30 +71,7 @@ const FooterTwo = ({
                 </div>
               </div>
             </div>
-            <div className="col-lg-2 col-md-4 col-sm-4">
-              <div className="footer-widget mb-30 ml-50">
-                <div className="footer-title">
-                  <h3>USEFUL LINKS</h3>
-                </div>
-                <div className="footer-list">
-                  <ul>
-                    <li>
-                      <Link to={ROOT_URL + "#/"}>Returns</Link>
-                    </li>
-                    <li>
-                      <Link to={ROOT_URL + "#/"}>Support Policy</Link>
-                    </li>
-                    <li>
-                      <Link to={ROOT_URL + "#/"}>Size guide</Link>
-                    </li>
-                    <li>
-                      <Link to={ROOT_URL + "#/"}>FAQs</Link>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-            <div className="col-lg-2 col-md-6 col-sm-6">
+            <div className="col-lg-3 col-md-4 col-sm-4">
               <div className="footer-widget mb-30 ml-75">
                 <div className="footer-title">
                   <h3>FOLLOW US</h3>
@@ -142,10 +119,9 @@ const FooterTwo = ({
               </div>
             </div>
             <div className="col-lg-4 col-sm-6">
-              {/* footer newsletter */}
               <FooterNewsletter
-                spaceBottomClass="mb-30"
-                spaceLeftClass="ml-70"
+                // spaceBottomClass="mb-30"
+                // spaceLeftClass="ml-70"
               />
             </div>
           </div>

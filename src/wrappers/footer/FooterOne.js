@@ -45,7 +45,7 @@ const FooterOne = ({
         <div className="row">
           <div
             className={`${
-              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
+              sideMenu ? "col-xl-3 col-sm-4" : "col-lg-3 col-sm-4"
             }`}
           > 
             {/* footer copyright */}
@@ -59,7 +59,7 @@ const FooterOne = ({
               sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
             }`}
           >
-            <div className="footer-widget mb-30 ml-30">
+            <div className="footer-widget mb-30 ">
               <div className="footer-title">
                 <h3>ABOUT US</h3>
               </div>
@@ -89,48 +89,13 @@ const FooterOne = ({
           </div>
           <div
             className={`${
-              sideMenu ? "col-xl-2 col-sm-4" : "col-lg-2 col-sm-4"
-            }`}
-          >
-            <div
-              className={`${
-                sideMenu
-                  ? "footer-widget mb-30 ml-95"
-                  : "footer-widget mb-30 ml-50"
-              }`}
-            >
-              <div className="footer-title">
-                <h3>USEFUL LINKS</h3>
-              </div>
-              <div className="footer-list">
-                <ul>
-                  <li>
-                    <Link to={ROOT_URL + "#/"}>Returns</Link>
-                  </li>
-                  <li>
-                    <Link to={ROOT_URL + "#/"}>
-                      Support Policy
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to={ROOT_URL + "#/"}>Size guide</Link>
-                  </li>
-                  <li>
-                    <Link to={ROOT_URL + "#/"}>FAQs</Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div
-            className={`${
-              sideMenu ? "col-xl-3 col-sm-4" : "col-lg-2 col-sm-6"
+              sideMenu ? "col-xl-3 col-sm-4" : "col-lg-2 col-sm-4"
             }`}
           >
             <div className={`${
                 sideMenu
-                  ? "footer-widget mb-30 ml-145"
-                  : "footer-widget mb-30 ml-75"
+                  ? "footer-widget mb-30 "
+                  : "footer-widget mb-30 "
               }`}>
               <div className="footer-title">
                 <h3>FOLLOW US</h3>
@@ -179,11 +144,15 @@ const FooterOne = ({
           </div>
           <div
             className={`${
-              sideMenu ? "col-xl-3 col-sm-8" : "col-lg-4 col-sm-6"
+              sideMenu ? "col-xl-4 col-sm-8" : "col-lg-4 col-sm-6"
             }`}
           >
             {/* footer newsletter */}
-            <FooterNewsletter spaceBottomClass="mb-30" spaceLeftClass="ml-70" sideMenu={sideMenu} />
+            <FooterNewsletter 
+            // spaceBottomClass="mb-30" 
+            // spaceLeftClass="ml-70" 
+            sideMenu={sideMenu} 
+            />
           </div>
         </div>
       </div>
