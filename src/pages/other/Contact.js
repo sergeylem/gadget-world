@@ -29,7 +29,7 @@ const Contact = ({ location }) => {
         <div className="contact-area pt-100 pb-100">
           <div className="container">
             <div className="contact-map mb-10">
-              <LocationMap latitude="47.444" longitude="-122.176" />
+              <LocationMap latitude="51.1597" longitude="71.4149" />
             </div>
             <div className="custom-row-2">
               <div className="col-lg-4 col-md-5">

@@ -21,7 +21,7 @@ const FooterMap = props => {
         icon={{
           url: `${ROOT_URL + "/assets/img/icon-img/2.png"}`
         }}
-        animation={props.google.maps.Animation.BOUNCE}
+        // animation={props.google.maps.Animation.BOUNCE}
       />
     </Map>
   );
@@ -34,5 +34,5 @@ FooterMap.propTypes = {
 };
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyB2D8wrWMY3XZnuHO6C31uq90JiuaFzGws"
+  apiKey: "AIzaSyBZs3l-reWPxC5eSb7p1tfILZ7EK7XaGz4"
 })(FooterMap);

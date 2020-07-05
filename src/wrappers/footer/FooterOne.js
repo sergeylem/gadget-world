@@ -89,7 +89,7 @@ const FooterOne = ({
           </div>
           <div
             className={`${
-              sideMenu ? "col-xl-3 col-sm-4" : "col-lg-2 col-sm-4"
+              sideMenu ? "col-xl-3 col-sm-4" : "col-lg-2 col-sm-4npm start"
             }`}
           >
             <div className={`${
