@@ -6,17 +6,26 @@ const SectionTitleWithText = ({ spaceTopClass, spaceBottomClass }) => {
     <div
       className={`welcome-area ${spaceTopClass ? spaceTopClass : ""} ${
         spaceBottomClass ? spaceBottomClass : ""
-      }`}
+        }`}
     >
       <div className="container">
         <div className="welcome-content text-center">
           <h5>Who Are We</h5>
           <h1>Welcome To Gadget World</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-            eiusmod tempor incididunt labor et dolore magna aliqua. Ut enim ad
-            minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commo consequat irure{" "}
+            Welcome to Gadget World, your number one source for electronic devices.
+            We’ve made our website convenient and simple so
+            that it would be easy for you to navigate. We provide a wide range of products – from
+            computers and smartphones to gaming equipment. It is our main duty to ensure the high
+            quality of the products, reasonable prices and the quickest delivery to any part of the world.
+            We're dedicated to giving you the very best of products with a focus on dependability,
+            customer service and uniqueness. It is also within our priorities to keep our customers up to
+            date by providing them with the latest products at the market of electronic devices.
+            We hope you enjoy our products as much as we enjoy offering them to you. If you have any
+            questions or comments, please don't hesitate to contact us. {" "}
+          </p>
+          <p>
+            Sincerely, The team of Gadget World
           </p>
         </div>
       </div>

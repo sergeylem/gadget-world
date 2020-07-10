@@ -29,14 +29,15 @@ const About = ({ location }) => {
         {/* breadcrumb */}
         <Breadcrumb />
 
-        {/* section title with text */}
-        <SectionTitleWithText spaceTopClass="pt-100" spaceBottomClass="pb-95" />
-
         {/* banner */}
         <BannerOne spaceBottomClass="pb-70" />
 
         {/* text grid */}
         <TextGridOne spaceBottomClass="pb-70" />
+
+        {/* section title with text */}
+        <SectionTitleWithText spaceTopClass="pt-10" spaceBottomClass="pb-95" />
+
 
       </LayoutOne>
     </Fragment>
