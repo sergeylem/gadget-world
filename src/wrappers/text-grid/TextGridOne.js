@@ -11,8 +11,11 @@ const TextGridOne = ({ spaceBottomClass }) => {
         spaceBottomClass ? spaceBottomClass : ""
         }`}
     >
-      <div className="container">
-        <div className="row">
+      <div className="container welcome-content text-center mt-5">
+        <h5>Who Are We</h5>
+        <h1>Welcome To Gadget World</h1>
+
+        <div className="row justify-content-center">
           <img className="ourteam-img"
             src={ROOT_URL + "/assets/img/about/team.jpg"} alt=""
           />

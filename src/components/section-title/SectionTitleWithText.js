@@ -10,8 +10,8 @@ const SectionTitleWithText = ({ spaceTopClass, spaceBottomClass }) => {
     >
       <div className="container">
         <div className="welcome-content text-center">
-          <h5>Who Are We</h5>
-          <h1>Welcome To Gadget World</h1>
+          {/* <h5>Who Are We</h5>
+          <h1>Welcome To Gadget World</h1> */}
           <p>
             Welcome to Gadget World, your number one source for electronic devices.
             We’ve made our website convenient and simple so

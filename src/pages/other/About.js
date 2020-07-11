@@ -30,10 +30,10 @@ const About = ({ location }) => {
         <Breadcrumb />
 
         {/* banner */}
-        <BannerOne spaceBottomClass="pb-70" />
+        {/* <BannerOne spaceBottomClass="pb-70" /> */}
 
         {/* text grid */}
-        <TextGridOne spaceBottomClass="pb-70" />
+        <TextGridOne spaceBottomClass="pb-30" />
 
         {/* section title with text */}
         <SectionTitleWithText spaceTopClass="pt-10" spaceBottomClass="pb-95" />
