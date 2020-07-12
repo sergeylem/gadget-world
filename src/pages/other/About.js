@@ -5,7 +5,7 @@ import { BreadcrumbsItem } from "react-breadcrumbs-dynamic";
 import LayoutOne from "../../layouts/LayoutOne";
 import Breadcrumb from "../../wrappers/breadcrumb/Breadcrumb";
 import SectionTitleWithText from "../../components/section-title/SectionTitleWithText";
-import BannerOne from "../../wrappers/banner/BannerOne";
+// import BannerOne from "../../wrappers/banner/BannerOne";
 import TextGridOne from "../../wrappers/text-grid/TextGridOne";
 import { ROOT_URL } from "../../config";
 

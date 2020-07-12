@@ -13,7 +13,7 @@ const TextGridOne = ({ spaceBottomClass }) => {
     >
       <div className="container welcome-content text-center mt-5">
         <h5>Who Are We</h5>
-        <h1>Welcome To Gadget World</h1>
+        <h1 className='mb-5'>Welcome To Gadget World</h1>
 
         <div className="row justify-content-center">
           <img className="ourteam-img"

@@ -39,8 +39,7 @@ const Contact = ({ location }) => {
                       <i className="fa fa-phone" />
                     </div>
                     <div className="contact-info-dec">
-                      <p>+012 345 678 102</p>
-                      <p>+012 345 678 102</p>
+                      <p>+7 7172 580 123</p>
                     </div>
                   </div>
                   <div className="single-contact-info">
@@ -49,10 +48,10 @@ const Contact = ({ location }) => {
                     </div>
                     <div className="contact-info-dec">
                       <p>
-                        <a href="mailto:urname@email.com">urname@email.com</a>
+                        <a href="mailto:urname@email.com">info@gadget-world.shop</a>
                       </p>
                       <p>
-                        <a href="//urwebsitenaem.com">urwebsitenaem.com</a>
+                        <a href="//gadget-world.shop">www.gadget-world.shop</a>
                       </p>
                     </div>
                   </div>
@@ -61,8 +60,8 @@ const Contact = ({ location }) => {
                       <i className="fa fa-map-marker" />
                     </div>
                     <div className="contact-info-dec">
-                      <p>Address goes here, </p>
-                      <p>street, Crossroad 123.</p>
+                      <p>Kazakhstan, Nur-Sultan</p>
+                      <p>Avenue, Zhenis 1.</p>
                     </div>
                   </div>
                   <div className="contact-social text-center">

@@ -3,7 +3,7 @@ import React from "react";
 
 const TextGridOneSingle = ({ data, spaceBottomClass }) => {
   return (
-    <div className="col-lg-4 col-md-4">
+    <div className="col-lg-4 col-md-4 d-flex align-items-center">
       <div
         // className={`single-mission ${spaceBottomClass ? spaceBottomClass : ""}`}
       >

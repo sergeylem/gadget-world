@@ -1,15 +1,21 @@
 /*------- 11. About style ------ */
 
 .mission-font {
-  font-family: 'Dancing Script';
-  // font-size: large;
+  // font-family: 'Quicksand';
+  // font-family: 'Dancing Script';
+  font-size: 16px;
+}
+
+.ourteam-img {
+  width: 400px;
+  border-radius: 10px;
 }
 
 .welcome-content {
   h5 {
     font-weight: 500;
     font-size: 16px;
-    color: #666;
+    color: rgb(94, 80, 80);
     margin: 0;
     letter-spacing: 0.3px;
   }
@@ -93,10 +99,6 @@
     text-transform: capitalize;
     font-weight: 500;
   }
-}
-
-.ourteam-img {
-  width: 400px
 }
 
 .team-wrapper {
