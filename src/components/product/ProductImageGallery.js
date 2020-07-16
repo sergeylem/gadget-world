@@ -79,7 +79,7 @@ const ProductImageGallery = ({ product }) => {
                     <LightgalleryItem
                       group="any"
                       // src={ROOT_URL + single}
-                      src={`${DB_URL}/${single}`}
+                      src={`${DB_URL}${single}`}  
                     >
                       <button>
                         <i className="pe-7s-expand1"></i>
@@ -88,7 +88,7 @@ const ProductImageGallery = ({ product }) => {
                     <div className="single-image">
                       <img
                         // src={ROOT_URL + single}
-                        src={`${DB_URL}/${single}`}
+                        src={`${DB_URL}${single}`}  
                         className="img-fluid"
                         alt=""
                       />
@@ -108,7 +108,7 @@ const ProductImageGallery = ({ product }) => {
                   <div className="single-image">
                     <img
                       // src={ROOT_URL + single}
-                      src={`${DB_URL}/${single}`}
+                      src={`${DB_URL}${single}`} 
                       className="img-fluid"
                       alt=""
                     />

@@ -42,13 +42,13 @@ const ProductGridSingle = ({
             <Link to={ROOT_URL + "/product/" + product._id}>
               <img
                 className="default-img"
-                src={DB_URL + '/' + product.image[0]}
+                src={DB_URL + product.image[0]}  
                 alt=""
               />
               {product.image.length > 1 ? ( 
                 <img
                   className="hover-img"
-                  src={DB_URL + '/' + product.image[1]}
+                  src={DB_URL + product.image[1]}   
                   alt=""
                 />
               ) : (

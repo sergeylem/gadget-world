@@ -98,7 +98,7 @@ const Cart = ({
                                   >
                                     <img
                                       className="img-fluid"
-                                      src={DB_URL + "/" + cartItem.image[0]}
+                                      src={DB_URL + cartItem.image[0]}   
                                       alt=""
                                     />
                                   </Link>

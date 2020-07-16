@@ -35,7 +35,7 @@ const MenuCart = ({ cartData, currency, deleteFromCart }) => {
                     <Link to={ROOT_URL + "/product/" + single._id}>
                       <img
                         alt=""
-                        src={DB_URL + "/" + single.image[0]}
+                        src={DB_URL + single.image[0]}  
                         className="img-fluid"
                       />
 

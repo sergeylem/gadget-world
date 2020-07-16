@@ -87,7 +87,7 @@ const Wishlist = ({
                                   >
                                     <img
                                       className="img-fluid"
-                                      src={DB_URL + "/" + wishlistItem.image[0]}
+                                      src={DB_URL + wishlistItem.image[0]} 
                                       alt=""
                                     />
                                   </Link>

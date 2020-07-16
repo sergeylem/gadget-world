@@ -46,7 +46,7 @@ const ProductGridSingleTwo = ({
               <img
                 className="default-img"
                 // src={ROOT_URL + product.image[0]}
-                src={DB_URL + '/' + product.image[0]}
+                src={DB_URL + product.image[0]}  
                 alt=""
               />
             </Link>

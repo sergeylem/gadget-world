@@ -7,6 +7,8 @@ import { signout, isAuthenticated } from "../../helpers/auth";
 
 const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
 
+  const { user } = isAuthenticated();
+
   const [path, setPath] = useState(ROOT_URL + "");
   return (
     <div
@@ -112,21 +114,21 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
                   <li>
                     <Link to={ROOT_URL + "/shop-grid-standard/tag/Apple"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/logo-apple.jpg") }}
-                      >
+                    >
                       {strings["product_apple"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/shop-grid-standard/tag/Samsung"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/logo-samsung.jpg") }}
-                      >
+                    >
                       {strings["product_samsung"]}
                     </Link>
                   </li>
                   <li>
                     <Link to={ROOT_URL + "/shop-grid-standard/tag/Huawei"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/logo-huawei.jpg") }}
-                      >
+                    >
                       {strings["product_huawei"]}
                     </Link>
                   </li>
@@ -140,7 +142,7 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
                   <li>
                     <Link to={ROOT_URL + "/shop-grid-standard/tag/Meizu"}
                       onMouseEnter={() => { setPath(ROOT_URL + "/assets/img/banner/logo-meizu.jpg") }}
-                      >
+                    >
                       {strings["product_meizu"]}
                     </Link>
                   </li>
@@ -215,29 +217,39 @@ const NavMenu = ({ strings, menuWhiteClass, sidebarMenu, history }) => {
                 </Link>
               </li>
               <li>
-                <Link to={ROOT_URL + "/my-account"}>
-                  {strings["my_account"]}
-                </Link>
+                {(user && user.role === 1) && (
+                  <Link to={ROOT_URL + "/my-account"}>
+                    {strings["my_account"]}
+                  </Link>
+                )}
               </li>
               <li>
-                <Link to={ROOT_URL + "/add-product"}>
-                  {strings["add_product"]}
-                </Link>
+                {(user && user.role === 1) && (
+                  <Link to={ROOT_URL + "/add-product"}>
+                    {strings["add_product"]}
+                  </Link>
+                )}
               </li>
               <li>
-                <Link to={ROOT_URL + "/manage-products"}>
-                  {strings["manage_products"]}
-                </Link>
+                {(user && user.role === 1) && (
+                  <Link to={ROOT_URL + "/manage-products"}>
+                    {strings["manage_products"]}
+                  </Link>
+                )}
               </li>
               <li>
-                <Link to={ROOT_URL + "/add-category"}>
-                  {strings["create_category"]}
-                </Link>
+                {(user && user.role === 1) && (
+                  <Link to={ROOT_URL + "/add-category"}>
+                    {strings["create_category"]}
+                  </Link>
+                )}
               </li>
               <li>
-                <Link to={ROOT_URL + "/add-tag"}>
-                  {strings["create_tag"]}
-                </Link>
+                {(user && user.role === 1) && (
+                  <Link to={ROOT_URL + "/add-tag"}>
+                    {strings["create_tag"]}
+                  </Link>
+                )}
               </li>
               <li>
                 <Link to={ROOT_URL + "/register"}>
