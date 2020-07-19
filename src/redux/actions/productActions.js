@@ -1,11 +1,10 @@
 import axios from "axios";
+import { API } from "../../config";
 export const FETCH_PRODUCTS_SUCCESS = "FETCH_PRODUCTS_SUCCESS";
-
 export const fetchProducts = () => {
   return dispatch => {
     axios
-      // .get(process.env.REACT_APP_API_URL + '/products') //Change hardcode URL !!!
-      .get('http://164.90.210.75/api' + '/products') //Change hardcode URL !!!      
+      .get(`${API}/products`)    
       // .get('http://localhost/api' + '/products') //Change hardcode URL !!!      
       .then(response => {
         dispatch({
