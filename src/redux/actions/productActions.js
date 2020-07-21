@@ -5,7 +5,7 @@ export const fetchProducts = () => {
   return dispatch => {
     axios
       .get(`${API}/products`)    
-      // .get('http://localhost/api' + '/products') //Change hardcode URL !!!      
+//      .get('http://localhost:8000/api' + '/products') //Change hardcode URL !!!      
       .then(response => {
         dispatch({
           type: FETCH_PRODUCTS_SUCCESS,
