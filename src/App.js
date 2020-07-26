@@ -9,7 +9,7 @@ import { connect } from "react-redux";
 import { BreadcrumbsProvider } from "react-breadcrumbs-dynamic";
 import { ROOT_URL } from "./config";
 
-// home pages
+// home peges
 const HomeShop = lazy(() => import("./pages/home/HomeShop"));
 
 // shop pages
